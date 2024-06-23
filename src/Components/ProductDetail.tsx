@@ -8,6 +8,7 @@ import { useImageSize } from 'react-image-size';
 import { useMediaQuery } from '@mui/material';
 import CartButton from './CartButton';
 import { MyContext } from '../contexts/ColorMode';
+import { theme } from '../App';
 type props = {
   height: string;
   width: string;
@@ -24,7 +25,10 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
     const [dimensions, { loading, error }] = useImageSize(value.image);
     // console.log(error)
     // console.log(mode);
-    const aspectratio = error === null ? Number(dimensions?.width) / Number(dimensions?.height): 0;
+    const aspectratio =
+      error === null
+        ? Number(dimensions?.width) / Number(dimensions?.height)
+        : 0;
     if (value.id === index) {
       return (
         <Box
@@ -34,13 +38,13 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
               xs: '50vh',
               sm: `calc(300px/${aspectratio})`,
               md: `calc(450px/${aspectratio})`,
-              lg: `calc(550px/${aspectratio})`,
+              lg: `calc(500px/${aspectratio})`,
             },
             width: {
               xs: `calc(50vh*${aspectratio})`,
               sm: `300px`,
               md: '450px',
-              lg: '550px',
+              lg: '500px',
             },
             backgroundImage: `url(${value.image})`,
             //   backgroundColor: `${mode}.text`,
@@ -48,7 +52,7 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
               xs: `50vh calc(50vh/${aspectratio})`,
               sm: `300px calc(300px/${aspectratio})`,
               md: `450px calc(450px/${aspectratio})`,
-              lg: `550px calc(550px/${aspectratio})`,
+              lg: `500px calc(500px/${aspectratio})`,
             },
             borderRadius: '20px',
             backgroundRepeat: 'no-repeat',
@@ -57,7 +61,7 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
       );
     }
   });
-  const {mode} = useContext(MyContext);
+  const { mode } = useContext(MyContext);
 
   return (
     <Box
@@ -70,20 +74,28 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
         flexDirection: { xs: 'column', sm: 'row' },
         height: height,
         width: width,
-        paddingBottom:'75px'
+        paddingBottom: '75px',
       }}
     >
-      <SlideShow
-        components={slides.filter((value)=>value !== undefined)}
-        indicators={false}
-        arrows={false}
-        show1100={1}
-        show400={1}
-        show600={1}
-        show900={1}
-        width={!width600 ? '50%' : '100vw'}
-        // height='80vh'
-      />
+      <Box sx={{
+        display: 'flex',
+        alignItems:'flex-end',
+        justifyContent:'center',
+        width: !width600 ? '50%' : '100vw',
+        height:'100%'
+      }}>
+        <SlideShow
+          components={slides.filter((value) => value !== undefined)}
+          indicators={false}
+          arrows={false}
+          show1100={1}
+          show400={1}
+          show600={1}
+          show900={1}
+          width={'100%'}
+          // height='80vh'
+        />
+      </Box>
       {/* product content  */}
       <Box
         sx={{
@@ -117,6 +129,7 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
               lineHeight: '38px',
               width: '100%',
               textAlign: 'left',
+              color: `${mode}.text`,
             }}
           >
             Lorem ipsum dolor
@@ -158,10 +171,10 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
             <Typography
               sx={{
                 width: '100%',
-                color: 'green.light',
                 fontStyle: 'italic',
                 letterSpacing: '-0.42px',
                 lineHeight: '17px',
+                color: `${mode}.secondary`,
               }}
             >
               {details.summary}
@@ -175,7 +188,7 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
                 lineHeight: '1rem',
                 letterSpacing: '-0.42px',
                 padding: '50px 0 40px 0',
-                borderBottom: '2px solid #00584A',
+                borderBottom: `2px solid ${theme['palette'][mode].primary}`,
               }}
             >
               {details.desc}

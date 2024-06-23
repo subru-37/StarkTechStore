@@ -17,6 +17,7 @@ import { useNavigate } from 'react-router';
 import { removeAll } from '../Redux/features/CartSlice';
 import Message from '../Components/Message';
 import { MyContext } from '../contexts/ColorMode';
+import { theme } from '../App';
 type FormData = {
   email: string;
   firstName: string;
@@ -81,13 +82,14 @@ const Shipping = ({
   return (
     <Box
       sx={{
-        marginTop: '75px',
+        paddingTop: '75px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         minHeight: '100vh',
         minWidth: '100vw',
         paddingBottom: '75px',
+        backgroundColor:`${mode}.background`
       }}
     >
       <Box
@@ -102,9 +104,9 @@ const Shipping = ({
       >
         <Typography
           sx={{
-            color: `${mode}.text`,
+            color: `${mode}.primary`,
             width: '100%',
-            borderBottom: '1px solid #00584A',
+            borderBottom: `2px dashed ${theme['palette'][mode]['primary']}`,
             padding: '5px 0px',
             fontSize: '40px',
             fontWeight: '500',
@@ -148,19 +150,19 @@ const Shipping = ({
                 label="Email Address"
                 height="50px"
                 width={{ xs: '100%', md: '80%' }}
-                generalbgcolor="#F5FCE7"
-                fieldsetbgcolor="#F5FCE7"
-                fieldsetborder=" 1px solid #ACD2AE"
+                generalbgcolor={theme['palette'][mode]['primary']}
+                fieldsetbgcolor={theme['palette'][mode]['primary']}
+                fieldsetborder={`1px solid ${theme['palette'][mode]['primary']}`}
                 fieldsetborderradius="8px"
                 InputProps={{
                   style: {
-                    color: '#00584A',
+                    color: theme['palette'][mode]['primary'],
                     fontFamily: 'Plus Jakarta Sans',
                   },
                 }}
                 InputLabelProps={{
                   style: {
-                    color: '#5AB65F',
+                    color: theme['palette'][mode]['secondary'],
                     fontFamily: 'Plus Jakarta Sans',
                     fontSize: '12px',
                   },
@@ -176,19 +178,19 @@ const Shipping = ({
                 label="Address Line"
                 height="50px"
                 width={{ xs: '100%', md: '80%' }}
-                generalbgcolor="#F5FCE7"
-                fieldsetbgcolor="#F5FCE7"
-                fieldsetborder=" 1px solid #ACD2AE"
+                generalbgcolor={theme['palette'][mode]['primary']}
+                fieldsetbgcolor={theme['palette'][mode]['primary']}
+                fieldsetborder={`1px solid ${theme['palette'][mode]['primary']}`}
                 fieldsetborderradius="8px"
                 InputProps={{
                   style: {
-                    color: '#00584A',
+                    color: theme['palette'][mode]['primary'],
                     fontFamily: 'Plus Jakarta Sans',
                   },
                 }}
                 InputLabelProps={{
                   style: {
-                    color: '#5AB65F',
+                    color: theme['palette'][mode]['secondary'],
                     fontFamily: 'Plus Jakarta Sans',
                     fontSize: '12px',
                   },
@@ -210,7 +212,7 @@ const Shipping = ({
               <Typography
                 sx={{
                   fontSize: '12px',
-                  color: '#5AB65F',
+                  color: theme['palette'][mode]['secondary'],
                   fontStyle: 'italic',
                 }}
               >
@@ -230,13 +232,13 @@ const Shipping = ({
                     label="Your payment method"
                     //   InputProps={{
                     //     style: {
-                    //       color: '#00584A',
+                    //       color: theme['palette'][mode]['primary'],
                     //       fontFamily: 'Plus Jakarta Sans',
                     //     },
                     //   }}
                     InputLabelProps={{
                       style: {
-                        color: '#5AB65F',
+                        color: theme['palette'][mode]['secondary'],
                         fontFamily: 'Plus Jakarta Sans',
                         fontSize: '14px',
                       },
@@ -247,22 +249,22 @@ const Shipping = ({
                       '& .MuiOutlinedInput-root': {
                         height: '50px',
                         backgroundColor: `${mode}.background`,
-                        color: '#00584A',
+                        color: theme['palette'][mode]['primary'],
                         '& fieldset': {
-                          border: '1px solid #ACD2AE',
+                          border: `1px solid ${theme['palette'][mode]['primary']}`,
                           borderRadius: '8px',
-                          color: '#00584A',
+                          color: theme['palette'][mode]['primary'],
                         },
                         '&.Mui-focused fieldset': {
-                          border: '1px solid #ACD2AE',
+                          border: `1px solid ${theme['palette'][mode]['primary']}`,
                           borderRadius: '8px',
-                          color: '#00584A',
+                          color: theme['palette'][mode]['primary'],
                         },
                       },
                       '& .MuiOutlinedInput-root:hover': {
                         '& fieldset': {
-                          border: '1px solid #ACD2AE',
-                          color: '#00584A',
+                          border: `1px solid ${theme['palette'][mode]['primary']}`,
+                          color: theme['palette'][mode]['primary'],
                         },
                       },
                     }}
@@ -281,7 +283,7 @@ const Shipping = ({
             >
               <Typography
                 sx={{
-                  color: `${mode}.text`,
+                  color: `${mode}.primary`,
                   fontSize: '16px',
                   fontStyle: 'italic',
                   lineHeight: '14px',
@@ -296,12 +298,12 @@ const Shipping = ({
               </Typography>
               <Button
                 sx={{
-                  backgroundColor: `${mode}.text`,
+                  backgroundColor: `${mode}.primary`,
                   borderRadius: '5px',
                   border: '1px solid #00584A',
                   backdropFilter: 'blur(3px)',
                   '&:hover': {
-                    backgroundColor: `${mode}.text`,
+                    backgroundColor: `${mode}.primary`,
                   },
                   height: '50px',
                   width: '150px',
@@ -317,7 +319,7 @@ const Shipping = ({
                   sx={{
                     color: `${mode}.background`,
                     textTransform: 'none',
-                    fontSize: '12px',
+                    fontSize: '16px',
                     lineHeight: '14px',
                   }}
                 >
@@ -334,7 +336,7 @@ const Shipping = ({
               display: { xs: 'none', sm: 'flex' },
               alignItems: 'flex-start',
               justifyContent: 'flex-end',
-              borderLeft: { md: '1px solid #ACD2AE' },
+              borderLeft: { md: `1px solid ${theme['palette'][mode]['primary']}` },
             }}
           >
             <CheckoutCart

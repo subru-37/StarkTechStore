@@ -10,6 +10,7 @@ import '../styles/Landing.css';
 import { setUserData } from '../Redux/features/FormSlice';
 import { TotalPriceMain } from '../Components/TotalPrice';
 import { MyContext } from '../contexts/ColorMode';
+import { theme } from '../App';
 type FormData = {
   email: string;
   firstName: string;
@@ -23,8 +24,8 @@ type checkoutProps = {
   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
 };
 const Checkout = ({ formData, setFormData }: checkoutProps) => {
-const {mode} = useContext(MyContext);
-const navigation = useNavigate();
+  const { mode } = useContext(MyContext);
+  const navigation = useNavigate();
   const products = useSelector((state: any) => state.cart);
   useEffect(() => {
     if (products.cart.length === 0) {
@@ -33,9 +34,7 @@ const navigation = useNavigate();
   }, [products.cart]);
   const delivery = 40;
   const totalPrice =
-    products.cart.length > 0
-      ? TotalPriceMain(products.cart)
-      : 0;
+    products.cart.length > 0 ? TotalPriceMain(products.cart) : 0;
   const shipping = 4.9;
   const gst = 9;
   const formComponents = [
@@ -89,13 +88,14 @@ const navigation = useNavigate();
   return (
     <Box
       sx={{
-        marginTop: '75px',
+        paddingTop: '75px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         minHeight: '100vh',
         minWidth: '100vw',
         paddingBottom: '75px',
+        backgroundColor:`${mode}.background`
       }}
     >
       <Box
@@ -110,9 +110,9 @@ const navigation = useNavigate();
       >
         <Typography
           sx={{
-            color: `${mode}.text`,
+            color: `${mode}.primary`,
             width: '100%',
-            borderBottom: '1px solid #00584A',
+            borderBottom: `2px dashed ${theme['palette'][mode].primary}`,
             padding: '5px 0px',
             fontSize: '40px',
             fontWeight: '500',
@@ -147,14 +147,14 @@ const navigation = useNavigate();
             {/* email address box */}
             <Box sx={{ width: { xs: '80%', md: '100%' }, margin: '50px 0' }}>
               <Typography
-                sx={{ width: '80%', color: `${mode}.text`, fontSize: '24px' }}
+                sx={{ width: '80%', color: `${theme['palette'][mode]['text']}`, fontSize: '24px' }}
               >
                 Contact
               </Typography>
               <Typography
                 sx={{
                   fontSize: '12px',
-                  color: '#5AB65F',
+                  color: `${mode}.secondary`,
                   fontStyle: 'italic',
                 }}
               >
@@ -166,19 +166,19 @@ const navigation = useNavigate();
                 height="50px"
                 type="number"
                 width={{ xs: '100%', md: '80%' }}
-                generalbgcolor="#F5FCE7"
-                fieldsetbgcolor="#F5FCE7"
-                fieldsetborder="1px solid #ACD2AE"
+                generalbgcolor={`${mode}.primary`}
+                fieldsetbgcolor={`${mode}.primary`}
+                fieldsetborder={`1px solid ${theme['palette'][mode].primary}`}
                 fieldsetborderradius="8px"
                 InputProps={{
                   style: {
-                    color: '#00584A',
+                    color: `${theme}`,
                     fontFamily: 'Plus Jakarta Sans',
                   },
                 }}
                 InputLabelProps={{
                   style: {
-                    color: '#5AB65F',
+                    color: `${mode}.secondary`,
                     fontFamily: 'Plus Jakarta Sans',
                     fontSize: '12px',
                   },
@@ -193,14 +193,14 @@ const navigation = useNavigate();
             {/* shipping details */}
             <Box sx={{ width: '80%' }}>
               <Typography
-                sx={{ width: '80%', color: `${mode}.text`, fontSize: '24px' }}
+                sx={{ width: '80%', color: `${theme['palette'][mode]['text']}`, fontSize: '24px' }}
               >
                 Shipping Details
               </Typography>
               <Typography
                 sx={{
                   fontSize: '12px',
-                  color: '#5AB65F',
+                  color: `${mode}.secondary`,
                   fontStyle: 'italic',
                 }}
               >
@@ -225,17 +225,17 @@ const navigation = useNavigate();
                         width={value.width}
                         generalbgcolor="#F5FCE7"
                         fieldsetbgcolor="#F5FCE7"
-                        fieldsetborder=" 1px solid #ACD2AE"
+                        fieldsetborder={` 1px solid ${theme['palette'][mode].primary}`}
                         fieldsetborderradius="8px"
                         InputProps={{
                           style: {
-                            color: '#00584A',
+                            color: `${theme}`,
                             fontFamily: 'Plus Jakarta Sans',
                           },
                         }}
                         InputLabelProps={{
                           style: {
-                            color: '#5AB65F',
+                            color: `${mode}.secondary`,
                             fontFamily: 'Plus Jakarta Sans',
                             fontSize: '12px',
                           },
@@ -260,17 +260,17 @@ const navigation = useNavigate();
                       width={value.width}
                       generalbgcolor="#F5FCE7"
                       fieldsetbgcolor="#F5FCE7"
-                      fieldsetborder=" 1px solid #ACD2AE"
+                      fieldsetborder={` 1px solid ${theme['palette'][mode].primary}`}
                       fieldsetborderradius="8px"
                       InputProps={{
                         style: {
-                          color: '#00584A',
+                          color: `${theme}`,
                           fontFamily: 'Plus Jakarta Sans',
                         },
                       }}
                       InputLabelProps={{
                         style: {
-                          color: '#5AB65F',
+                          color: `${mode}.secondary`,
                           fontFamily: 'Plus Jakarta Sans',
                           fontSize: '12px',
                         },
@@ -296,7 +296,7 @@ const navigation = useNavigate();
             >
               <Typography
                 sx={{
-                  color: `${mode}.text`,
+                  color: `${theme['palette'][mode]['primary']}`,
                   fontSize: '16px',
                   fontStyle: 'italic',
                   lineHeight: '14px',
@@ -311,12 +311,12 @@ const navigation = useNavigate();
               </Typography>
               <Button
                 sx={{
-                  backgroundColor: `${mode}.text`,
+                  backgroundColor: `${theme['palette'][mode]['primary']}`,
                   borderRadius: '5px',
-                  border: '1px solid #00584A',
+                  // border: '1px solid #00584A',
                   backdropFilter: 'blur(3px)',
                   '&:hover': {
-                    backgroundColor: `${mode}.text`,
+                    backgroundColor: `${theme['palette'][mode]['primary']}`,
                   },
                   height: '50px',
                   width: '150px',
@@ -331,11 +331,11 @@ const navigation = useNavigate();
                   sx={{
                     color: `${mode}.background`,
                     textTransform: 'none',
-                    fontSize: '12px',
+                    fontSize: '1rem',
                     lineHeight: '14px',
                   }}
                 >
-                  Continue to shipping
+                  Shipping {' >>'}
                 </Typography>
               </Button>
             </Box>
@@ -348,7 +348,7 @@ const navigation = useNavigate();
               display: { xs: 'none', md: 'flex' },
               alignItems: 'flex-start',
               justifyContent: 'flex-end',
-              borderLeft: { md: '1px solid #ACD2AE' },
+              borderLeft: { md: `1px solid ${theme['palette'][mode].primary}` },
             }}
           >
             <CheckoutCart

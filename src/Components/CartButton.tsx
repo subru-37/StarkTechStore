@@ -71,7 +71,7 @@ const CartButton = ({ id }: BoxProps) => {
     return (
       <Box
         sx={{
-          backgroundColor: `${mode}.text`,
+          backgroundColor: `${mode}.primary`,
           height: {xs:'30px',sm:'50px'},
           width: {xs:'90px',sm:'120px'},
           borderRadius: '5px',

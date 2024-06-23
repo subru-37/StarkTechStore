@@ -19,7 +19,7 @@ const Footer = () => {
       }}
     >
       <Typography sx={{ color: `${mode}.primary`, fontSize: '16px' }}>
-        Copyright © {year} Subscribe Nature
+        Copyright © {year} Stark Tech Store
       </Typography>
     </Box>
   );

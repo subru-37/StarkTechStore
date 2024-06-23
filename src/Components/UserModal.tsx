@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Box, Typography, Button, Drawer } from '@mui/material';
 import { MyContext } from '../contexts/ColorMode';
+import { theme } from '../App';
 
 type ModalProps = {
   close: boolean;
@@ -19,7 +20,7 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
     >
       <Box
         sx={{
-          backgroundColor: '#FEFAE0',
+          backgroundColor: `${theme['palette'][mode]['background']}`,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -48,7 +49,7 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
             component={'h3'}
             sx={{
               fontSize: {xs:'1.5rem',md: '2rem'},
-              color: `${mode}.text`,
+              color: `${mode}.primary`,
             }}
           >
             Are you already an user?
@@ -64,7 +65,7 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
           >
             <Button
               sx={{
-                backgroundColor: `${mode}.text`,
+                backgroundColor: `${theme['palette'][mode]['primary']}F0`,
                 minHeight: '40px',
                 minWidth: '140px',
                 display: 'flex',
@@ -72,7 +73,7 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
                 justifyContent: 'center',
                 color:'#FEFAE0',
                 '&:hover': {
-                  backgroundColor: `${mode}.text`,
+                  backgroundColor: `${theme['palette'][mode]['primary']}F0`,
                 },
               }}
               onClick={() => {
@@ -84,7 +85,7 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
             </Button>
             <Button
               sx={{
-                backgroundColor: `${mode}.text`,
+                backgroundColor: `${theme['palette'][mode]['primary']}F0`,
                 minHeight: '40px',
                 minWidth: '140px',
                 display: 'flex',
@@ -92,7 +93,7 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
                 justifyContent: 'center',
                 color:'#FEFAE0',
                 '&:hover': {
-                  backgroundColor: `${mode}.text`,
+                    backgroundColor: `${theme['palette'][mode]['primary']}F0`,
                 },
               }}
               onClick={() => {

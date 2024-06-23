@@ -6,6 +6,7 @@ import Close from '../utils/Close';
 import CartItem from './CartItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { MyContext } from '../contexts/ColorMode';
+import { theme } from '../App';
 type CartProps = {
   delivery: number;
   totalPrice: number;
@@ -54,9 +55,9 @@ const CheckoutCart = ({delivery, totalPrice, shipping, gst, products}:CartProps)
             sx={{
               fontSize: '35px',
               fontWeight: '500',
-              color: `${mode}.text`,
+              color: `${mode}.primary`,
               width: '100%',
-              borderBottom: '2px solid #00584A',
+              borderBottom: `1px solid ${theme['palette'][mode]['primary']}`,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
@@ -158,9 +159,9 @@ const CheckoutCart = ({delivery, totalPrice, shipping, gst, products}:CartProps)
                 </Typography>
                 <Typography
                   sx={{
-                    color: `${mode}.text`,
+                    color: `${mode}.primary`,
                     fontSize: '20px',
-                    fontWeight: '500',
+                    fontWeight: '600',
                   }}
                 >
                   ₹ {totalPrice}
@@ -186,9 +187,9 @@ const CheckoutCart = ({delivery, totalPrice, shipping, gst, products}:CartProps)
                 </Typography>
                 <Typography
                   sx={{
-                    color: `${mode}.text`,
+                    color: `${mode}.primary`,
                     fontSize: '20px',
-                    fontWeight: '500',
+                    fontWeight: '600',
                   }}
                 >
                   ₹ {delivery}
@@ -214,9 +215,9 @@ const CheckoutCart = ({delivery, totalPrice, shipping, gst, products}:CartProps)
                 </Typography>
                 <Typography
                   sx={{
-                    color: `${mode}.text`,
+                    color: `${mode}.primary`,
                     fontSize: '20px',
-                    fontWeight: '500',
+                    fontWeight: '600',
                   }}
                 >
                   ₹ {gst}
@@ -242,9 +243,9 @@ const CheckoutCart = ({delivery, totalPrice, shipping, gst, products}:CartProps)
                 </Typography>
                 <Typography
                   sx={{
-                    color: `${mode}.text`,
+                    color: `${mode}.primary`,
                     fontSize: '20px',
-                    fontWeight: '500',
+                    fontWeight: '600',
                   }}
                 >
                   ₹ {shipping}
@@ -267,6 +268,7 @@ const CheckoutCart = ({delivery, totalPrice, shipping, gst, products}:CartProps)
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   flexDirection: 'row',
+                  width:'100%'
                 }}
               >
                 <Typography
@@ -282,7 +284,7 @@ const CheckoutCart = ({delivery, totalPrice, shipping, gst, products}:CartProps)
                   sx={{
                     fontSize: '20px',
                     fontWeight: '600',
-                    color: 'green.main',
+                    color: `${mode}.primary`,
                   }}
                 >
                   ₹ {totalPrice + delivery + gst + shipping}

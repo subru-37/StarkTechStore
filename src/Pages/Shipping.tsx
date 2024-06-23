@@ -157,13 +157,13 @@ const Shipping = ({
                 InputProps={{
                   style: {
                     color: theme['palette'][mode]['primary'],
-                    fontFamily: 'Plus Jakarta Sans',
+                    fontFamily: 'Montserrat',
                   },
                 }}
                 InputLabelProps={{
                   style: {
                     color: theme['palette'][mode]['secondary'],
-                    fontFamily: 'Plus Jakarta Sans',
+                    fontFamily: 'Montserrat',
                     fontSize: '12px',
                   },
                 }}
@@ -185,13 +185,13 @@ const Shipping = ({
                 InputProps={{
                   style: {
                     color: theme['palette'][mode]['primary'],
-                    fontFamily: 'Plus Jakarta Sans',
+                    fontFamily: 'Montserrat',
                   },
                 }}
                 InputLabelProps={{
                   style: {
                     color: theme['palette'][mode]['secondary'],
-                    fontFamily: 'Plus Jakarta Sans',
+                    fontFamily: 'Montserrat',
                     fontSize: '12px',
                   },
                 }}
@@ -233,13 +233,13 @@ const Shipping = ({
                     //   InputProps={{
                     //     style: {
                     //       color: theme['palette'][mode]['primary'],
-                    //       fontFamily: 'Plus Jakarta Sans',
+                    //       fontFamily: 'Montserrat',
                     //     },
                     //   }}
                     InputLabelProps={{
                       style: {
                         color: theme['palette'][mode]['secondary'],
-                        fontFamily: 'Plus Jakarta Sans',
+                        fontFamily: 'Montserrat',
                         fontSize: '14px',
                       },
                     }}

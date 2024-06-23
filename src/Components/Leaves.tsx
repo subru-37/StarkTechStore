@@ -211,7 +211,7 @@ const Leaves = () => {
             sx={{
               color: `${mode}.text`,
               textAlign: 'center',
-              fontFamily: 'Plus Jakarta Sans',
+              fontFamily: 'Montserrat',
               fontSize: {xs:'25px',sm: '28px',md: '25px',lg: '30px'},
               fontStyle: 'italic',
               fontWeight: '500',
@@ -226,7 +226,7 @@ const Leaves = () => {
             sx={{
               color: 'green.light',
               textAlign: 'center',
-              fontFamily: 'Plus Jakarta Sans',
+              fontFamily: 'Montserrat',
               fontSize: {xs:'34px',sm: '35px',md: '40px', lg: '56px'},
               fontWeight: '400',
               lineHeight: '118.5%' /* 42.66px */,
@@ -240,7 +240,7 @@ const Leaves = () => {
             sx={{
               color: 'green.light',
               textAlign: 'center',
-              fontFamily: 'Plus Jakarta Sans',
+              fontFamily: 'Montserrat',
               fontSize: {xs:'34px',sm: '35px',md: '40px', lg: '56px'},
               fontStyle: 'italic',
               fontWeight: '600',
@@ -266,7 +266,7 @@ const Leaves = () => {
             sx={{
               color: `${mode}.text`,
               textAlign: 'center',
-              fontFamily: 'Plus Jakarta Sans',
+              fontFamily: 'Montserrat',
               fontSize: {xs:'25px',sm: '28px',md: '25px',lg: '30px'},
               fontStyle: 'italic',
               fontWeight: '500',
@@ -281,7 +281,7 @@ const Leaves = () => {
             sx={{
               color: '#F8B542',
               textAlign: 'center',
-              fontFamily: 'Plus Jakarta Sans',
+              fontFamily: 'Montserrat',
               fontSize: {xs:'34px',sm: '35px',md: '40px', lg: '56px'},
               fontStyle: 'italic',
               fontWeight: '600',
@@ -296,7 +296,7 @@ const Leaves = () => {
             sx={{
               color: `${mode}.text`,
               textAlign: 'center',
-              fontFamily: 'Plus Jakarta Sans',
+              fontFamily: 'Montserrat',
               fontSize: {xs:'25px',sm: '28px',md: '25px',lg: '30px'},
               fontStyle: 'italic',
               fontWeight: '500',
@@ -311,7 +311,7 @@ const Leaves = () => {
             sx={{
               color: '#F8B542',
               textAlign: 'center',
-              fontFamily: 'Plus Jakarta Sans',
+              fontFamily: 'Montserrat',
               fontSize: {xs:'34px',sm: '35px',md: '40px', lg: '56px'},
               fontWeight: '600',
               lineHeight: '118.5%' /* 42.66px */,

@@ -14,7 +14,7 @@ const Hero = () => {
   return (
     <Box
       sx={{
-        minHeight: '90vh',
+        minHeight: '100vh',
         display: 'flex',
         alignItems: { xs: 'center', sm: 'flex-start' },
         justifyContent: 'center',
@@ -180,7 +180,7 @@ const Hero = () => {
               InputProps={{
                 style: {
                   color: `${mode}.text`,
-                  fontFamily: 'Plus Jakarta Sans',
+                  fontFamily: 'Montserrat',
                 },
                 endAdornment: (
                   <InputAdornment position="end">
@@ -191,7 +191,7 @@ const Hero = () => {
               InputLabelProps={{
                 style: {
                   color: '#3CA373',
-                  fontFamily: 'Plus Jakarta Sans',
+                  fontFamily: 'Montserrat',
                   fontSize: '16px',
                 },
               }}

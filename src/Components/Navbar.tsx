@@ -114,7 +114,7 @@ export default function Navbar({ cartopen, setCartOpen }: props) {
                     key={index}
                     sx={{
                       color: `${mode}.primary`,
-                      fontfamily: 'Plus Jakarta Sans',
+                      fontfamily: 'Montserrat',
                       fontSize: '16px',
                       fontStyle: 'normal',
                       fontWeight: '600',
@@ -212,7 +212,7 @@ export default function Navbar({ cartopen, setCartOpen }: props) {
                 <Typography
                   sx={{
                     color: `${mode}.text`,
-                    fontfamily: 'Plus Jakarta Sans',
+                    fontfamily: 'Montserrat',
                     fontSize: '24px',
                     fontStyle: 'normal',
                     fontWeight: '500',

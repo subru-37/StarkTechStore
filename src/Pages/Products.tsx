@@ -107,7 +107,7 @@ const Products = (props: props) => {
         InputProps={{
           style: {
             color: `${mode}.text`,
-            fontFamily: 'Plus Jakarta Sans',
+            fontFamily: 'Montserrat',
             height: '100px',
           },
           inputProps: {
@@ -122,7 +122,7 @@ const Products = (props: props) => {
         InputLabelProps={{
           style: {
             color: '#3CA373',
-            fontFamily: 'Plus Jakarta Sans',
+            fontFamily: 'Montserrat',
             fontSize: '16px',
           },
         }}

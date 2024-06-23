@@ -173,13 +173,13 @@ const Checkout = ({ formData, setFormData }: checkoutProps) => {
                 InputProps={{
                   style: {
                     color: `${theme}`,
-                    fontFamily: 'Plus Jakarta Sans',
+                    fontFamily: 'Montserrat',
                   },
                 }}
                 InputLabelProps={{
                   style: {
                     color: `${mode}.secondary`,
-                    fontFamily: 'Plus Jakarta Sans',
+                    fontFamily: 'Montserrat',
                     fontSize: '12px',
                   },
                 }}
@@ -230,13 +230,13 @@ const Checkout = ({ formData, setFormData }: checkoutProps) => {
                         InputProps={{
                           style: {
                             color: `${theme}`,
-                            fontFamily: 'Plus Jakarta Sans',
+                            fontFamily: 'Montserrat',
                           },
                         }}
                         InputLabelProps={{
                           style: {
                             color: `${mode}.secondary`,
-                            fontFamily: 'Plus Jakarta Sans',
+                            fontFamily: 'Montserrat',
                             fontSize: '12px',
                           },
                         }}
@@ -265,13 +265,13 @@ const Checkout = ({ formData, setFormData }: checkoutProps) => {
                       InputProps={{
                         style: {
                           color: `${theme}`,
-                          fontFamily: 'Plus Jakarta Sans',
+                          fontFamily: 'Montserrat',
                         },
                       }}
                       InputLabelProps={{
                         style: {
                           color: `${mode}.secondary`,
-                          fontFamily: 'Plus Jakarta Sans',
+                          fontFamily: 'Montserrat',
                           fontSize: '12px',
                         },
                       }}

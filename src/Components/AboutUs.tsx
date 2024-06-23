@@ -60,7 +60,7 @@ const AboutUs = () => {
             component="h3"
             sx={{
               color: '#FEFAE0',
-              fontFamily: 'Plus Jakarta Sans',
+              fontFamily: 'Montserrat',
               fontSize: { xs: '45px', sm: '50px', md: '55px' },
               fontStyle: 'normal',
               fontWeight: '400',
@@ -76,7 +76,7 @@ const AboutUs = () => {
             component="h3"
             sx={{
               color: '#FEFAE0',
-              fontFamily: 'Plus Jakarta Sans',
+              fontFamily: 'Montserrat',
               fontSize: { xs: '45px', sm: '50px', md: '55px' },
               fontStyle: 'normal',
               fontWeight: '400',
@@ -128,7 +128,7 @@ const AboutUs = () => {
             <Typography
               sx={{
                 color: '#FFE8C0',
-                fontFamily: 'Plus Jakarta Sans',
+                fontFamily: 'Montserrat',
                 fontSize: '20px',
                 fontStyle: 'normal',
                 fontWeight: '600',
@@ -141,7 +141,7 @@ const AboutUs = () => {
             <Typography
               sx={{
                 color: '#FFE8C0',
-                fontFamily: 'Plus Jakarta Sans',
+                fontFamily: 'Montserrat',
                 fontSize: '20px',
                 fontStyle: 'normal',
                 fontWeight: '600',
@@ -161,7 +161,7 @@ const AboutUs = () => {
             <Typography
               sx={{
                 color: '#FEFAE0',
-                fontFamily: 'Plus Jakarta Sans',
+                fontFamily: 'Montserrat',
                 fontSize: { xs: '25px', sm: '25px', md: '30px' },
                 margin: '50px 0px',
                 fontStyle: 'normal',

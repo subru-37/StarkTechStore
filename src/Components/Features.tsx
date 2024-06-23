@@ -111,9 +111,10 @@ const Features = () => {
           <Typography
             variant="h2"
             sx={{
-              color: `${mode}.text`,
+              color: `${mode}.primary`,
               fontSize: { xs: '40px', sm: '45px' },
               textAlign: 'center',
+              fontWeight:'500'
             }}
           >
             Featured Products
@@ -121,9 +122,9 @@ const Features = () => {
           <Typography
             variant="body1"
             sx={{
-              color: `${mode}.text`,
+              color: `${mode}.primary`,
               fontSize: '20px',
-              fontFamily: 'Roboto Slab',
+              fontFamily: 'Montserrat',
               maxWidth: { xs: '350px', sm: '100vw' },
               textAlign: 'center',
             }}
@@ -192,7 +193,7 @@ const Features = () => {
               InputLabelProps={{
                 style: {
                   color: `${mode}.text`,
-                  fontFamily: 'Plus Jakarta Sans',
+                  fontFamily: 'Montserrat',
                 },
               }}
               sx={{

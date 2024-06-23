@@ -154,7 +154,7 @@ const Checkout = ({ formData, setFormData }: checkoutProps) => {
               <Typography
                 sx={{
                   fontSize: '12px',
-                  color: `${mode}.secondary`,
+                  color: `${theme['palette'][mode]['text']}`,
                   fontStyle: 'italic',
                 }}
               >
@@ -172,13 +172,13 @@ const Checkout = ({ formData, setFormData }: checkoutProps) => {
                 fieldsetborderradius="8px"
                 InputProps={{
                   style: {
-                    color: `${theme}`,
+                    color: `${theme['palette'][mode]['text']}`,
                     fontFamily: 'Montserrat',
                   },
                 }}
                 InputLabelProps={{
                   style: {
-                    color: `${mode}.secondary`,
+                    color: `${theme['palette'][mode]['text']}`,
                     fontFamily: 'Montserrat',
                     fontSize: '12px',
                   },
@@ -200,7 +200,7 @@ const Checkout = ({ formData, setFormData }: checkoutProps) => {
               <Typography
                 sx={{
                   fontSize: '12px',
-                  color: `${mode}.secondary`,
+                  color: `${theme['palette'][mode]['text']}`,
                   fontStyle: 'italic',
                 }}
               >
@@ -229,13 +229,13 @@ const Checkout = ({ formData, setFormData }: checkoutProps) => {
                         fieldsetborderradius="8px"
                         InputProps={{
                           style: {
-                            color: `${theme}`,
+                            color: `${theme['palette'][mode]['text']}`,
                             fontFamily: 'Montserrat',
                           },
                         }}
                         InputLabelProps={{
                           style: {
-                            color: `${mode}.secondary`,
+                            color: `${theme['palette'][mode]['text']}`,
                             fontFamily: 'Montserrat',
                             fontSize: '12px',
                           },
@@ -264,13 +264,13 @@ const Checkout = ({ formData, setFormData }: checkoutProps) => {
                       fieldsetborderradius="8px"
                       InputProps={{
                         style: {
-                          color: `${theme}`,
+                          color: `${theme['palette'][mode]['text']}`,
                           fontFamily: 'Montserrat',
                         },
                       }}
                       InputLabelProps={{
                         style: {
-                          color: `${mode}.secondary`,
+                          color: `${theme['palette'][mode]['text']}`,
                           fontFamily: 'Montserrat',
                           fontSize: '12px',
                         },

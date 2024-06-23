@@ -169,7 +169,7 @@ export default function Navbar({ cartopen, setCartOpen }: props) {
               >
                 {NumberOfItems}
               </Typography>
-              <Cart color={mode} />
+              <Cart color={theme.palette[mode].primary} size='30px'/>
             </Box>
             <Button
               sx={{ height: '100%', width: '50px' }}

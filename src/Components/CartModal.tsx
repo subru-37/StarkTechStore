@@ -185,7 +185,7 @@ const CartModal = ({ cartopen, setCartOpen, setModal, modal }: props) => {
                   >
                     <Typography
                       sx={{
-                        color: `${mode}.text`,
+                        color: `${mode}.primary`,
                         fontSize: '20px',
                         fontWeight: '500',
                       }}
@@ -213,7 +213,7 @@ const CartModal = ({ cartopen, setCartOpen, setModal, modal }: props) => {
                   >
                     <Typography
                       sx={{
-                        color: `${mode}.text`,
+                        color: `${mode}.primary`,
                         fontSize: '20px',
                         fontWeight: '500',
                       }}
@@ -253,7 +253,7 @@ const CartModal = ({ cartopen, setCartOpen, setModal, modal }: props) => {
                       sx={{
                         fontSize: '20px',
                         fontWeight: '600',
-                        color: `${mode}.text`,
+                        color: `${mode}.primary`,
                       }}
                     >
                       Grand Total:
@@ -364,7 +364,7 @@ const CartModal = ({ cartopen, setCartOpen, setModal, modal }: props) => {
             add some items!!
           </Typography>
           <Box onClick={() => setCartOpen(false)} sx={{ cursor: 'pointer' }}>
-            <Cart size="40px" />
+            <Cart color={theme['palette'][mode]['primary']} size="40px" />
           </Box>
         </Box>
       )}

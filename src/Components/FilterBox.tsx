@@ -12,6 +12,7 @@ import {
 import FilterAccordion from './FilterAccordion';
 import DownArrow from '../utils/DownArrow';
 import { MyContext } from '../contexts/ColorMode';
+import { theme } from '../App';
 type filtertypes = {
   [key: string]: any;
 };
@@ -49,7 +50,7 @@ const FilterBox = ({
     <Box
       sx={{
         borderRadius: '20px',
-        border: '1px solid #00584A',
+        border: `1px solid ${theme['palette'][mode]['primary']}`,
         boxSizing: 'border-box',
         padding: { xs: '50px 20px', md: '20px' },
         position: { xs: 'fixed', md: 'relative' },
@@ -72,10 +73,10 @@ const FilterBox = ({
       >
         <Typography
           sx={{
-            color: `${mode}.primary`,
+            color: `${mode}.text`,
             fontWeight: '600',
             fontSize: '20px',
-            borderBottom: '1px solid #00584A',
+            borderBottom: `1px solid ${theme.palette[mode].text}`,
             width: '100%',
           }}
         >
@@ -136,7 +137,7 @@ const FilterBox = ({
           Price
         </Typography>
         <Slider
-          sx={{ color: `${mode}.primary` }}
+          sx={{ color: `${mode}.text` }}
           size="small"
           onChange={handleSlider}
           valueLabelDisplay="auto"

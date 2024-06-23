@@ -85,7 +85,7 @@ const CartButton = ({ id }: BoxProps) => {
         <RemoveIcon
           sx={{
             color: `${mode}.background`,
-            borderRight: '0.5px solid #F5FCE7',
+            borderRight: `2px solid ${theme.palette[mode].background}`,
             fontSize: '5px',
             height: '75%',
             width: '33%',
@@ -111,7 +111,7 @@ const CartButton = ({ id }: BoxProps) => {
         <AddIcon
           sx={{
             color: `${mode}.background`,
-            borderLeft: '0.5px solid #F5FCE7',
+            borderLeft: `2px solid ${theme.palette[mode].background}`,
             fontSize: '5px',
             height: '75%',
             width: '33%',

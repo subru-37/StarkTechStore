@@ -8,6 +8,7 @@ import {
 } from '@mui/material';
 import DownArrow from '../utils/DownArrow';
 import { MyContext } from '../contexts/ColorMode';
+import { theme } from '../App';
 type props = {
   question: string;
   answer: any;
@@ -31,7 +32,7 @@ const FilterAccordion = (props: props) => {
           marginTop: '15px',
         }}
       >
-        <AccordionSummary expandIcon={<DownArrow />} sx={{ padding: '0px' }}>
+        <AccordionSummary expandIcon={<DownArrow color={`${theme.palette[mode].text}`}/>} sx={{ padding: '0px' }}>
           <Typography
             sx={{
               color: `${mode}.text`,

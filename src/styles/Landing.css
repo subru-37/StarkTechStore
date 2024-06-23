@@ -1,0 +1,37 @@
+/* HERO */
+
+
+.MuiBox-root .css-fjajjq-MuiTypography-root:hover{
+    color: #5AB65F;
+    cursor: pointer;
+  }
+  .MuiBox-root .MuiTypography-root{
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  .MuiBox-root .MuiTypography-h3{
+    font-family: 'Roboto Slab', serif;
+    /* color: #00584A; */
+    font-family: 'Roboto Slab';
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 101.885%; /* 65.206px */
+    letter-spacing: -2.24px;
+    /* width: 650px;   */
+  }
+  /* .MuiInputLabel-shrink{
+    display: none !important;
+  } */
+
+  /* FEATURES */
+::-webkit-scrollbar{
+    width: 4px;
+  }
+::-webkit-scrollbar-track{
+    background:  #ACD2AE;
+    border-radius: 50px;
+  }
+::-webkit-scrollbar-thumb{
+    background: #00584A;
+    border-radius: 50px;
+  }

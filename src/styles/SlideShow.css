@@ -1,0 +1,22 @@
+
+.slide-container {
+  width: 98vw;
+  margin-top: 50px;
+}
+/* .react-slideshow-container .MuiSvgIcon-root {
+  margin-left: -25px;
+}
+.react-slideshow-container .MuiSvgIcon-root {
+  margin-right: -25px;
+} */
+.slide{
+  padding: 20px 0px;
+}
+.css-v2eqnl .slide-container div .react-slideshow-container{
+  height: 90vh;
+}
+@media only screen and (max-width: 600px){
+  .css-v2eqnl .slide-container div .react-slideshow-container{
+    height: 50vh;
+  }
+}

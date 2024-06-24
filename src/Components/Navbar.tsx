@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Close from '../utils/Close';
 import { MyContext } from '../contexts/ColorMode';
 import { WbSunnyRounded, Nightlight } from '@mui/icons-material';
+
 import { theme } from '../App';
 type props = {
   cartopen: boolean;
@@ -140,9 +141,9 @@ export default function Navbar({ cartopen, setCartOpen }: props) {
               width: '150px',
             }}
           >
-            {/* <Button color="inherit">
-              <SignIcon />
-            </Button> */}
+            <Button color="inherit">
+              <Typography>Sign In</Typography>
+            </Button>
             <Box
               onClick={() => setCartOpen(true)}
               sx={{

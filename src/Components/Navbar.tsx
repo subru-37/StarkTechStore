@@ -141,9 +141,9 @@ export default function Navbar({ cartopen, setCartOpen }: props) {
               width: '150px',
             }}
           >
-            <Button color="inherit">
+            {/* <Button color="inherit">
               <Typography>Sign In</Typography>
-            </Button>
+            </Button> */}
             <Box
               onClick={() => setCartOpen(true)}
               sx={{

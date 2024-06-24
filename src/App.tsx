@@ -16,8 +16,6 @@ import UserModal from './Components/UserModal';
 import ColorMode from './contexts/ColorMode';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCart } from './Redux/features/CartSlice';
-import { getProductDetails } from './supabase/routes';
-
 AOS.init();
 declare module '@mui/material/styles' {
   interface Palette {
@@ -120,19 +118,9 @@ const App = () => {
     const getMyCart = localStorage.getItem('cart');
     if (getMyCart !== null) {
       const myCart = JSON.parse(getMyCart);
-      dispatch(setCart(myCart.cart));
+      myCart.cart.length !==0 && dispatch(setCart(myCart.cart));
     }
   }, []);
-
-  // async function MyFunction() {
-  //   const { data, error } = await getProductDetails();
-  //   console.log(data);
-  // }
-  // useEffect(()=>{
-  //   MyFunction();
-  // },[])
-
-
   const [name, setName] = React.useState('');
   // console.log(modal);
   return (

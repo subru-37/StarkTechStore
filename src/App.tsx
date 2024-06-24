@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Landing from './Pages/Landing';
 import Navbar from './Components/Navbar';
 import { createTheme, ThemeProvider, Theme } from '@mui/material/styles';
@@ -14,6 +14,8 @@ import Footer from './Components/Footer';
 import { Box } from '@mui/material';
 import UserModal from './Components/UserModal';
 import ColorMode from './contexts/ColorMode';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCart } from './Redux/features/CartSlice';
 AOS.init();
 declare module '@mui/material/styles' {
   interface Palette {
@@ -24,14 +26,14 @@ declare module '@mui/material/styles' {
       dark: string;
       darker: string;
     };
-    'dark': {
+    dark: {
       primary: string;
       secondary: string;
       accent: string;
       background: string;
       text: string;
     };
-    'light': {
+    light: {
       primary: string;
       secondary: string;
       accent: string;
@@ -48,14 +50,14 @@ declare module '@mui/material/styles' {
       dark?: string;
       darker?: string;
     };
-    'dark'?: {
+    dark?: {
       primary?: string;
       secondary?: string;
       accent?: string;
       background?: string;
       text?: string;
     };
-    'light'?: {
+    light?: {
       primary?: string;
       secondary?: string;
       accent?: string;
@@ -72,7 +74,7 @@ type FormData = {
   landmark: string;
   phoneNumber: string | number | undefined;
 };
-export const theme : Theme = createTheme({
+export const theme: Theme = createTheme({
   palette: {
     green: {
       lighter: '#C5E9C7',
@@ -83,18 +85,18 @@ export const theme : Theme = createTheme({
     },
     dark: {
       primary: '#98c3e7',
-      secondary: '#adb5bd', 
+      secondary: '#adb5bd',
       accent: '#d041d2',
       background: '#22262a',
-      text: '#eaedf0'
+      text: '#eaedf0',
     },
-    light:{
+    light: {
       primary: '#184467',
       secondary: '#424A52',
       accent: '#bc2dbe',
       background: '#d5d9dd',
-      text: '#0f1215'
-    }
+      text: '#0f1215',
+    },
   },
 });
 const App = () => {
@@ -110,10 +112,17 @@ const App = () => {
     landmark: '',
     phoneNumber: undefined,
   });
+  const dispatch = useDispatch();
   const [cartopen, setCartOpen] = React.useState<boolean>(false);
-
+  useEffect(() => {
+    const getMyCart = localStorage.getItem('cart');
+    if (getMyCart !== null){
+      const myCart = JSON.parse(getMyCart);
+      dispatch(setCart(myCart.cart))
+    }
+  }, []);
   const [name, setName] = React.useState('');
-  console.log(modal);
+  // console.log(modal);
   return (
     <Box sx={{ position: 'relative' }}>
       <ColorMode>

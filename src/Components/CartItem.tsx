@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
 import { Box, Button, Typography } from '@mui/material';
-import RemoveIcon from '@mui/icons-material/Remove';
-import AddIcon from '@mui/icons-material/Add';
 import WasteCan from '../utils/WasteCan';
 import { useDispatch, useSelector } from 'react-redux';
 import {

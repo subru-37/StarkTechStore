@@ -86,10 +86,10 @@ export default function Navbar({ cartopen, setCartOpen }: props) {
             sx={{
               // height: '60px',
               // width: '177px',
-              fontSize:'1.6rem',
+              fontSize: '1.6rem',
               fontFamily: '"Oswald", sans-serif !important',
-              color:`${mode}.primary`,
-              fontWeight:'500'
+              color: `${mode}.primary`,
+              fontWeight: '500',
             }}
             onClick={() => navigation('/')}
           >
@@ -109,9 +109,12 @@ export default function Navbar({ cartopen, setCartOpen }: props) {
           >
             {navlinks.map((value, index) => {
               return (
-                <Link to={value.link} style={{ textDecoration: 'none' }}>
+                <Link
+                  to={value.link}
+                  style={{ textDecoration: 'none' }}
+                  key={index}
+                >
                   <Typography
-                    key={index}
                     sx={{
                       color: `${mode}.primary`,
                       fontfamily: 'Montserrat',
@@ -119,7 +122,7 @@ export default function Navbar({ cartopen, setCartOpen }: props) {
                       fontStyle: 'normal',
                       fontWeight: '600',
                       textUnderlineOffset: '5px',
-                      textDecoration:'underline'
+                      textDecoration: 'underline',
                     }}
                   >
                     {value.name}
@@ -169,7 +172,7 @@ export default function Navbar({ cartopen, setCartOpen }: props) {
               >
                 {NumberOfItems}
               </Typography>
-              <Cart color={theme.palette[mode].primary} size='30px'/>
+              <Cart color={theme.palette[mode].primary} size="30px" />
             </Box>
             <Button
               sx={{ height: '100%', width: '50px' }}
@@ -189,7 +192,7 @@ export default function Navbar({ cartopen, setCartOpen }: props) {
           onClick={() => setValue(false)}
           sx={{ position: 'absolute', top: '20px', right: '20px' }}
         >
-          <Close color={theme['palette'][mode]['secondary']}/>
+          <Close color={theme['palette'][mode]['secondary']} />
         </Box>
         <Box
           sx={{
@@ -208,6 +211,7 @@ export default function Navbar({ cartopen, setCartOpen }: props) {
                 to={value.link}
                 style={{ textDecoration: 'none' }}
                 onClick={() => setValue(false)}
+                key={index}
               >
                 <Typography
                   sx={{

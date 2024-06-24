@@ -4,7 +4,7 @@ type Cartprops = {
   color: string;
 }
 const Cart = ({size, color}: Cartprops) => {
-  console.log(color)
+  // console.log(color)
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -124,6 +124,7 @@ const CartModal = ({ cartopen, setCartOpen, setModal, modal }: props) => {
                   products.cart.map((value: any, index: any) => (
                     <CartItem
                       id={value.id}
+                      key={index}
                       image={
                         'url(), lightgray -32.2px -6px / 112.96% 114.239% no-repeat'.substring(
                           0,

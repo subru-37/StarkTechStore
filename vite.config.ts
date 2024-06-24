@@ -13,4 +13,7 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/setupTest.ts'],
   },
+  server: {
+    host: true,
+  },
 });

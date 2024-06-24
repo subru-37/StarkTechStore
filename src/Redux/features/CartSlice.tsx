@@ -2,6 +2,16 @@ import { createSlice } from '@reduxjs/toolkit';
 type IniState = {
   [key: string]: Array<CartItemType>;
 };
+type CartItemType = {
+  image: string;
+  price: string;
+  discprice: string;
+  name: string;
+  summary: string;
+  desc: string;
+  quantity: number;
+  id: number | null;
+};
 const initialState : IniState = {
   cart: [
     // {
@@ -12,19 +22,9 @@ const initialState : IniState = {
     //   summary: '',
     //   desc: '',
     //   quantity: 0,
-    //   id: 100000000,
+    //   id: null,
     // },
   ],
-};
-type CartItemType = {
-  image: string;
-  price: string;
-  discprice: string;
-  name: string;
-  summary: string;
-  desc: string;
-  quantity: number;
-  id: number;
 };
 export type {CartItemType}
 export type {IniState}
@@ -44,8 +44,13 @@ export const CartSlice = createSlice({
         const product = { ...action.payload, quantity: 1 };
         state.cart.push(product);
       }
-
+      console.log(state.cart);
       localStorage.setItem('cart', JSON.stringify(state));
+    },
+    setCart(state, action){
+      const data = action.payload;
+      // console.log(data);
+      state.cart = data;
     },
     removeFromCart(state, action) {
       const updatedCart = state.cart.filter((p) => p.id !== action.payload.id);
@@ -88,5 +93,6 @@ export const {
   removeAll,
   reduceProduct,
   incrementProduct,
+  setCart
 } = CartSlice.actions;
 export default CartSlice.reducer;

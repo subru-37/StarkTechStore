@@ -8,7 +8,7 @@ export const SignIn = async ({ email, password }: signinProps) => {
     email: email,
     password: password,
   });
-  return { data: data, error: error };
+  return { data, error };
 };
 
 export const signUp = async ({ email, password }: signinProps) => {
@@ -16,7 +16,38 @@ export const signUp = async ({ email, password }: signinProps) => {
     email: email,
     password: password,
   });
-  return { data: data, error: error };
+  return { data, error };
 };
 
+export const getProductDetails = async () => {
+  const { data, error } = await supabase.from('product_details').select(
+    `
+      id,
+      title,
+      body,
+      price,
+      ...categories(
+        category_title
+      )
+      `
+  );
+  return { data, error };
+};
 
+export const getProductDeet = async (id: number) => {
+  const { data, error } = await supabase
+    .from('product_details')
+    .select(
+      `
+          id,
+          title,
+          body,
+          price,
+          ...categories(
+            category_title
+          )
+          `
+    )
+    .eq('id', id);
+  return { data, error };
+};

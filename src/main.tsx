@@ -7,7 +7,8 @@ import ErrorPage from './error-page';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
-
+import { ApiProvider } from '@reduxjs/toolkit/query/react';
+import productDetailsApi from './api/ProductQuery';
 // const router = createBrowserRouter([
 //   {
 //     path: '/',
@@ -19,8 +20,10 @@ import { store } from './app/store';
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
-    <Provider store={store}>
-        <App />
+      <Provider store={store}>
+        <ApiProvider api={productDetailsApi}>
+          <App />
+        </ApiProvider>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>

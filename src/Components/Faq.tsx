@@ -63,7 +63,8 @@ const Faq = () => {
               lineHeight: 'normal',
             }}
           >
-            We are an up and coming retail distributor. Contact us for bulk orders
+            We are an up and coming retail distributor. Contact us for bulk
+            orders
           </Typography>
         </Box>
         <Box

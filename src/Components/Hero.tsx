@@ -65,8 +65,19 @@ const Hero = () => {
             marginBottom: { xs: '50px', sm: '0px' },
           }}
         >
-          Bringing affortable components for exclusive <Box component={'span'} sx={{color:`${theme['palette'][mode].primary}`, textDecoration:'underline', textUnderlineOffset:'3px', fontWeight:'600'}}>Tech Enthusiasts</Box> to your
-          home!!
+          Bringing affortable components for exclusive{' '}
+          <Box
+            component={'span'}
+            sx={{
+              color: `${theme['palette'][mode].primary}`,
+              textDecoration: 'underline',
+              textUnderlineOffset: '3px',
+              fontWeight: '600',
+            }}
+          >
+            Tech Enthusiasts
+          </Box>{' '}
+          to your home!!
         </Typography>
         <Box
           sx={{

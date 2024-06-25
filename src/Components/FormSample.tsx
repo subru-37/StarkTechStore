@@ -16,9 +16,9 @@ type formProps = {
   onChange: Dispatch<SetStateAction<FormData>>;
   generalcolor: string;
   name: string;
-  type?:string;
+  type?: string;
   margin: string;
-  max?:number;
+  max?: number;
 };
 const FormSample = ({
   id,
@@ -37,7 +37,7 @@ const FormSample = ({
   value,
   onChange,
   name,
-  margin
+  margin,
 }: formProps) => {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -49,7 +49,7 @@ const FormSample = ({
     });
   }
   return (
-    <Box sx={{margin: margin, width: width}}>
+    <Box sx={{ margin: margin, width: width }}>
       <TextField
         id={id}
         label={label}
@@ -64,19 +64,19 @@ const FormSample = ({
             color: { generalcolor },
             '& fieldset': {
               border: fieldsetborder,
-              borderRadius:  fieldsetborderradius ,
-              color:  generalcolor ,
+              borderRadius: fieldsetborderradius,
+              color: generalcolor,
             },
             '&.Mui-focused fieldset': {
               border: fieldsetborder,
-              borderRadius: fieldsetborderradius ,
-              color: generalcolor ,
+              borderRadius: fieldsetborderradius,
+              color: generalcolor,
             },
           },
           '& .MuiOutlinedInput-root:hover': {
             '& fieldset': {
               border: fieldsetborder,
-              color:  generalcolor ,
+              color: generalcolor,
             },
           },
         }}

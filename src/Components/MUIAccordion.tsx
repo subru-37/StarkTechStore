@@ -24,7 +24,7 @@ const MUIAccordion = (props: props) => {
   //     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
   //       setExpanded(isExpanded ? panel : false);
   //     };
-  const {mode} = useContext(MyContext);
+  const { mode } = useContext(MyContext);
   return (
     <Box sx={{ margin: '5px 0' }}>
       <Accordion
@@ -37,7 +37,7 @@ const MUIAccordion = (props: props) => {
         }}
       >
         <AccordionSummary
-          expandIcon={<Plus color={theme['palette'][mode]['background']}/>}
+          expandIcon={<Plus color={theme['palette'][mode]['background']} />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
           sx={{ padding: { xs: '25px 15px', sm: '25px 50px' } }}

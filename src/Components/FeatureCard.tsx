@@ -26,7 +26,7 @@ const FeatureCard = (props: props) => {
         justifyContent: 'space-between',
         flexDirection: { xs: 'row', sm: 'column' },
         cursor: 'pointer',
-        minWidth:{xs:'90vw', sm:'0px'}
+        minWidth: { xs: '90vw', sm: '0px' },
       }}
     >
       {/*
@@ -42,8 +42,8 @@ const FeatureCard = (props: props) => {
           backgroundSize: { xs: '100% 179px', sm: '100% 358px' },
         }}
         onClick={() => {
-          dispatch(setProduct(props.id))
-          navigation(`${props.route}/${props.id}`)
+          dispatch(setProduct(props.id));
+          navigation(`${props.route}/${props.id}`);
         }}
       ></Box>
       <Box
@@ -52,7 +52,7 @@ const FeatureCard = (props: props) => {
           alignItems: 'center',
           justifyContent: 'space-around',
           flexDirection: 'column',
-          minHeight:{xs:'179px', sm:'0px'}
+          minHeight: { xs: '179px', sm: '0px' },
         }}
       >
         <Box
@@ -62,7 +62,7 @@ const FeatureCard = (props: props) => {
             alignItems: 'flex-start',
             flexDirection: 'column',
             justifyContent: 'space-between',
-            width: {xs:'170px',sm:'290px'},
+            width: { xs: '170px', sm: '290px' },
             borderBottom: '1px solid #00584A',
           }}
           onClick={() => navigation(`${props.route}/${props.id}`)}

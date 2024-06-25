@@ -193,24 +193,26 @@ const Products = (props: props) => {
               <MenuIcon /> Filters
             </Button>
           </Grid>
-          {productItems.map((value : {element: JSX.Element, id: number}, index: number) => (
-                <Grid
-                  item
-                  key={index}
-                  xs={4}
-                  sm={3.7}
-                  md={3}
-                  lg={2}
-                  sx={{
-                    padding: {
-                      xs: '10px 5px !important',
-                      sm: '25px !important',
-                    },
-                  }}
-                >
-                  {value.element}
-                </Grid>
-              ))}
+          {productItems.map(
+            (value: { element: JSX.Element; id: number }, index: number) => (
+              <Grid
+                item
+                key={index}
+                xs={4}
+                sm={3.7}
+                md={3}
+                lg={2}
+                sx={{
+                  padding: {
+                    xs: '10px 5px !important',
+                    sm: '25px !important',
+                  },
+                }}
+              >
+                {value.element}
+              </Grid>
+            )
+          )}
         </Grid>
       </Box>
     </Box>

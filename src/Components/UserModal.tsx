@@ -13,11 +13,7 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
   const { mode } = useContext(MyContext);
 
   return (
-    <Drawer
-      open={close}
-      onClose={() => onClose(false)}
-      anchor='left'
-    >
+    <Drawer open={close} onClose={() => onClose(false)} anchor="left">
       <Box
         sx={{
           backgroundColor: `${theme['palette'][mode]['background']}`,
@@ -27,12 +23,12 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
           minHeight: '300px',
           minWidth: { xs: '90vw', sm: '500px' },
           padding: '50px',
-          boxSizing:'border-box',
-          position:'fixed',
-          left:'50%',
-          translate:'-50% -50%',
+          boxSizing: 'border-box',
+          position: 'fixed',
+          left: '50%',
+          translate: '-50% -50%',
           top: '50%',
-          borderRadius:'10px'
+          borderRadius: '10px',
         }}
       >
         <Box
@@ -40,15 +36,15 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            height:'150px',
-            flexDirection:'column',
-            minWidth:'300px'
+            height: '150px',
+            flexDirection: 'column',
+            minWidth: '300px',
           }}
         >
           <Typography
             component={'h3'}
             sx={{
-              fontSize: {xs:'1.5rem',md: '2rem'},
+              fontSize: { xs: '1.5rem', md: '2rem' },
               color: `${mode}.primary`,
             }}
           >
@@ -60,7 +56,7 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
               alignItems: 'center',
               justifyContent: 'space-between',
               flexDirection: 'row',
-              width:'100%'
+              width: '100%',
             }}
           >
             <Button
@@ -71,14 +67,14 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color:'#FEFAE0',
+                color: '#FEFAE0',
                 '&:hover': {
                   backgroundColor: `${theme['palette'][mode]['primary']}F0`,
                 },
               }}
               onClick={() => {
-                onClose(false)
-                yesFunction('/shipping')
+                onClose(false);
+                yesFunction('/shipping');
               }}
             >
               Yes
@@ -91,14 +87,14 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color:'#FEFAE0',
+                color: '#FEFAE0',
                 '&:hover': {
-                    backgroundColor: `${theme['palette'][mode]['primary']}F0`,
+                  backgroundColor: `${theme['palette'][mode]['primary']}F0`,
                 },
               }}
               onClick={() => {
-                onClose(false)
-                noFunction('/checkout')
+                onClose(false);
+                noFunction('/checkout');
               }}
             >
               No

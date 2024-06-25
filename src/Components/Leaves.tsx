@@ -192,9 +192,9 @@ const Leaves = () => {
           alignItems: 'center',
           justifyContent: 'space-between',
           flexDirection: 'column',
-          minHeight:'100px', 
-          marginRight: {md: '-20px',lg: '0px'},
-          maxWidth: {md: '600px', lg: '100vw'}
+          minHeight: '100px',
+          marginRight: { md: '-20px', lg: '0px' },
+          maxWidth: { md: '600px', lg: '100vw' },
         }}
       >
         <Box
@@ -203,8 +203,8 @@ const Leaves = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: {xs:'100vw', sm: '600px', md: '700px' },
-            marginRight: {md: '0px', lg: '200px'}
+            width: { xs: '100vw', sm: '600px', md: '700px' },
+            marginRight: { md: '0px', lg: '200px' },
           }}
         >
           <Typography
@@ -212,7 +212,7 @@ const Leaves = () => {
               color: `${mode}.text`,
               textAlign: 'center',
               fontFamily: 'Montserrat',
-              fontSize: {xs:'25px',sm: '28px',md: '25px',lg: '30px'},
+              fontSize: { xs: '25px', sm: '28px', md: '25px', lg: '30px' },
               fontStyle: 'italic',
               fontWeight: '500',
               lineHeight: '118.5%' /* 42.66px */,
@@ -227,7 +227,7 @@ const Leaves = () => {
               color: 'green.light',
               textAlign: 'center',
               fontFamily: 'Montserrat',
-              fontSize: {xs:'34px',sm: '35px',md: '40px', lg: '56px'},
+              fontSize: { xs: '34px', sm: '35px', md: '40px', lg: '56px' },
               fontWeight: '400',
               lineHeight: '118.5%' /* 42.66px */,
               letterSpacing: '-1.68px',
@@ -241,7 +241,7 @@ const Leaves = () => {
               color: 'green.light',
               textAlign: 'center',
               fontFamily: 'Montserrat',
-              fontSize: {xs:'34px',sm: '35px',md: '40px', lg: '56px'},
+              fontSize: { xs: '34px', sm: '35px', md: '40px', lg: '56px' },
               fontStyle: 'italic',
               fontWeight: '600',
               lineHeight: '118.5%' /* 42.66px */,
@@ -258,8 +258,8 @@ const Leaves = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: {xs:'100vw',sm: '600px', md: '900px' },
-            flexWrap:{xs:'wrap',sm: 'no-wrap'}
+            width: { xs: '100vw', sm: '600px', md: '900px' },
+            flexWrap: { xs: 'wrap', sm: 'no-wrap' },
           }}
         >
           <Typography
@@ -267,7 +267,7 @@ const Leaves = () => {
               color: `${mode}.text`,
               textAlign: 'center',
               fontFamily: 'Montserrat',
-              fontSize: {xs:'25px',sm: '28px',md: '25px',lg: '30px'},
+              fontSize: { xs: '25px', sm: '28px', md: '25px', lg: '30px' },
               fontStyle: 'italic',
               fontWeight: '500',
               lineHeight: '118.5%' /* 42.66px */,
@@ -282,7 +282,7 @@ const Leaves = () => {
               color: '#F8B542',
               textAlign: 'center',
               fontFamily: 'Montserrat',
-              fontSize: {xs:'34px',sm: '35px',md: '40px', lg: '56px'},
+              fontSize: { xs: '34px', sm: '35px', md: '40px', lg: '56px' },
               fontStyle: 'italic',
               fontWeight: '600',
               lineHeight: '118.5%' /* 42.66px */,
@@ -297,7 +297,7 @@ const Leaves = () => {
               color: `${mode}.text`,
               textAlign: 'center',
               fontFamily: 'Montserrat',
-              fontSize: {xs:'25px',sm: '28px',md: '25px',lg: '30px'},
+              fontSize: { xs: '25px', sm: '28px', md: '25px', lg: '30px' },
               fontStyle: 'italic',
               fontWeight: '500',
               lineHeight: '118.5%' /* 42.66px */,
@@ -312,7 +312,7 @@ const Leaves = () => {
               color: '#F8B542',
               textAlign: 'center',
               fontFamily: 'Montserrat',
-              fontSize: {xs:'34px',sm: '35px',md: '40px', lg: '56px'},
+              fontSize: { xs: '34px', sm: '35px', md: '40px', lg: '56px' },
               fontWeight: '600',
               lineHeight: '118.5%' /* 42.66px */,
               letterSpacing: '-1.08px',

@@ -1,4 +1,4 @@
-.stage0{
+.stage0 {
   position: fixed;
   left: 0px !important;
   width: 100vw;
@@ -7,7 +7,7 @@
   background-size: 100vw 869px;
   bottom: -869px;
 }
-.stage1{
+.stage1 {
   position: absolute;
   left: 0px !important;
   width: 100vw;
@@ -16,7 +16,7 @@
   background-size: 100vw 869px;
   bottom: -232px;
 }
-.stage2{
+.stage2 {
   position: fixed;
   left: 0px !important;
   width: 100vw;
@@ -34,8 +34,8 @@
   background-size: 100vw 869px;
   bottom: 0px;
 } */
-@media only screen and (max-width: 1100px){
-  .stage0{
+@media only screen and (max-width: 1100px) {
+  .stage0 {
     position: fixed;
     left: 0px !important;
     width: 100vw;
@@ -44,7 +44,7 @@
     background-size: 100vw 869px;
     bottom: -869px;
   }
-  .stage1{
+  .stage1 {
     position: absolute;
     left: 0px !important;
     width: 100vw;
@@ -53,7 +53,7 @@
     background-size: 100vw 869px;
     bottom: -300px;
   }
-  .stage2{
+  .stage2 {
     position: fixed;
     left: 0px !important;
     width: 100vw;
@@ -63,8 +63,8 @@
     bottom: 0px;
   }
 }
-@media only screen and (max-width: 900px){
-  .stage0{
+@media only screen and (max-width: 900px) {
+  .stage0 {
     position: fixed;
     left: 0px !important;
     width: 100vw;
@@ -73,7 +73,7 @@
     background-size: 1300px 869px;
     bottom: -869px;
   }
-  .stage1{
+  .stage1 {
     position: absolute;
     left: 0px !important;
     width: 100vw;
@@ -82,7 +82,7 @@
     background-size: 1300px 869px;
     bottom: -230px;
   }
-  .stage2{
+  .stage2 {
     position: fixed;
     left: 0px !important;
     width: 100vw;
@@ -92,8 +92,8 @@
     bottom: -40px;
   }
 }
-@media only screen and (max-width:600px){
-  .stage0{
+@media only screen and (max-width: 600px) {
+  .stage0 {
     position: fixed;
     left: 0px !important;
     width: 100vw;
@@ -102,7 +102,7 @@
     background-size: 1300px 869px;
     bottom: -869px;
   }
-  .stage1{
+  .stage1 {
     position: absolute;
     left: 0px !important;
     width: 100vw;
@@ -111,7 +111,7 @@
     background-size: 1300px 869px;
     bottom: -230px;
   }
-  .stage2{
+  .stage2 {
     position: fixed;
     left: 0px !important;
     width: 100vw;

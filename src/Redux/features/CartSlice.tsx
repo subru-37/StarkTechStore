@@ -12,7 +12,7 @@ type CartItemType = {
   quantity: number;
   id: number | null;
 };
-const initialState : IniState = {
+const initialState: IniState = {
   cart: [
     // {
     //   image: '',
@@ -26,8 +26,8 @@ const initialState : IniState = {
     // },
   ],
 };
-export type {CartItemType}
-export type {IniState}
+export type { CartItemType };
+export type { IniState };
 export const CartSlice = createSlice({
   name: 'cart',
   initialState,
@@ -47,7 +47,7 @@ export const CartSlice = createSlice({
       console.log(state.cart);
       localStorage.setItem('cart', JSON.stringify(state));
     },
-    setCart(state, action){
+    setCart(state, action) {
       const data = action.payload;
       // console.log(data);
       state.cart = data;
@@ -70,7 +70,9 @@ export const CartSlice = createSlice({
       if (state.cart[itemIndex].quantity > 1) {
         state.cart[itemIndex].quantity -= 1;
       } else if (state.cart[itemIndex].quantity === 1) {
-        const updatedCart = state.cart.filter((p) => p.id !== action.payload.id);
+        const updatedCart = state.cart.filter(
+          (p) => p.id !== action.payload.id
+        );
         state.cart = updatedCart;
       }
       localStorage.setItem('cart', JSON.stringify(state));
@@ -93,6 +95,6 @@ export const {
   removeAll,
   reduceProduct,
   incrementProduct,
-  setCart
+  setCart,
 } = CartSlice.actions;
 export default CartSlice.reducer;

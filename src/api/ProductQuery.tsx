@@ -29,5 +29,6 @@ const productDetailsApi = createApi({
   }),
 });
 
-export const { useFetchProductDetailsQuery, useFetchProductQuery } = productDetailsApi;
+export const { useFetchProductDetailsQuery, useFetchProductQuery } =
+  productDetailsApi;
 export default productDetailsApi;

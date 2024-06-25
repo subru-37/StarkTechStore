@@ -118,7 +118,7 @@ const App = () => {
     const getMyCart = localStorage.getItem('cart');
     if (getMyCart !== null) {
       const myCart = JSON.parse(getMyCart);
-      myCart.cart.length !==0 && dispatch(setCart(myCart.cart));
+      myCart.cart.length !== 0 && dispatch(setCart(myCart.cart));
     }
   }, []);
   const [name, setName] = React.useState('');

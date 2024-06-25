@@ -25,7 +25,7 @@ const initialState: IniState = {
     //   id: null,
     // },
   ],
-  myProduct: null
+  myProduct: null,
 };
 export type { ProductItemType };
 export type { IniState };
@@ -46,7 +46,7 @@ export const ProductSlice = createSlice({
       const cartindex = products.findIndex(
         (item: ProductItemType, index: number) => item.id === data
       );
-      console.log(cartindex)
+      console.log(cartindex);
       state.myProduct = state.products[cartindex];
     },
   },

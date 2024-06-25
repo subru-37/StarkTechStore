@@ -20,7 +20,7 @@ type props = {
 };
 const CartItem = ({ price, name, quantity, image, id }: props) => {
   const dispatch = useDispatch();
-  const {mode} = useContext(MyContext);
+  const { mode } = useContext(MyContext);
 
   const products = useSelector((state: any) => state.cart);
   const index = products.cart.findIndex((item: any) => id === item.id);
@@ -45,18 +45,18 @@ const CartItem = ({ price, name, quantity, image, id }: props) => {
       {/* picture */}
       <Box
         sx={{
-          width: {xs:'150px',sm:'180px'}, //150
-          height: {xs:'185px', sm:'222px'}, //185
+          width: { xs: '150px', sm: '180px' }, //150
+          height: { xs: '185px', sm: '222px' }, //185
           borderRadius: '20px',
           background: image,
-          backgroundSize: {xs:'150px 180px', sm:'180px 222px'},
+          backgroundSize: { xs: '150px 180px', sm: '180px 222px' },
         }}
       />
       {/* product details */}
       <Box
         sx={{
-          height: {xs:'185px', sm:'222px'}, //185
-          width: {xs:'150px',sm:'180px'}, //150
+          height: { xs: '185px', sm: '222px' }, //185
+          width: { xs: '150px', sm: '180px' }, //150
           display: 'flex',
           alignItems: 'flex-end',
           justifyContent: 'flex-start',

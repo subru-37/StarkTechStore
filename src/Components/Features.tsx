@@ -18,6 +18,7 @@ import { products } from '../sampledata/products';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { MyContext } from '../contexts/ColorMode';
+import { ProductItemType } from '../Redux/features/ProductSlice';
 const Features = () => {
   const navigation = useNavigate();
   const [options, setOptions] = React.useState({
@@ -68,8 +69,14 @@ const Features = () => {
     });
   }
   const productItems = products('/products')
-    .filter((value, index) => value.id > 2)
-    .map((value, index) => value.element);
+    .filter(
+      (value: { element: ProductItemType, id: number }, index: number) =>
+        value.id > 2
+    )
+    .map(
+      (value: { element: ProductItemType, id: number }, index: number) =>
+        value.element
+    );
   // const filtered = productItems.filter((value, index) => value.id > 2);
   // const slideshow = filtered.map((value, index) => (
   //     value.element
@@ -114,7 +121,7 @@ const Features = () => {
               color: `${mode}.primary`,
               fontSize: { xs: '40px', sm: '45px' },
               textAlign: 'center',
-              fontWeight:'500'
+              fontWeight: '500',
             }}
           >
             Featured Products

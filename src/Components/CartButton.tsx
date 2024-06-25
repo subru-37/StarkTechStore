@@ -19,15 +19,15 @@ type BoxProps = {
 };
 const CartButton = ({ id }: BoxProps) => {
   const dispatch = useDispatch();
-  const {mode} = useContext(MyContext);
+  const { mode } = useContext(MyContext);
   // console.log(mode);
-  const sampleData = useSelector((state : any)=> state.productDetails.products)
+  const sampleData = useSelector((state: any) => state.productDetails.products);
   const products = useSelector((state: any) => state.cart);
   const index = sampleData.findIndex((item: any) => Number(id) === item.id);
   const cartindex = products.cart.findIndex(
     (item: any) => item.id === sampleData[index].id
   );
-    // console.log(products)
+  // console.log(products)
   // const index = Number(id);
   // console.log(index);
   const removeProductHandler = (product: any) => {
@@ -45,8 +45,8 @@ const CartButton = ({ id }: BoxProps) => {
             backgroundColor: `${theme['palette'][mode].primary}`,
           },
           backgroundColor: `${theme['palette'][mode].primary}`,
-          minHeight: {xs:'30px',sm:'50px'},
-          minWidth: {xs:'90px',sm:'120px'},
+          minHeight: { xs: '30px', sm: '50px' },
+          minWidth: { xs: '90px', sm: '120px' },
           // marginLeft: '25px',
           padding: '0px',
           cursor: 'pointer',
@@ -58,14 +58,14 @@ const CartButton = ({ id }: BoxProps) => {
         <Typography
           sx={{
             color: `${mode}.background`,
-            fontSize: {xs:'12px',sm:'16px'},
+            fontSize: { xs: '12px', sm: '16px' },
             fontWeight: '500',
             marginRight: '25px',
           }}
         >
           {'Cart'}
         </Typography>
-        <Plus color={theme['palette'][mode].background}/>
+        <Plus color={theme['palette'][mode].background} />
       </Button>
     );
   } else {
@@ -73,8 +73,8 @@ const CartButton = ({ id }: BoxProps) => {
       <Box
         sx={{
           backgroundColor: `${mode}.primary`,
-          height: {xs:'30px',sm:'50px'},
-          width: {xs:'90px',sm:'120px'},
+          height: { xs: '30px', sm: '50px' },
+          width: { xs: '90px', sm: '120px' },
           borderRadius: '5px',
           backdropFilter: 'blur(3px)',
           display: 'flex',
@@ -98,7 +98,7 @@ const CartButton = ({ id }: BoxProps) => {
         <Typography
           sx={{
             color: `${mode}.background`,
-            fontSize: {xs:'14px',sm:'16px'},
+            fontSize: { xs: '14px', sm: '16px' },
             fontWeight: '400',
             height: '75%',
             width: '33%',

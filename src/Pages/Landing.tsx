@@ -12,12 +12,12 @@ import { MyContext } from '../contexts/ColorMode';
 type props = {
   name: string;
   setName: Dispatch<SetStateAction<string>>;
-}
+};
 const Landing = (props: props) => {
   // const onscreen = useOnScreen(ref1);
   // console.log(onscreen)
-  const {mode} = useContext(MyContext);
-  console.log(mode)
+  const { mode } = useContext(MyContext);
+  console.log(mode);
   return (
     <Box
       sx={{
@@ -25,18 +25,18 @@ const Landing = (props: props) => {
         // backgroundImage: 'url("../src/assets/finalbg.png")',
         // backgroundRepeat: 'no-repeat',
         // backgroundSize: '100vw 100vh',
-        // minHeight:'800vh', 
-        position:'relative'
+        // minHeight:'800vh',
+        position: 'relative',
       }}
     >
-      <Hero/>
-      <Features/>
+      <Hero />
+      <Features />
       {/* <Leaves/> */}
       {/* <Grass checkposn={onscreen}/> */}
       {/* <Collections/> */}
       {/* <AboutUs/> */}
       {/* <Feedback/> */}
-      <Faq/>
+      <Faq />
     </Box>
   );
 };

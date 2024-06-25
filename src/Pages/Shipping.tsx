@@ -62,13 +62,10 @@ const Shipping = ({
   const totalPrice =
     products.cart.length > 0
       ? products.cart
-          .map(
-            (value: any) =>{
-              const discprice = value.price
-              return  Number(value.discprice) * value.quantity
-            }
-             
-          )
+          .map((value: any) => {
+            const discprice = value.price;
+            return Number(value.discprice) * value.quantity;
+          })
           .reduce((total: any, value: any) => total + value)
       : 0;
   const shipping = 4.9;
@@ -80,7 +77,7 @@ const Shipping = ({
       navigation('/products');
     }
   }, [navigation, products.cart]);
-  const {mode} = useContext(MyContext);
+  const { mode } = useContext(MyContext);
 
   return (
     <Box
@@ -92,7 +89,7 @@ const Shipping = ({
         minHeight: '100vh',
         minWidth: '100vw',
         paddingBottom: '75px',
-        backgroundColor:`${mode}.background`
+        backgroundColor: `${mode}.background`,
       }}
     >
       <Box
@@ -339,7 +336,9 @@ const Shipping = ({
               display: { xs: 'none', sm: 'flex' },
               alignItems: 'flex-start',
               justifyContent: 'flex-end',
-              borderLeft: { md: `1px solid ${theme['palette'][mode]['primary']}` },
+              borderLeft: {
+                md: `1px solid ${theme['palette'][mode]['primary']}`,
+              },
             }}
           >
             <CheckoutCart

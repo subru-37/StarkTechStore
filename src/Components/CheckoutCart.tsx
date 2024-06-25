@@ -14,7 +14,13 @@ type CartProps = {
   gst: number;
   products: any;
 };
-const CheckoutCart = ({delivery, totalPrice, shipping, gst, products}:CartProps) => {
+const CheckoutCart = ({
+  delivery,
+  totalPrice,
+  shipping,
+  gst,
+  products,
+}: CartProps) => {
   const { mode } = useContext(MyContext);
 
   return (
@@ -81,7 +87,7 @@ const CheckoutCart = ({delivery, totalPrice, shipping, gst, products}:CartProps)
                 md: '0px 40px 0px 0px',
               },
               boxSizing: 'border-box',
-              margin:'20px 0px'
+              margin: '20px 0px',
             }}
           >
             {products.cart.length > 0 &&
@@ -267,7 +273,7 @@ const CheckoutCart = ({delivery, totalPrice, shipping, gst, products}:CartProps)
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   flexDirection: 'row',
-                  width:'100%'
+                  width: '100%',
                 }}
               >
                 <Typography

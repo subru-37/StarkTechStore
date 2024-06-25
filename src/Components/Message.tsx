@@ -20,13 +20,15 @@ const Message = (
       [keys[7]]: values[7],
     };
   });
-  const itemMessage = items.length !==0 && items
-  .map(
-    (value: any) =>
-    // Discounted Price: ${value.discprice}\n
-      `   Product id: ${value.id}\n   Product Price: ${value.price}\n   Product Name: ${value.name}\n   Quantity of Product: ${value.quantity}\n\n`
-  )
-  .reduce((total: any, initial: any) => total + '' + initial);
+  const itemMessage =
+    items.length !== 0 &&
+    items
+      .map(
+        (value: any) =>
+          // Discounted Price: ${value.discprice}\n
+          `   Product id: ${value.id}\n   Product Price: ${value.price}\n   Product Name: ${value.name}\n   Quantity of Product: ${value.quantity}\n\n`
+      )
+      .reduce((total: any, initial: any) => total + '' + initial);
 
   const data = `\n${value}\n\nShipping Address:  ${formData.address}\nLandmark:  ${formData.landmark}\n\nTotal Amount: ${grandtotal}\n\nEmail: ${formData.email}\nPhone Number: ${formData.phoneNumber}`;
   const message =

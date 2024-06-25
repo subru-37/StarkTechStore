@@ -9,7 +9,7 @@ const products = (page: string) => {
   const { data, error, isLoading } = useFetchProductDetailsQuery('/');
   const dispatch = useDispatch();
   // console.log(data, error, isLoading)
-  const mydata = useSelector((state : any)=> state.productDetails.products)
+  const mydata = useSelector((state: any) => state.productDetails.products);
   useEffect(() => {
     if (isLoading !== true && data !== null) {
       dispatch(setProducts(data?.data));
@@ -29,7 +29,7 @@ const products = (page: string) => {
       },
     ];
   else
-    return mydata.map((value : ProductItemType, index:number) => {
+    return mydata.map((value: ProductItemType, index: number) => {
       // console.log(value.price);
       return {
         element: (

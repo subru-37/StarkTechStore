@@ -220,6 +220,7 @@ const Checkout = ({ formData, setFormData }: checkoutProps) => {
                     return (
                       <FormSample
                         id={value.id}
+                        key={index}
                         label={value.label}
                         height="50px"
                         width={value.width}

@@ -44,7 +44,7 @@ const FilterBox = ({
   function handleSlider(event: any, newValue: number[] | number) {
     setSlideValue(newValue as number[]);
   }
-  const {mode} = useContext(MyContext);
+  const { mode } = useContext(MyContext);
 
   return (
     <Box
@@ -160,7 +160,7 @@ const FilterBox = ({
           }}
         >
           <Typography sx={{ color: `${mode}.text`, fontSize: '16px' }}>
-          ₹ {slideValue[0]} - ₹ {slideValue[1]} 
+            ₹ {slideValue[0]} - ₹ {slideValue[1]}
           </Typography>
         </Box>
         <Box

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Cart from '../utils/Cart';
 import UserModal from './UserModal';
-import {TotalPriceMain} from './TotalPrice';
+import { TotalPriceMain } from './TotalPrice';
 import { MyContext } from '../contexts/ColorMode';
 import { theme } from '../App';
 
@@ -20,10 +20,8 @@ const CartModal = ({ cartopen, setCartOpen, setModal, modal }: props) => {
   const delivery = 40;
   const products = useSelector((state: any) => state.cart);
   const totalPrice =
-    products.cart.length > 0
-      ? TotalPriceMain(products.cart)
-      : 0;
-      const {mode} = useContext(MyContext);
+    products.cart.length > 0 ? TotalPriceMain(products.cart) : 0;
+  const { mode } = useContext(MyContext);
 
   // if (products.length === 0) {
   //   return <EmptyCart />;
@@ -104,7 +102,7 @@ const CartModal = ({ cartopen, setCartOpen, setModal, modal }: props) => {
                   }}
                   onClick={() => setCartOpen(false)}
                 >
-                  <Close color={theme['palette'][mode]['secondary']}/>
+                  <Close color={theme['palette'][mode]['secondary']} />
                 </Button>
               </Typography>
 

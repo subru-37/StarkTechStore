@@ -32,7 +32,10 @@ const FilterAccordion = (props: props) => {
           marginTop: '15px',
         }}
       >
-        <AccordionSummary expandIcon={<DownArrow color={`${theme.palette[mode].text}`}/>} sx={{ padding: '0px' }}>
+        <AccordionSummary
+          expandIcon={<DownArrow color={`${theme.palette[mode].text}`} />}
+          sx={{ padding: '0px' }}
+        >
           <Typography
             sx={{
               color: `${mode}.text`,

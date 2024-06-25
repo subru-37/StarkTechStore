@@ -27,8 +27,8 @@ const FeedbackCard = (props: styleprops) => {
         margin: { xs: props.margin, sm: '0px' },
         transition: '0.5s',
         '&:hover': {
-          width: {xs:'90vw', md:'450px'},
-          height: {xs:'500px', md:'600px'},
+          width: { xs: '90vw', md: '450px' },
+          height: { xs: '500px', md: '600px' },
           transition: '0.5s',
         },
       }}
@@ -55,7 +55,7 @@ const FeedbackCard = (props: styleprops) => {
             sx={{
               color: props.titlecolor,
               textAlign: 'center',
-              fontSize: {xs:'28px',md:'32px'},
+              fontSize: { xs: '28px', md: '32px' },
               fontWeight: '700',
               letterSpacing: '-1.28px',
             }}
@@ -67,7 +67,7 @@ const FeedbackCard = (props: styleprops) => {
             sx={{
               color: props.titlecolor,
               textAlign: 'center',
-              fontSize: {xs:'24px',md:'28px'},
+              fontSize: { xs: '24px', md: '28px' },
               fontWeight: '300',
               letterSpacing: '-0.96px',
               fontStyle: 'italic',
@@ -88,7 +88,7 @@ const FeedbackCard = (props: styleprops) => {
           sx={{
             color: props.titlecolor,
             textAlign: 'center',
-            fontSize: {xs:'22px',md:'24px'},
+            fontSize: { xs: '22px', md: '24px' },
             fontWeight: '500',
             letterSpacing: '-1.28px',
           }}

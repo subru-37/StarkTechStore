@@ -1,7 +1,7 @@
 import { Box, Typography, Button } from '@mui/material';
 import React, { useContext } from 'react';
 import SlideShow from './Slideshow';
-import { cartitems } from '../sampledata/cartitem';
+// import { cartitems } from '../sampledata/cartitem';
 import { useParams } from 'react-router-dom';
 import highqualitysample from '../assets/highqualitysample.jpg';
 import { useImageSize } from 'react-image-size';
@@ -9,6 +9,8 @@ import { useMediaQuery } from '@mui/material';
 import CartButton from './CartButton';
 import { MyContext } from '../contexts/ColorMode';
 import { theme } from '../App';
+import { useSelector } from 'react-redux';
+import { ProductItemType } from '../Redux/features/ProductSlice';
 type props = {
   height: string;
   width: string;
@@ -18,49 +20,45 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
   const width600 = useMediaQuery('(max-width: 600px)');
   const [wishlist, setWishList] = React.useState<boolean>(false);
   const { id } = useParams();
-  const index = Number(id);
+  const index = id ? parseInt(id) : 0;
+  console.log(index);
+  console.log(typeof index);
   //temporary slides
-  const details = cartitems[Number(id)];
-  const slides = cartitems.map((value, mapindex) => {
-    const [dimensions, { loading, error }] = useImageSize(value.image);
-    // console.log(error)
-    // console.log(mode);
-    const aspectratio =
-      error === null
-        ? Number(dimensions?.width) / Number(dimensions?.height)
-        : 0;
-    if (value.id === index) {
-      return (
-        <Box
-          key={mapindex}
-          sx={{
-            height: {
-              xs: '50vh',
-              sm: `calc(300px/${aspectratio})`,
-              md: `calc(450px/${aspectratio})`,
-              lg: `calc(500px/${aspectratio})`,
-            },
-            width: {
-              xs: `calc(50vh*${aspectratio})`,
-              sm: `300px`,
-              md: '450px',
-              lg: '500px',
-            },
-            backgroundImage: `url(${value.image})`,
-            //   backgroundColor: `${mode}.text`,
-            backgroundSize: {
-              xs: `50vh calc(50vh/${aspectratio})`,
-              sm: `300px calc(300px/${aspectratio})`,
-              md: `450px calc(450px/${aspectratio})`,
-              lg: `500px calc(500px/${aspectratio})`,
-            },
-            borderRadius: '20px',
-            backgroundRepeat: 'no-repeat',
-          }}
-        ></Box>
-      );
-    }
-  });
+  const cartitems = useSelector((state: any) => state.productDetails.products);
+  const details = useSelector((state: any) => state.productDetails.myProduct);
+  const [dimensions, { loading, error }] = useImageSize(details.image);
+  // console.log(error)
+  // console.log(mode);
+  const aspectratio =
+    error === null ? Number(dimensions?.width) / Number(dimensions?.height) : 0;
+  const slides = [
+    <Box
+      sx={{
+        height: {
+          xs: '50vh',
+          sm: `calc(300px/${aspectratio})`,
+          md: `calc(450px/${aspectratio})`,
+          lg: `calc(500px/${aspectratio})`,
+        },
+        width: {
+          xs: `calc(50vh*${aspectratio})`,
+          sm: `300px`,
+          md: '450px',
+          lg: '500px',
+        },
+        backgroundImage: `url(${details.image})`,
+        //   backgroundColor: `${mode}.text`,
+        backgroundSize: {
+          xs: `50vh calc(50vh/${aspectratio})`,
+          sm: `300px calc(300px/${aspectratio})`,
+          md: `450px calc(450px/${aspectratio})`,
+          lg: `500px calc(500px/${aspectratio})`,
+        },
+        borderRadius: '20px',
+        backgroundRepeat: 'no-repeat',
+      }}
+    ></Box>,
+  ];
   const { mode } = useContext(MyContext);
 
   return (
@@ -77,15 +75,17 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
         paddingBottom: '75px',
       }}
     >
-      <Box sx={{
-        display: 'flex',
-        alignItems:'flex-end',
-        justifyContent:'center',
-        width: !width600 ? '50%' : '100vw',
-        height:'100%'
-      }}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'center',
+          width: !width600 ? '50%' : '100vw',
+          height: '100%',
+        }}
+      >
         <SlideShow
-          components={slides.filter((value) => value !== undefined)}
+          components={slides}
           indicators={false}
           arrows={false}
           show1100={1}
@@ -132,7 +132,7 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
               color: `${mode}.text`,
             }}
           >
-            Lorem ipsum dolor
+            {details.title}
           </Typography>
           {/* price */}
           <Box
@@ -168,7 +168,7 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
             >
               {details.price}
             </Typography> */}
-            <Typography
+            {/* <Typography
               sx={{
                 width: '100%',
                 fontStyle: 'italic',
@@ -178,10 +178,10 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
               }}
             >
               {details.summary}
-            </Typography>
+            </Typography> */}
           </Box>
           <Box>
-            <Typography
+            {/* <Typography
               sx={{
                 color: `${mode}.text`,
                 fontSize: '14px',
@@ -192,7 +192,7 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
               }}
             >
               {details.desc}
-            </Typography>
+            </Typography> */}
           </Box>
           <Box
             sx={{

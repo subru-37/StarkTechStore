@@ -9,7 +9,7 @@ import {
 } from '../Redux/features/CartSlice';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { cartitems as sampleData } from '../sampledata/cartitem';
+// import { cartitems as sampleData } from '../sampledata/cartitem';
 import Plus from '../utils/Plus';
 import { MyContext } from '../contexts/ColorMode';
 import { theme } from '../App';
@@ -21,6 +21,7 @@ const CartButton = ({ id }: BoxProps) => {
   const dispatch = useDispatch();
   const {mode} = useContext(MyContext);
   // console.log(mode);
+  const sampleData = useSelector((state : any)=> state.productDetails.products)
   const products = useSelector((state: any) => state.cart);
   const index = sampleData.findIndex((item: any) => Number(id) === item.id);
   const cartindex = products.cart.findIndex(

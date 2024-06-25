@@ -99,7 +99,6 @@ const CheckoutCart = ({delivery, totalPrice, shipping, gst, products}:CartProps)
                     )
                   }
                   price={value.price}
-                  discprice={value.discprice}
                   name={value.name}
                   quantity={value.quantity}
                 />

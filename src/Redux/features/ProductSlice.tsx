@@ -1,14 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-type CartItemType = {
+type ProductItemType = {
   id: number;
   title: string;
   body: string;
   price: number;
   category_title: string;
+  image: string;
 };
 type IniState = {
-  products: Array<CartItemType>;
-  myProduct: CartItemType | null;
+  products: Array<ProductItemType>;
+  myProduct: ProductItemType | null;
 };
 
 const initialState: IniState = {
@@ -26,7 +27,7 @@ const initialState: IniState = {
   ],
   myProduct: null
 };
-export type { CartItemType };
+export type { ProductItemType };
 export type { IniState };
 
 export const ProductSlice = createSlice({
@@ -35,15 +36,21 @@ export const ProductSlice = createSlice({
   reducers: {
     setProducts(state, action) {
       const data = action.payload;
-      // console.log(data);
+      console.log(data);
       state.products = data;
     },
-    getProduct(state, action) {
+    setProduct(state, action) {
       const data = action.payload;
-      state.myProduct = data;
+      // console.log(data)
+      const products = state.products;
+      const cartindex = products.findIndex(
+        (item: ProductItemType, index: number) => item.id === data
+      );
+      console.log(cartindex)
+      state.myProduct = state.products[cartindex];
     },
   },
 });
 
-export const { setProducts } = ProductSlice.actions;
+export const { setProducts, setProduct } = ProductSlice.actions;
 export default ProductSlice.reducer;

@@ -96,26 +96,23 @@ export type Database = {
             foreignKeyName: "carts_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: true
-            referencedRelation: "users"
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]
       }
       categories: {
         Row: {
-          description: string | null
+          category_title: string
           id: number
-          title: string
         }
         Insert: {
-          description?: string | null
+          category_title: string
           id: number
-          title: string
         }
         Update: {
-          description?: string | null
+          category_title?: string
           id?: number
-          title?: string
         }
         Relationships: []
       }
@@ -150,25 +147,25 @@ export type Database = {
       }
       product_details: {
         Row: {
-          body: string | null
           category_id: number
           id: number
+          image: string | null
           price: number
-          title: string
+          title: string | null
         }
         Insert: {
-          body?: string | null
           category_id: number
           id: number
+          image?: string | null
           price: number
-          title: string
+          title?: string | null
         }
         Update: {
-          body?: string | null
           category_id?: number
           id?: number
+          image?: string | null
           price?: number
-          title?: string
+          title?: string | null
         }
         Relationships: [
           {
@@ -180,14 +177,13 @@ export type Database = {
           },
         ]
       }
-      users: {
+      profiles: {
         Row: {
           contact_id: string
           email: string
           first_name: string
           id: string
           last_name: string
-          password_env: string
           profile_pic: string | null
           username: string
         }
@@ -197,7 +193,6 @@ export type Database = {
           first_name: string
           id?: string
           last_name: string
-          password_env: string
           profile_pic?: string | null
           username: string
         }
@@ -207,7 +202,6 @@ export type Database = {
           first_name?: string
           id?: string
           last_name?: string
-          password_env?: string
           profile_pic?: string | null
           username?: string
         }

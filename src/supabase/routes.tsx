@@ -24,8 +24,8 @@ export const getProductDetails = async () => {
     `
       id,
       title,
-      body,
       price,
+      image,
       ...categories(
         category_title
       )
@@ -41,8 +41,8 @@ export const getProductDeet = async (id: number) => {
       `
           id,
           title,
-          body,
           price,
+          image,
           ...categories(
             category_title
           )

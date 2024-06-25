@@ -15,6 +15,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 import Search from '../utils/Search';
 import { MyContext } from '../contexts/ColorMode';
+import { ProductItemType } from '../Redux/features/ProductSlice';
 type props = {
   name: string;
   setName: Dispatch<SetStateAction<string>>;
@@ -24,7 +25,7 @@ type filtertypes = {
 };
 const Products = (props: props) => {
   const [value, open, setValue, width900] = useNavbar();
-  const {mode} = useContext(MyContext);
+  const { mode } = useContext(MyContext);
 
   const categories = [
     'Whole Grains (millets )',
@@ -63,7 +64,7 @@ const Products = (props: props) => {
         flexDirection: 'column',
         position: 'relative',
         paddingBottom: '75px',
-        backgroundColor: `${mode}.background`
+        backgroundColor: `${mode}.background`,
       }}
     >
       {/* <TextField
@@ -192,21 +193,24 @@ const Products = (props: props) => {
               <MenuIcon /> Filters
             </Button>
           </Grid>
-          {productItems.map((value, index) => (
-            <Grid
-              item
-              key={index}
-              xs={4}
-              sm={3.7}
-              md={3}
-              lg={2}
-              sx={{
-                padding: { xs: '10px 5px !important', sm: '25px !important' },
-              }}
-            >
-              {value.element}
-            </Grid>
-          ))}
+          {productItems.map((value : {element: JSX.Element, id: number}, index: number) => (
+                <Grid
+                  item
+                  key={index}
+                  xs={4}
+                  sm={3.7}
+                  md={3}
+                  lg={2}
+                  sx={{
+                    padding: {
+                      xs: '10px 5px !important',
+                      sm: '25px !important',
+                    },
+                  }}
+                >
+                  {value.element}
+                </Grid>
+              ))}
         </Grid>
       </Box>
     </Box>

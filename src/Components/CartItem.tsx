@@ -13,13 +13,12 @@ import CartButton from './CartButton';
 import { MyContext } from '../contexts/ColorMode';
 type props = {
   price: string;
-  discprice: string;
   name: string;
   quantity: number;
   image: string;
   id: number;
 };
-const CartItem = ({ price, discprice, name, quantity, image, id }: props) => {
+const CartItem = ({ price, name, quantity, image, id }: props) => {
   const dispatch = useDispatch();
   const {mode} = useContext(MyContext);
 

@@ -3,18 +3,19 @@ import { Box, Typography } from '@mui/material';
 import CartButton from './CartButton';
 import { useNavigate } from 'react-router-dom';
 import { MyContext } from '../contexts/ColorMode';
+import { useDispatch } from 'react-redux';
+import { setProduct } from '../Redux/features/ProductSlice';
 interface props {
   background: string;
   cardname: string;
-  discprice: string;
-  price: string;
+  price: number;
   id: number;
   route: string;
 }
 const FeatureCard = (props: props) => {
   const { mode } = useContext(MyContext);
-
   const navigation = useNavigate();
+  const dispatch = useDispatch();
   const index: string | undefined = String(props.id);
   return (
     <Box
@@ -40,7 +41,10 @@ const FeatureCard = (props: props) => {
           background: props.background,
           backgroundSize: { xs: '100% 179px', sm: '100% 358px' },
         }}
-        onClick={() => navigation(`${props.route}/${props.id}`)}
+        onClick={() => {
+          dispatch(setProduct(props.id))
+          navigation(`${props.route}/${props.id}`)
+        }}
       ></Box>
       <Box
         sx={{
@@ -87,7 +91,7 @@ const FeatureCard = (props: props) => {
                 fontSize: '16px',
               }}
             >
-              {props.price}
+              $ {props.price}
             </Typography>
             {/* <Typography
               sx={{

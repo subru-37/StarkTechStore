@@ -136,7 +136,6 @@ const CartModal = ({ cartopen, setCartOpen, setModal, modal }: props) => {
                         )
                       }
                       price={value.price}
-                      discprice={value.discprice}
                       name={value.name}
                       quantity={value.quantity}
                     />

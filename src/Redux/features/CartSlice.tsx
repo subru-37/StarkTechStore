@@ -5,10 +5,10 @@ type IniState = {
 type CartItemType = {
   image: string;
   price: string;
-  discprice: string;
+  // discprice: string;
   name: string;
-  summary: string;
-  desc: string;
+  // summary: string;
+  //desc: string;
   quantity: number;
   id: number | null;
 };

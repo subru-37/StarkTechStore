@@ -63,8 +63,11 @@ const Shipping = ({
     products.cart.length > 0
       ? products.cart
           .map(
-            (value: any) =>
-              Number(value.discprice.substring(2)) * value.quantity
+            (value: any) =>{
+              const discprice = value.price
+              return  Number(value.discprice) * value.quantity
+            }
+             
           )
           .reduce((total: any, value: any) => total + value)
       : 0;

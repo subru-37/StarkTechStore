@@ -169,7 +169,7 @@ const CheckoutCart = ({
                     fontWeight: '600',
                   }}
                 >
-                  ₹ {totalPrice}
+                  $ {totalPrice}
                 </Typography>
               </Box>
               <Box
@@ -197,7 +197,7 @@ const CheckoutCart = ({
                     fontWeight: '600',
                   }}
                 >
-                  ₹ {delivery}
+                  $ {delivery}
                 </Typography>
               </Box>
               <Box
@@ -225,7 +225,7 @@ const CheckoutCart = ({
                     fontWeight: '600',
                   }}
                 >
-                  ₹ {gst}
+                  $ {gst}
                 </Typography>
               </Box>
               <Box
@@ -253,7 +253,7 @@ const CheckoutCart = ({
                     fontWeight: '600',
                   }}
                 >
-                  ₹ {shipping}
+                  $ {shipping}
                 </Typography>
               </Box>
             </Box>
@@ -292,7 +292,7 @@ const CheckoutCart = ({
                     color: `${mode}.primary`,
                   }}
                 >
-                  ₹ {totalPrice + delivery + gst + shipping}
+                  $ {totalPrice + delivery + gst + shipping}
                 </Typography>
               </Box>
             </Box>

@@ -24,6 +24,7 @@ const CartButton = ({ id }: BoxProps) => {
   const sampleData = useSelector((state: any) => state.productDetails.products);
   const products = useSelector((state: any) => state.cart);
   const index = sampleData.findIndex((item: any) => Number(id) === item.id);
+  // console.log(sampleData, products, index, id)
   const cartindex = products.cart.findIndex(
     (item: any) => item.id === sampleData[index].id
   );

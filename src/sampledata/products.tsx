@@ -6,12 +6,14 @@ import { useFetchProductDetailsQuery } from '../api/ProductQuery';
 import { useDispatch, useSelector } from 'react-redux';
 import { ProductItemType, setProducts } from '../Redux/features/ProductSlice';
 const products = (page: string) => {
-  const { data, error, isLoading } = useFetchProductDetailsQuery('/');
+  // console.log(JSON)
   const dispatch = useDispatch();
   // console.log(data, error, isLoading)
   const mydata = useSelector((state: any) => state.productDetails.products);
+  const { data, error, isLoading, isFetching, isUninitialized } = useFetchProductDetailsQuery(mydata.length);
   useEffect(() => {
-    if (isLoading !== true && data !== null) {
+    if (isLoading !== true && data !== null && data !== undefined) {
+      //console.log('check')
       dispatch(setProducts(data?.data));
     }
   }, [data, isLoading]);
@@ -34,8 +36,11 @@ const products = (page: string) => {
       return {
         element: (
           <FeatureCard
-            id={value.id}
+          index={value.id}
+            id={index}
             key={index}
+            image={value.image}
+            category={value.category_title}
             background={
               'url(), transparent 100% / cover no-repeat'.substring(0, 4) +
               value.image +

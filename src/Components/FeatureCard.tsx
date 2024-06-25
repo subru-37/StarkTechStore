@@ -11,12 +11,16 @@ interface props {
   price: number;
   id: number;
   route: string;
+  category: string;
+  image:string;
+  index: number;
 }
 const FeatureCard = (props: props) => {
   const { mode } = useContext(MyContext);
   const navigation = useNavigate();
   const dispatch = useDispatch();
-  const index: string | undefined = String(props.id);
+  const index: string | undefined = String(props.index);
+
   return (
     <Box
       sx={{
@@ -42,8 +46,17 @@ const FeatureCard = (props: props) => {
           backgroundSize: { xs: '100% 179px', sm: '100% 358px' },
         }}
         onClick={() => {
-          dispatch(setProduct(props.id));
-          navigation(`${props.route}/${props.id}`);
+          dispatch(
+            setProduct({
+              image: props.image,
+              title: props.cardname,
+              price: props.price,
+              category_title: props.category,
+              id: index,
+              // route: props.route,
+            })
+          );
+          navigation(`${props.route}/${index}`);
         }}
       ></Box>
       <Box
@@ -65,7 +78,7 @@ const FeatureCard = (props: props) => {
             width: { xs: '170px', sm: '290px' },
             borderBottom: '1px solid #00584A',
           }}
-          onClick={() => navigation(`${props.route}/${props.id}`)}
+          onClick={() => navigation(`${props.route}/${index}`)}
         >
           <Typography
             sx={{

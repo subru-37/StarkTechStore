@@ -69,19 +69,13 @@ const Features = () => {
     });
   }
   const productItems = products('/products')
-    .filter(
-      (value: { element: ProductItemType, id: number }, index: number) =>
-        value.id > 2
-    )
-    .map(
-      (value: { element: ProductItemType, id: number }, index: number) =>
-        value.element
-    );
   // const filtered = productItems.filter((value, index) => value.id > 2);
   // const slideshow = filtered.map((value, index) => (
   //     value.element
   // ));
   // console.log(slideshow);
+  const myItems = productItems.map((value: any, index: number)=>value.element)
+  console.log(myItems);
   const { mode } = useContext(MyContext);
 
   return (
@@ -246,7 +240,7 @@ const Features = () => {
             show900={3}
             show600={2}
             show400={1}
-            components={productItems}
+            components={myItems.length > 1 ? myItems : [<div>Loading</div>] }
             width="95vw"
             arrows={false}
           />

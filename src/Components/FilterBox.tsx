@@ -160,7 +160,7 @@ const FilterBox = ({
           }}
         >
           <Typography sx={{ color: `${mode}.text`, fontSize: '16px' }}>
-            ₹ {slideValue[0]} - ₹ {slideValue[1]}
+            $ {slideValue[0]} - $ {slideValue[1]}
           </Typography>
         </Box>
         <Box

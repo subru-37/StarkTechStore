@@ -16,6 +16,8 @@ import UserModal from './Components/UserModal';
 import ColorMode from './contexts/ColorMode';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCart } from './Redux/features/CartSlice';
+import { setProduct, setProducts } from './Redux/features/ProductSlice';
+import { useFetchProductDetailsQuery } from './api/ProductQuery';
 AOS.init();
 declare module '@mui/material/styles' {
   interface Palette {
@@ -121,6 +123,26 @@ const App = () => {
       myCart.cart.length !== 0 && dispatch(setCart(myCart.cart));
     }
   }, []);
+  useEffect(() => {
+    const getMyProducts = localStorage.getItem('products');
+    // console.log(getMyProducts)
+    if (getMyProducts !== null) {
+      if (getMyProducts !== 'undefined') {
+        // console.log(getMyProducts)
+        const myProducts = JSON.parse(getMyProducts);
+        myProducts.length !== 0 && dispatch(setProducts(myProducts));
+      }
+      // console.log(myProducts)
+    }
+  }, []);
+  // const mydata = useSelector((state: any) => state.productDetails.products);
+
+  // const { data, error, isLoading, isFetching, isUninitialized } = useFetchProductDetailsQuery(mydata.length);
+  // useEffect(() => {
+  //   if (isLoading !== true && data !== null) {
+  //     dispatch(setProducts(data?.data));
+  //   }
+  // }, [data, isLoading]);
   const [name, setName] = React.useState('');
   // console.log(modal);
   return (

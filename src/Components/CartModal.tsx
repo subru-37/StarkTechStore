@@ -197,7 +197,7 @@ const CartModal = ({ cartopen, setCartOpen, setModal, modal }: props) => {
                         fontWeight: '600',
                       }}
                     >
-                      ₹ {totalPrice}
+                      $ {totalPrice}
                     </Typography>
                   </Box>
                   <Box
@@ -225,7 +225,7 @@ const CartModal = ({ cartopen, setCartOpen, setModal, modal }: props) => {
                         fontWeight: '600',
                       }}
                     >
-                      ₹ {delivery}
+                      $ {delivery}
                     </Typography>
                   </Box>
                 </Box>
@@ -263,7 +263,7 @@ const CartModal = ({ cartopen, setCartOpen, setModal, modal }: props) => {
                         color: `${mode}.primary`,
                       }}
                     >
-                      ₹ {totalPrice + delivery}
+                      $ {totalPrice + delivery}
                     </Typography>
                   </Box>
                   {totalPrice !== 0 ? (

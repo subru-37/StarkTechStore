@@ -52,8 +52,8 @@ const Products = (props: props) => {
   });
   const payments = ['Loreum Ipsum 1', 'Loreum Ipsum 2', 'Loreum Ipsum 3'];
   const productItems = products('/products');
-  // console.log(productItems);
   const [drawer, setDrawer] = React.useState<boolean>(false);
+  // console.log(productItems);
 
   return (
     <Box

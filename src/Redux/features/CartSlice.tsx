@@ -34,7 +34,7 @@ export const CartSlice = createSlice({
   reducers: {
     addToCart(state, action) {
       //if that action product has already in cart then if block will work
-      // console.log(action.payload)
+      console.log(action.payload)
       const itemIndex = state.cart.findIndex(
         (item: any) => item.id === action.payload.id
       );

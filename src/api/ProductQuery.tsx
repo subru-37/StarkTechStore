@@ -1,26 +1,31 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { supabase } from '../supabase/setup';
 import { getProductDeet, getProductDetails } from '../supabase/routes';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setProducts } from '../Redux/features/ProductSlice';
 
 const productDetailsApi = createApi({
   reducerPath: 'productDetailsApi',
   baseQuery: fetchBaseQuery({ baseUrl: '/' }),
   endpoints: (builder) => ({
     fetchProductDetails: builder.query({
-      queryFn: async (check: number) => {
+      queryFn: async () => {
+        const getMyProducts = localStorage.getItem('products');
+        // console.log(getMyProducts)
+        if (getMyProducts !== null) {
+          if (getMyProducts !== 'undefined') {
+            // console.log(getMyProducts)
+            const myProducts = JSON.parse(getMyProducts);
+            if (myProducts.length !== 0) {
+              return { data: {data: myProducts} };
+            }
+          }
+        }
+
         try {
-          //console.log(check)
-          if(check === 0){
-              const data = await getProductDetails();
-              //console.log(data, 'new state')
-            return { data };
-          }
-          else{
-            const mydata = useSelector((state: any) => state.productDetails.products);
-            //console.log(mydata, 'current state')
-            return {mydata}
-          }
+          const data = await getProductDetails();
+          //console.log(data, 'new state')
+          return { data };
         } catch (error: any) {
           return { error: { status: 'CUSTOM_ERROR', error: error.message } };
         }

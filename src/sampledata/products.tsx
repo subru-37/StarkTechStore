@@ -10,10 +10,10 @@ const products = (page: string) => {
   const dispatch = useDispatch();
   // console.log(data, error, isLoading)
   const mydata = useSelector((state: any) => state.productDetails.products);
-  const { data, error, isLoading, isFetching, isUninitialized } = useFetchProductDetailsQuery(mydata.length);
+  const { data, error, isLoading, isFetching, isUninitialized } = useFetchProductDetailsQuery('/');
   useEffect(() => {
     if (isLoading !== true && data !== null && data !== undefined) {
-      //console.log('check')
+      // console.log('check')
       dispatch(setProducts(data?.data));
     }
   }, [data, isLoading]);

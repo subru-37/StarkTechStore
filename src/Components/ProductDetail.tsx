@@ -8,10 +8,10 @@ import { useImageSize } from 'react-image-size';
 import { useMediaQuery } from '@mui/material';
 import CartButton from './CartButton';
 import { MyContext } from '../contexts/ColorMode';
-import { theme } from '../App';
 import { useSelector } from 'react-redux';
 import { ProductItemType } from '../Redux/features/ProductSlice';
 import { useFetchProductQuery } from '../api/ProductQuery';
+import SingleCartButton from './SingleCartButton';
 type props = {
   height: string;
   width: string;
@@ -67,8 +67,7 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
     );
   } else {
     if (data?.data !== null) {
-
-
+      // console.log(data?.data[0])
       const aspectratio =
         dimensions !== null
           ? Number(dimensions.width) / Number(dimensions.height)
@@ -283,7 +282,7 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
                 </Typography>
                 <Plus />
               </Button> */}
-                <CartButton id={id} />
+                <SingleCartButton id={id} data={data?.data[0]}/>
               </Box>
             </Box>
           </Box>

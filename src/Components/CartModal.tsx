@@ -9,6 +9,7 @@ import UserModal from './UserModal';
 import { TotalPriceMain } from './TotalPrice';
 import { MyContext } from '../contexts/ColorMode';
 import { theme } from '../App';
+import { CartItemType } from '../Redux/features/CartSlice';
 
 type props = {
   cartopen: boolean;
@@ -119,9 +120,9 @@ const CartModal = ({ cartopen, setCartOpen, setModal, modal }: props) => {
                 }}
               >
                 {products.cart.length > 0 &&
-                  products.cart.map((value: any, index: any) => (
+                  products.cart.map((value: CartItemType, index: number) => (
                     <CartItem
-                      id={value.id}
+                      id={value.id !== null ? value.id : 0}
                       key={index}
                       image={
                         'url(), lightgray -32.2px -6px / 112.96% 114.239% no-repeat'.substring(

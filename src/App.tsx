@@ -123,18 +123,7 @@ const App = () => {
       myCart.cart.length !== 0 && dispatch(setCart(myCart.cart));
     }
   }, []);
-  useEffect(() => {
-    const getMyProducts = localStorage.getItem('products');
-    // console.log(getMyProducts)
-    if (getMyProducts !== null) {
-      if (getMyProducts !== 'undefined') {
-        // console.log(getMyProducts)
-        const myProducts = JSON.parse(getMyProducts);
-        myProducts.length !== 0 && dispatch(setProducts(myProducts));
-      }
-      // console.log(myProducts)
-    }
-  }, []);
+  
   // const mydata = useSelector((state: any) => state.productDetails.products);
 
   // const { data, error, isLoading, isFetching, isUninitialized } = useFetchProductDetailsQuery(mydata.length);

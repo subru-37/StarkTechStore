@@ -11,6 +11,7 @@ import {
 } from '../Redux/features/CartSlice';
 import CartButton from './CartButton';
 import { MyContext } from '../contexts/ColorMode';
+import SingleCartButton from './SingleCartButton';
 type props = {
   price: string;
   name: string;
@@ -18,6 +19,16 @@ type props = {
   image: string;
   id: number;
 };
+/*
+
+data: {
+    id: number;
+    title: string | null;
+    price: number;
+    image: string | null;
+    category_title: string;
+}
+*/
 const CartItem = ({ price, name, quantity, image, id }: props) => {
   const dispatch = useDispatch();
   const { mode } = useContext(MyContext);
@@ -29,6 +40,13 @@ const CartItem = ({ price, name, quantity, image, id }: props) => {
     dispatch(removeFromCart(product));
   };
   // console.log(image);
+  const data = {
+    id: id,
+    title: name, 
+    quantity: quantity, 
+    image: image, 
+    price: parseInt(price)
+  }
   return (
     <Box
       sx={{
@@ -159,7 +177,7 @@ const CartItem = ({ price, name, quantity, image, id }: props) => {
                 onClick={() => addProductHandler(products.cart[index])}
               />
             </Box> */}
-            <CartButton id={cartindex} />
+            <SingleCartButton id={cartindex} data={data}/>
             <Box
               onClick={() => removeAllProduct(products.cart[index])}
               sx={{ cursor: 'pointer' }}

@@ -65,6 +65,7 @@ const Products = (props: props) => {
         position: 'relative',
         paddingBottom: '75px',
         backgroundColor: `${mode}.background`,
+        minHeight:'100vh'
       }}
     >
       {/* <TextField

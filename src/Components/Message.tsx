@@ -1,13 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormData } from '../Pages/Checkout';
+import { RootState } from '../app/combine';
 
 const Message = (
   value: string | null,
   formData: FormData,
   grandtotal: number
 ) => {
-  const products = useSelector((state: any) => state.cart);
+  const products = useSelector((state: RootState) => state.cart);
 
   const items = products.cart.map((value: any) => {
     const keys = Object.keys(value);

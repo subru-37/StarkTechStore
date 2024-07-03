@@ -5,11 +5,12 @@ import { useEffect } from 'react';
 import { useFetchProductDetailsQuery } from '../api/ProductQuery';
 import { useDispatch, useSelector } from 'react-redux';
 import { ProductItemType, setProducts } from '../Redux/features/ProductSlice';
+import { RootState } from '../app/combine';
 const products = (page: string) => {
   // console.log(JSON)
   const dispatch = useDispatch();
   // console.log(data, error, isLoading)
-  const mydata = useSelector((state: any) => state.productDetails.products);
+  const mydata = useSelector((state: RootState) => state.productDetails.products);
   const { data, error, isLoading, isFetching, isUninitialized } = useFetchProductDetailsQuery('/');
   useEffect(() => {
     if (isLoading !== true && data !== null && data !== undefined) {

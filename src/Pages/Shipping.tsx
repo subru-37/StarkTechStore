@@ -18,6 +18,7 @@ import { removeAll } from '../Redux/features/CartSlice';
 import Message from '../Components/Message';
 import { MyContext } from '../contexts/ColorMode';
 import { theme } from '../App';
+import { RootState } from '../app/combine';
 type FormData = {
   email: string;
   firstName: string;
@@ -57,7 +58,7 @@ const Shipping = ({
     window.location.href = whatsappUrl;
   };
   const navigation = useNavigate();
-  const products = useSelector((state: any) => state.cart);
+  const products = useSelector((state: RootState) => state.cart);
   const delivery = 40;
   const totalPrice =
     products.cart.length > 0

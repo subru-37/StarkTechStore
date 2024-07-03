@@ -11,6 +11,7 @@ import { setUserData } from '../Redux/features/FormSlice';
 import { TotalPriceMain } from '../Components/TotalPrice';
 import { MyContext } from '../contexts/ColorMode';
 import { theme } from '../App';
+import { RootState } from '../app/combine';
 type FormData = {
   email: string;
   firstName: string;
@@ -26,7 +27,7 @@ type checkoutProps = {
 const Checkout = ({ formData, setFormData }: checkoutProps) => {
   const { mode } = useContext(MyContext);
   const navigation = useNavigate();
-  const products = useSelector((state: any) => state.cart);
+  const products = useSelector((state: RootState) => state.cart);
   useEffect(() => {
     if (products.cart.length === 0) {
       navigation('/products');

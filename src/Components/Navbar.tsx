@@ -18,6 +18,7 @@ import { MyContext } from '../contexts/ColorMode';
 import { WbSunnyRounded, Nightlight } from '@mui/icons-material';
 
 import { theme } from '../App';
+import { RootState } from '../app/combine';
 type props = {
   cartopen: boolean;
   setCartOpen: (open: boolean) => void;
@@ -32,7 +33,7 @@ export default function Navbar({ cartopen, setCartOpen }: props) {
     // { name: 'Contact Us', link: '/' },
   ];
   const [value, open, setValue, width900] = useNavbar();
-  const products = useSelector((state: any) => state.cart);
+  const products = useSelector((state: RootState) => state.cart);
   const NumberOfItems = products.cart.length;
   const { mode, setMode } = React.useContext(MyContext);
 

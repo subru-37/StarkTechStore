@@ -1,4 +1,10 @@
-import React, { Dispatch, SetStateAction, useContext } from 'react';
+import React, {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import {
   Box,
   TextField,
@@ -16,45 +22,65 @@ import { Link } from 'react-router-dom';
 import Search from '../utils/Search';
 import { MyContext } from '../contexts/ColorMode';
 import { ProductItemType } from '../Redux/features/ProductSlice';
+import { useFetchCategoriesQuery } from '../api/CategoriesQuery';
+import { useSelector } from 'react-redux';
+import { RootState } from '../app/combine';
 type props = {
   name: string;
   setName: Dispatch<SetStateAction<string>>;
 };
-type filtertypes = {
-  [key: string]: any;
+
+type categories = {
+  id: number;
+  category_title: string;
+};
+type categoryFilterType = {
+  [key: string]: boolean;
+};
+type filteredElements = {
+  element: JSX.Element;
+  id: number;
 };
 const Products = (props: props) => {
   const [value, open, setValue, width900] = useNavbar();
   const { mode } = useContext(MyContext);
+  const { data, error, isLoading } = useFetchCategoriesQuery('/');
+  const productElements: filteredElements[] = products('/products');
+  const productItems = useSelector((cart: RootState)=>cart.productDetails.products)
 
-  const categories = [
-    'Whole Grains (millets )',
-    'Whole grain (cereals)',
-    'Ready to eat',
-    'Oil (ghana/ non processed)',
-    'Milk produts',
-    'Honey and jaggery',
-    'Dal',
-    'Masala',
-    'Missceleneous',
-  ];
-  const [slideValue, setSlideValue] = React.useState<number[]>([1000, 2000]);
-  const [categoryFilters, setCategoryFilters] = React.useState<filtertypes>({
-    'Whole Grains (millets )': false,
-    'Whole grain (cereals)': false,
-    'Ready to eat': false,
-    'Oil (ghana/ non processed)': false,
-    'Milk produts': false,
-    'Honey and jaggery': false,
-    Dal: false,
-    Masala: false,
-    Missceleneous: false,
-  });
+  const [filteredProducts, setFilteredProducts] =
+    useState<filteredElements[]>();
+  const [categories, setCategories] = useState<string[]>([]);
+  const [slideValue, setSlideValue] = useState<number[]>([1000, 2000]);
+  const [categoryFilters, setCategoryFilters] = useState<categoryFilterType>(
+    {}
+  );
+  const [drawer, setDrawer] = useState<boolean>(false);
+
   const payments = ['Loreum Ipsum 1', 'Loreum Ipsum 2', 'Loreum Ipsum 3'];
-  const productItems = products('/products');
-  const [drawer, setDrawer] = React.useState<boolean>(false);
-  // console.log(productItems);
 
+  useEffect(() => {
+    if (isLoading !== true && data !== null && data !== undefined) {
+      if (data?.data !== null) {
+        const myCategories: categoryFilterType = {};
+        const categories: string[] = data?.data.map(
+          (value: categories, index: number) => {
+            myCategories[value.category_title] = false;
+            return value.category_title;
+          }
+        );
+        setCategoryFilters(myCategories);
+        setCategories(categories);
+      }
+    }
+  }, [data, isLoading]);
+
+  const filterProducts = (myProducts: ProductItemType[]) => {
+    console.log(myProducts)
+  };
+  useEffect(()=>{
+    filterProducts(productItems);
+  },[categoryFilters])
   return (
     <Box
       sx={{
@@ -65,7 +91,7 @@ const Products = (props: props) => {
         position: 'relative',
         paddingBottom: '75px',
         backgroundColor: `${mode}.background`,
-        minHeight:'100vh'
+        minHeight: '100vh',
       }}
     >
       {/* <TextField
@@ -194,7 +220,7 @@ const Products = (props: props) => {
               <MenuIcon /> Filters
             </Button>
           </Grid>
-          {productItems.map(
+          {productElements.map(
             (value: { element: JSX.Element; id: number }, index: number) => (
               <Grid
                 item

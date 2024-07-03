@@ -51,3 +51,9 @@ export const getProductDeet = async (id: number) => {
     .eq('id', id);
   return { data, error };
 };
+
+export const getCategories = async () => {
+  const {data, error} = await supabase.from('categories').select('id, category_title');
+  // console.log(data)
+  return {data, error}
+}

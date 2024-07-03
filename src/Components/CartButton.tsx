@@ -13,6 +13,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import Plus from '../utils/Plus';
 import { MyContext } from '../contexts/ColorMode';
 import { theme } from '../App';
+import { RootState } from '../app/combine';
 
 type BoxProps = {
   id: string | undefined;
@@ -21,8 +22,8 @@ const CartButton = ({ id }: BoxProps) => {
   const dispatch = useDispatch();
   const { mode } = useContext(MyContext);
   // console.log(mode);
-  const sampleData = useSelector((state: any) => state.productDetails.products);
-  const products = useSelector((state: any) => state.cart);
+  const sampleData = useSelector((state: RootState) => state.productDetails.products);
+  const products = useSelector((state: RootState) => state.cart);
   const index = sampleData.findIndex((item: any) => Number(id) === item.id);
   // console.log(sampleData, products, index, id)
   const cartindex = products.cart.findIndex(

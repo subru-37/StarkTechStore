@@ -12,6 +12,7 @@ import {
 import CartButton from './CartButton';
 import { MyContext } from '../contexts/ColorMode';
 import SingleCartButton from './SingleCartButton';
+import { RootState } from '../app/combine';
 type props = {
   price: string;
   name: string;
@@ -33,7 +34,7 @@ const CartItem = ({ price, name, quantity, image, id }: props) => {
   const dispatch = useDispatch();
   const { mode } = useContext(MyContext);
 
-  const products = useSelector((state: any) => state.cart);
+  const products = useSelector((state: RootState) => state.cart);
   const index = products.cart.findIndex((item: any) => id === item.id);
   const cartindex: string | undefined = String(id);
   const removeAllProduct = (product: any) => {

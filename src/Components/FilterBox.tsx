@@ -13,6 +13,7 @@ import FilterAccordion from './FilterAccordion';
 import DownArrow from '../utils/DownArrow';
 import { MyContext } from '../contexts/ColorMode';
 import { theme } from '../App';
+import { categoryFilterType } from '../Pages/Products';
 type filtertypes = {
   [key: string]: any;
 };
@@ -20,11 +21,11 @@ type props = {
   categories: string[];
   payments: string[];
   paymentFilters?: filtertypes;
-  categoryFilters: filtertypes;
+  categoryFilters: categoryFilterType;
   slideValue: number[];
   setPaymentFilters?: Dispatch<SetStateAction<filtertypes>>;
-  setCategoryFilters: Dispatch<SetStateAction<filtertypes>>;
-  setSlideValue: React.Dispatch<React.SetStateAction<number[]>>; //Dispatch<SetStateAction<number>>;
+  setCategoryFilters: Dispatch<SetStateAction<categoryFilterType>>;
+  setSlideValue: Dispatch<SetStateAction<number[]>>; //Dispatch<SetStateAction<number>>;
 };
 const FilterBox = ({
   categories,
@@ -96,14 +97,22 @@ const FilterBox = ({
                 control={
                   <Checkbox
                     name={value}
-                    checked={categoryFilters.value}
+                    checked={categoryFilters[value]}
                     sx={{
                       '& .MuiSvgIcon-root': {
                         fontSize: 16,
                         color: `${mode}.text`,
                       },
                     }}
-                    onChange={setCategoryFilters}
+                    onChange={(event) =>
+                      setCategoryFilters((preValue) => {
+                        return {
+                          ...preValue,
+                          [value]: event.target.checked,
+                        };
+                      })
+                    }
+                    // value={categoryFilters[value]}
                   ></Checkbox>
                 }
                 label={value}

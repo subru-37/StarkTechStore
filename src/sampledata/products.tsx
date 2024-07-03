@@ -2,16 +2,16 @@ import FeatureCard from '../Components/FeatureCard';
 import sampleprod from '../assets/productsample.png';
 import { cartitems } from './cartitem';
 import { useEffect } from 'react';
-import { useFetchProductDetailsQuery } from '../api/ProductQuery';
+import { useFetchFilteredProductsQuery, useFetchProductDetailsQuery } from '../api/ProductQuery';
 import { useDispatch, useSelector } from 'react-redux';
 import { ProductItemType, setProducts } from '../Redux/features/ProductSlice';
 import { RootState } from '../app/combine';
-const products = (page: string) => {
+const products = (myFilters: string[]) => {
   // console.log(JSON)
   const dispatch = useDispatch();
   // console.log(data, error, isLoading)
   const mydata = useSelector((state: RootState) => state.productDetails.products);
-  const { data, error, isLoading, isFetching, isUninitialized } = useFetchProductDetailsQuery('/');
+  const { data, error, isLoading, isFetching, isUninitialized } = useFetchFilteredProductsQuery(myFilters);
   useEffect(() => {
     if (isLoading !== true && data !== null && data !== undefined) {
       // console.log('check')
@@ -52,7 +52,6 @@ const products = (page: string) => {
             cardname={value.title}
             // discprice={value.discprice}
             price={value.price}
-            route={page}
           />
         ),
         id: value.id,

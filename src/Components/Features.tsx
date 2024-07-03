@@ -68,7 +68,7 @@ const Features = () => {
       };
     });
   }
-  const productItems = products('/products')
+  const productItems = products([])
   // const filtered = productItems.filter((value, index) => value.id > 2);
   // const slideshow = filtered.map((value, index) => (
   //     value.element

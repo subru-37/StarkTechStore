@@ -10,6 +10,7 @@ import { TotalPriceMain } from './TotalPrice';
 import { MyContext } from '../contexts/ColorMode';
 import { theme } from '../App';
 import { CartItemType } from '../Redux/features/CartSlice';
+import { RootState } from '../app/combine';
 
 type props = {
   cartopen: boolean;
@@ -19,7 +20,7 @@ type props = {
 };
 const CartModal = ({ cartopen, setCartOpen, setModal, modal }: props) => {
   const delivery = 40;
-  const products = useSelector((state: any) => state.cart);
+  const products = useSelector((state: RootState) => state.cart);
   const totalPrice =
     products.cart.length > 0 ? TotalPriceMain(products.cart) : 0;
   const { mode } = useContext(MyContext);

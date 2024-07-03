@@ -53,7 +53,25 @@ export const getProductDeet = async (id: number) => {
 };
 
 export const getCategories = async () => {
-  const {data, error} = await supabase.from('categories').select('id, category_title');
+  const { data, error } = await supabase
+    .from('categories')
+    .select('id, category_title');
   // console.log(data)
-  return {data, error}
-}
+  return { data, error };
+};
+
+export const getFilteredProducts = async (myfilters: string[]) => {
+  const { data, error } = await supabase
+    .from('product_details')
+    .select(
+      `id,
+     title,
+     price,
+     image,
+    ...categories!inner(
+      category_title
+    )`
+    )
+    .in('categories.category_title', myfilters);
+  return { data, error };
+};

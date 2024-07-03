@@ -25,6 +25,7 @@ import { ProductItemType } from '../Redux/features/ProductSlice';
 import { useFetchCategoriesQuery } from '../api/CategoriesQuery';
 import { useSelector } from 'react-redux';
 import { RootState } from '../app/combine';
+import { useFetchFilteredProductsQuery } from '../api/ProductQuery';
 type props = {
   name: string;
   setName: Dispatch<SetStateAction<string>>;
@@ -34,7 +35,7 @@ type categories = {
   id: number;
   category_title: string;
 };
-type categoryFilterType = {
+export type categoryFilterType = {
   [key: string]: boolean;
 };
 type filteredElements = {
@@ -45,12 +46,15 @@ const Products = (props: props) => {
   const [value, open, setValue, width900] = useNavbar();
   const { mode } = useContext(MyContext);
   const { data, error, isLoading } = useFetchCategoriesQuery('/');
-  const productElements: filteredElements[] = products('/products');
-  const productItems = useSelector((cart: RootState)=>cart.productDetails.products)
+  // const [productElements, setProductElements] = useState<filteredElements[]>([])
+  const productItems = useSelector(
+    (state: RootState) => state.productDetails.products
+  );
 
   const [filteredProducts, setFilteredProducts] =
     useState<filteredElements[]>();
   const [categories, setCategories] = useState<string[]>([]);
+  const [filteredCategories, setFilteredCategories] = useState<string[]>([]);
   const [slideValue, setSlideValue] = useState<number[]>([1000, 2000]);
   const [categoryFilters, setCategoryFilters] = useState<categoryFilterType>(
     {}
@@ -74,13 +78,37 @@ const Products = (props: props) => {
       }
     }
   }, [data, isLoading]);
+  const productElements: filteredElements[] = products(filteredCategories);
 
-  const filterProducts = (myProducts: ProductItemType[]) => {
-    console.log(myProducts)
+  // useEffect(()=>{
+  //   setProductElements(productElements)
+  // }, [categoryFilters, categories])
+
+  const filterProducts = () => {
+    let check = 0;
+    // const ogKeys = Object.keys(categor)
+    for (let i in categories) {
+      // console.log(categoryFilters[categories[i]]);
+      if (categoryFilters[categories[i]] === true) {
+        check = 1;
+        setFilteredCategories((preValue) => {
+          return [...preValue, categories[i]];
+        });
+      }
+    }
+    if(check == 0){
+      setFilteredCategories([])
+    }
   };
-  useEffect(()=>{
-    filterProducts(productItems);
-  },[categoryFilters])
+  useEffect(() => {
+    filterProducts();
+  }, [categoryFilters]);
+  const {
+    data: filteredData,
+    error: filteredError,
+    isLoading: filteredIsLoading,
+  } = useFetchFilteredProductsQuery(filteredCategories);
+  console.log(filteredData?.data, categoryFilters)
   return (
     <Box
       sx={{

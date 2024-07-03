@@ -10,7 +10,6 @@ interface props {
   cardname: string;
   price: number;
   id: number;
-  route: string;
   category: string;
   image:string;
   index: number;
@@ -56,7 +55,7 @@ const FeatureCard = (props: props) => {
               // route: props.route,
             })
           );
-          navigation(`${props.route}/${index}`);
+          navigation(`/products/${index}`);
         }}
       ></Box>
       <Box
@@ -78,7 +77,7 @@ const FeatureCard = (props: props) => {
             width: { xs: '170px', sm: '290px' },
             borderBottom: '1px solid #00584A',
           }}
-          onClick={() => navigation(`${props.route}/${index}`)}
+          onClick={() => navigation(`/products/${index}`)}
         >
           <Typography
             sx={{

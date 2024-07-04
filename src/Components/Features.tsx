@@ -88,7 +88,8 @@ const Features = () => {
   const productItems = products(
     [],
     { range: { low: 0, high: 1200 } },
-    categories
+    categories,
+    ''
   );
   // const filtered = productItems.filter((value, index) => value.id > 2);
   // const slideshow = filtered.map((value, index) => (

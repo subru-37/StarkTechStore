@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCart } from './Redux/features/CartSlice';
 import { setProduct, setProducts } from './Redux/features/ProductSlice';
 import { useFetchProductDetailsQuery } from './api/ProductQuery';
+import MyAuthContext, { AuthContext } from './contexts/AuthContext';
 AOS.init();
 declare module '@mui/material/styles' {
   interface Palette {
@@ -123,7 +124,7 @@ const App = () => {
       myCart.cart.length !== 0 && dispatch(setCart(myCart.cart));
     }
   }, []);
-  
+
   // const mydata = useSelector((state: any) => state.productDetails.products);
 
   // const { data, error, isLoading, isFetching, isUninitialized } = useFetchProductDetailsQuery(mydata.length);
@@ -137,64 +138,71 @@ const App = () => {
   return (
     <Box sx={{ position: 'relative' }}>
       <ColorMode>
-        <ThemeProvider theme={theme}>
-          <Navbar cartopen={cartopen} setCartOpen={setCartOpen} />
-          <CartModal
-            cartopen={cartopen}
-            setCartOpen={setCartOpen}
-            setModal={setModal}
-            modal={modal}
-          />
-          <Routes>
-            <Route
-              path="/"
-              element={<Landing name={name} setName={setName} />}
+        <MyAuthContext>
+          <ThemeProvider theme={theme}>
+            <Navbar
+              cartopen={cartopen}
+              setCartOpen={setCartOpen}
+              close={modal}
+              onClose={setModal}
             />
-            <Route
-              path="/products"
-              element={<Products name={name} setName={setName} />}
+            <CartModal
+              cartopen={cartopen}
+              setCartOpen={setCartOpen}
+              setModal={setModal}
+              modal={modal}
             />
-            <Route
-              path="/products/:id"
-              element={
-                <ProductDetail
-                  width="100vw"
-                  height="100vh"
-                  bgsize="50vw 100vh"
-                />
-              }
+            <Routes>
+              <Route
+                path="/"
+                element={<Landing name={name} setName={setName} />}
+              />
+              <Route
+                path="/products"
+                element={<Products name={name} setName={setName} />}
+              />
+              <Route
+                path="/products/:id"
+                element={
+                  <ProductDetail
+                    width="100vw"
+                    height="100vh"
+                    bgsize="50vw 100vh"
+                  />
+                }
+              />
+              <Route
+                path="/checkout"
+                element={
+                  <Checkout formData={formData} setFormData={setFormData} />
+                }
+              />
+              <Route
+                path="/shipping"
+                element={
+                  <Shipping
+                    formData={formData}
+                    setFormData={setFormData}
+                    options={options}
+                    value={value}
+                    setValue={setValue}
+                  />
+                }
+              />
+            </Routes>
+            <Footer />
+            <UserModal
+              close={modal}
+              onClose={setModal}
+              yesFunction={() => {
+                navigation('/shipping');
+              }}
+              noFunction={() => {
+                navigation('/checkout');
+              }}
             />
-            <Route
-              path="/checkout"
-              element={
-                <Checkout formData={formData} setFormData={setFormData} />
-              }
-            />
-            <Route
-              path="/shipping"
-              element={
-                <Shipping
-                  formData={formData}
-                  setFormData={setFormData}
-                  options={options}
-                  value={value}
-                  setValue={setValue}
-                />
-              }
-            />
-          </Routes>
-          <Footer />
-          <UserModal
-            close={modal}
-            onClose={setModal}
-            yesFunction={() => {
-              navigation('/shipping');
-            }}
-            noFunction={() => {
-              navigation('/checkout');
-            }}
-          />
-        </ThemeProvider>
+          </ThemeProvider>
+        </MyAuthContext>
       </ColorMode>
     </Box>
   );

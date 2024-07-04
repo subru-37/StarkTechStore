@@ -11,7 +11,7 @@ type ModalProps = {
 };
 const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
   const { mode } = useContext(MyContext);
-
+  // const []
   return (
     <Drawer open={close} onClose={() => onClose(false)} anchor="left">
       <Box

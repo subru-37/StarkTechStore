@@ -156,7 +156,7 @@ const Products = (props: props) => {
           label=""
           placeholder="Search.."
           sx={{
-            width: { xs: '100vw', sm: '70vw', md: '35vw' },
+            width: { xs: '95vw', sm: '70vw', md: '35vw' },
             borderRadius: '35px',
             border: `2px dashed ${theme.palette[mode].primary}`,
             //   opacity: '0.5',

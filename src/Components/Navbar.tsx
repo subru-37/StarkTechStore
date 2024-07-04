@@ -21,9 +21,16 @@ import { theme } from '../App';
 import { RootState } from '../app/combine';
 type props = {
   cartopen: boolean;
-  setCartOpen: (open: boolean) => void;
+  setCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  close: boolean;
+  onClose: React.Dispatch<React.SetStateAction<boolean>>;
 };
-export default function Navbar({ cartopen, setCartOpen }: props) {
+export default function Navbar({
+  cartopen,
+  setCartOpen,
+  close,
+  onClose,
+}: props) {
   const navigation = useNavigate();
   const navlinks = [
     { name: 'Home', link: '/' },
@@ -62,11 +69,12 @@ export default function Navbar({ cartopen, setCartOpen }: props) {
       >
         <Toolbar
           sx={{
-            width: { xs: '90vw', md: '75vw' },
+            width: { xs: '95vw', md: '80vw' },
             display: 'flex',
             flexDirection: 'row',
-            justifyContent: 'space-between',
+            justifyContent: { xs: 'center', md: 'space-between' },
             padding: '0px !important',
+            position: 'relative',
           }}
         >
           <IconButton
@@ -74,7 +82,14 @@ export default function Navbar({ cartopen, setCartOpen }: props) {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2, display: { xs: 'flex', md: 'none' } }}
+            sx={{
+              mr: 0,
+              p: 0,
+              display: { xs: 'flex', md: 'none' },
+              position: 'absolute',
+              top: '15px',
+              left: '25px',
+            }}
             onClick={() => setValue(true)}
           >
             <MenuIcon sx={{ color: `${mode}.text` }} />
@@ -105,7 +120,8 @@ export default function Navbar({ cartopen, setCartOpen }: props) {
                 flexDirection: 'row',
                 width: '300px',
                 justifyContent: 'space-between',
-                marginRight: '40px',
+                marginLeft: { xs: '0', md: '100px' },
+                display: { xs: 'none', md: 'flex' },
               },
             }}
           >
@@ -135,26 +151,40 @@ export default function Navbar({ cartopen, setCartOpen }: props) {
           </Box>
           <Box
             sx={{
-              display: 'flex',
+              display: { xs: 'none', md: 'flex' },
               alignItems: 'center',
               justifyContent: 'space-between',
               flexDirection: 'row',
-              width: '150px',
+              minWidth: '250px',
             }}
           >
-            {/* <Button color="inherit">
+            <Button
+              sx={{
+                color: `${mode}.background`,
+                backgroundColor: `${mode}.primary`,
+                '&:hover': {
+                  color: `${mode}.background`,
+                  backgroundColor: `${mode}.primary`,
+                },
+                minWidth: '100px',
+                textTransform: 'none',
+                display: { xs: 'none', md: 'flex' },
+              }}
+              onClick={() => onClose(!close)}
+            >
               <Typography>Sign In</Typography>
-            </Button> */}
+            </Button>
             <Box
               onClick={() => setCartOpen(true)}
               sx={{
                 position: 'relative',
                 width: '50px',
                 height: '40px',
-                display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
+                // display: { xs: 'none', md: 'flex' },
+                display: 'flex',
               }}
             >
               <Typography
@@ -177,7 +207,11 @@ export default function Navbar({ cartopen, setCartOpen }: props) {
               <Cart color={theme.palette[mode].primary} size="30px" />
             </Box>
             <Button
-              sx={{ height: '100%', width: '50px' }}
+              sx={{
+                height: '100%',
+                width: '50px',
+                display: { xs: 'none', md: 'flex' },
+              }}
               onClick={() => setMode(mode == 'light' ? 'dark' : 'light')}
             >
               {mode == 'dark' ? (
@@ -200,7 +234,7 @@ export default function Navbar({ cartopen, setCartOpen }: props) {
           sx={{
             minWidth: '100vw',
             minHeight: '100dvh',
-            background: `${mode}.background`,
+            backgroundColor: `${mode}.background`,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -217,7 +251,7 @@ export default function Navbar({ cartopen, setCartOpen }: props) {
               >
                 <Typography
                   sx={{
-                    color: `${mode}.text`,
+                    color: `${mode}.primary`,
                     fontfamily: 'Montserrat',
                     fontSize: '24px',
                     fontStyle: 'normal',
@@ -231,6 +265,68 @@ export default function Navbar({ cartopen, setCartOpen }: props) {
               </Link>
             );
           })}
+          <Button
+            sx={{
+              height: '50px',
+              width: '50px',
+              display: 'flex',
+              margin: '10px 0',
+            }}
+            onClick={() => setMode(mode == 'light' ? 'dark' : 'light')}
+          >
+            {mode == 'dark' ? (
+              <Nightlight sx={{ color: `${mode}.primary` }} />
+            ) : (
+              <WbSunnyRounded sx={{ color: `${mode}.primary` }} />
+            )}
+          </Button>
+          <Box
+            onClick={() => setCartOpen(true)}
+            sx={{
+              position: 'relative',
+              width: '50px',
+              height: '40px',
+              margin: '10px 0',
+
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              // display: { xs: 'none', md: 'flex' },
+              display: 'flex',
+            }}
+          >
+            <Typography
+              sx={{
+                position: 'absolute',
+                // backgroundColor: `${mode}.primary`,
+                color: `${mode}.primary`,
+                borderRadius: '100%',
+                width: '22px',
+                height: '22px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                right: '-10px',
+                top: '-5px',
+              }}
+            >
+              {NumberOfItems}
+            </Typography>
+            <Cart color={theme.palette[mode].primary} size="30px" />
+          </Box>
+          <Button
+            sx={{
+              color: `${mode}.background`,
+              backgroundColor: `${mode}.primary`,
+              minWidth: '100px',
+              textTransform: 'none',
+              margin: '10px 0',
+              display: 'flex',
+            }}
+            onClick={() => onClose(!close)}
+          >
+            <Typography>Sign In</Typography>
+          </Button>
         </Box>
       </Drawer>
     </Box>

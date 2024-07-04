@@ -62,6 +62,7 @@ const FilterBox = ({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: `${mode}.background`,
+        marginTop:'25px'
       }}
     >
       <Box

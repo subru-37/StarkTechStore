@@ -12,7 +12,8 @@ import { RootState } from '../app/combine';
 const products = (
   myFilters: string[],
   { range }: { range: { low: number; high: number } },
-  categories: string[]
+  categories: string[],
+  search: string
 ) => {
   // console.log(JSON)
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const products = (
     (state: RootState) => state.productDetails.products
   );
   const { data, error, isLoading, isFetching, isUninitialized } =
-    useFetchFilteredProductsQuery({ myFilters, range, categories });
+    useFetchFilteredProductsQuery({ myFilters, range, categories, search });
   useEffect(() => {
     if (isLoading !== true && data !== null && data !== undefined) {
       // console.log('check')

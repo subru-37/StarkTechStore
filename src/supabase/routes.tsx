@@ -63,25 +63,48 @@ export const getCategories = async () => {
 export const getFilteredProducts = async (
   myfilters: string[],
   range: { low: number; high: number },
-  categories: string[]
+  categories: string[],
+  search: string
 ) => {
   // console.log(priceRange)
-  const { data, error } = await supabase
-    .from('product_details')
-    .select(
-      `id,
+  if (search.length !== 0) {
+    const { data, error } = await supabase
+      .from('product_details')
+      .select(
+        `id,
      title,
      price,
      image,
     ...categories!inner(
       category_title
     )`
-    )
-    .in(
-      'categories.category_title',
-      myfilters.length !== 0 ? myfilters : categories
-    )
-    .gte('price', range.low)
-    .lte('price', range.high);
-  return { data, error };
+      )
+      .in(
+        'categories.category_title',
+        myfilters.length !== 0 ? myfilters : categories
+      )
+      .gte('price', range.low)
+      .lte('price', range.high)
+      .ilike('title', `${search}%`);
+    return { data, error };
+  } else {
+    const { data, error } = await supabase
+      .from('product_details')
+      .select(
+        `id,
+     title,
+     price,
+     image,
+    ...categories!inner(
+      category_title
+    )`
+      )
+      .in(
+        'categories.category_title',
+        myfilters.length !== 0 ? myfilters : categories
+      )
+      .gte('price', range.low)
+      .lte('price', range.high);
+    return { data, error };
+  }
 };

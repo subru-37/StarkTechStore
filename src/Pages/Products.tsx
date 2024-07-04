@@ -26,6 +26,7 @@ import { useFetchCategoriesQuery } from '../api/CategoriesQuery';
 import { useSelector } from 'react-redux';
 import { RootState } from '../app/combine';
 import { useFetchFilteredProductsQuery } from '../api/ProductQuery';
+import { theme } from '../App';
 type props = {
   name: string;
   setName: Dispatch<SetStateAction<string>>;
@@ -63,6 +64,7 @@ const Products = (props: props) => {
     {}
   );
   const [drawer, setDrawer] = useState<boolean>(false);
+  const [search, setSearch] = useState<string>('');
 
   const payments = ['Loreum Ipsum 1', 'Loreum Ipsum 2', 'Loreum Ipsum 3'];
 
@@ -81,12 +83,14 @@ const Products = (props: props) => {
       }
     }
   }, [data, isLoading]);
+
   const productElements: filteredElements[] = products(
     filteredCategories,
     {
       range: { low: filteredSlideValue[0], high: filteredSlideValue[1] },
     },
-    categories
+    categories,
+    search
   );
 
   // useEffect(()=>{
@@ -115,8 +119,12 @@ const Products = (props: props) => {
 
   useEffect(() => {
     setFilteredSlideValue(slideValue);
-    console.log(slideValue);
+    // console.log(slideValue);
   }, [slideValue]);
+
+  useEffect(() => {
+    console.log(search);
+  }, [search]);
   // const {
   //   data: filteredData,
   //   error: filteredError,
@@ -126,81 +134,93 @@ const Products = (props: props) => {
   return (
     <Box
       sx={{
-        paddingTop: '75px',
+        // paddingTop: '75px',
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
         position: 'relative',
-        paddingBottom: '75px',
+        padding: '110px 0 0px 0',
         backgroundColor: `${mode}.background`,
         minHeight: '100vh',
       }}
     >
-      {/* <TextField
-        id="outlined-controlled"
-        label=""
-        placeholder="Search.."
-        sx={{
-          width: '100vw',
-          borderBottomLeftRadius: '35px',
-          borderBottomRightRadius: '35px',
-          //   opacity: '0.5',
-          backgroundColor: `${mode}.background`,
-          minHeight: '175px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'flex-end',
-          boxShadow: '0px 4px 48px -13px rgba(46, 84, 37, 0.54)',
-          //   filter: 'blur(0.25px)',
-          //   backdropFilter: 'blur(7.5px)',
-          '& .MuiOutlinedInput-root': {
-            height: { xs: '50px', sm: 'auto' },
-            backgroundColor: 'transparent',
-            color: `${mode}.text`,
-            '& fieldset': {
-              border: 'none',
+      <Box
+        component={'form'}
+        onSubmit={(e) => {
+          e.preventDefault();
+          setSearch(props.name);
+        }}
+      >
+        <TextField
+          id="outlined-controlled"
+          label=""
+          placeholder="Search.."
+          sx={{
+            width: { xs: '100vw', sm: '70vw', md: '35vw' },
+            borderRadius: '35px',
+            border: `2px dashed ${theme.palette[mode].primary}`,
+            //   opacity: '0.5',
+            backgroundColor: `${mode}.background`,
+            minHeight: '50px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            boxShadow: '0px 4px 48px -13px rgba(46, 84, 37, 0.54)',
+            //   filter: 'blur(0.25px)',
+            //   backdropFilter: 'blur(7.5px)',
+            '& .MuiOutlinedInput-root': {
+              height: { xs: '50px', sm: 'auto' },
+              backgroundColor: 'transparent',
               color: `${mode}.text`,
-              minWidth: '300px',
+              '& fieldset': {
+                border: 'none',
+                color: `${mode}.text`,
+                minWidth: '300px',
+              },
+              '&.Mui-focused fieldset': {
+                border: 'none',
+                color: `${mode}.text`,
+              },
             },
-            '&.Mui-focused fieldset': {
-              border: 'none',
+            '& .MuiOutlinedInput-root:hover': {
+              '& fieldset': {
+                border: 'none',
+                color: `${mode}.text`,
+              },
+            },
+          }}
+          InputProps={{
+            style: {
               color: `${mode}.text`,
+              fontFamily: 'Montserrat',
+              height: '50px',
             },
-          },
-          '& .MuiOutlinedInput-root:hover': {
-            '& fieldset': {
-              border: 'none',
-              color: `${mode}.text`,
+            inputProps: {
+              style: {
+                textAlign: 'center',
+                fontSize: '20px',
+                fontWeight: '500',
+              },
             },
-          },
-        }}
-        InputProps={{
-          style: {
-            color: `${mode}.text`,
-            fontFamily: 'Montserrat',
-            height: '100px',
-          },
-          inputProps: {
-            style: { textAlign: 'center', fontSize: '20px', fontWeight: '500' },
-          },
-          startAdornment: (
-            <InputAdornment position="start">
-              <Search />
-            </InputAdornment>
-          ),
-        }}
-        InputLabelProps={{
-          style: {
-            color: '#3CA373',
-            fontFamily: 'Montserrat',
-            fontSize: '16px',
-          },
-        }}
-        value={props.name}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          props.setName(event.target.value);
-        }}
-      /> */}
+            startAdornment: (
+              <InputAdornment position="start">
+                <Search color={`${theme['palette'][mode].primary}`} />
+              </InputAdornment>
+            ),
+          }}
+          InputLabelProps={{
+            style: {
+              color: '#3CA373',
+              fontFamily: 'Montserrat',
+              fontSize: '16px',
+            },
+          }}
+          value={props.name}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            props.setName(event.target.value);
+          }}
+        />
+      </Box>
       <Box
         sx={{
           width: '90vw',
@@ -208,7 +228,7 @@ const Products = (props: props) => {
           alignItems: 'flex-start',
           justifyContent: 'space-between',
           flexDirection: { xs: 'column', md: 'row' },
-          marginTop: { xs: '20px', md: '75px' },
+          marginTop: { xs: '20px', md: '25px' },
         }}
       >
         {width900 ? (

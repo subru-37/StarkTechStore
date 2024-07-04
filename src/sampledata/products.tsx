@@ -2,16 +2,26 @@ import FeatureCard from '../Components/FeatureCard';
 import sampleprod from '../assets/productsample.png';
 import { cartitems } from './cartitem';
 import { useEffect } from 'react';
-import { useFetchFilteredProductsQuery, useFetchProductDetailsQuery } from '../api/ProductQuery';
+import {
+  useFetchFilteredProductsQuery,
+  useFetchProductDetailsQuery,
+} from '../api/ProductQuery';
 import { useDispatch, useSelector } from 'react-redux';
 import { ProductItemType, setProducts } from '../Redux/features/ProductSlice';
 import { RootState } from '../app/combine';
-const products = (myFilters: string[]) => {
+const products = (
+  myFilters: string[],
+  { range }: { range: { low: number; high: number } },
+  categories: string[]
+) => {
   // console.log(JSON)
   const dispatch = useDispatch();
   // console.log(data, error, isLoading)
-  const mydata = useSelector((state: RootState) => state.productDetails.products);
-  const { data, error, isLoading, isFetching, isUninitialized } = useFetchFilteredProductsQuery(myFilters);
+  const mydata = useSelector(
+    (state: RootState) => state.productDetails.products
+  );
+  const { data, error, isLoading, isFetching, isUninitialized } =
+    useFetchFilteredProductsQuery({ myFilters, range, categories });
   useEffect(() => {
     if (isLoading !== true && data !== null && data !== undefined) {
       // console.log('check')
@@ -37,7 +47,7 @@ const products = (myFilters: string[]) => {
       return {
         element: (
           <FeatureCard
-          index={value.id}
+            index={value.id}
             id={index}
             key={index}
             image={value.image}

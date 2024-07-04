@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Autocomplete,
   Box,
@@ -19,8 +19,25 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { MyContext } from '../contexts/ColorMode';
 import { ProductItemType } from '../Redux/features/ProductSlice';
+import { useFetchCategoriesQuery } from '../api/CategoriesQuery';
+import { categoryFilterType } from '../Pages/Products';
+import { categories } from '../Pages/Products';
 const Features = () => {
   const navigation = useNavigate();
+  const [categories, setCategories] = useState<string[]>([]);
+  const { data, error, isLoading } = useFetchCategoriesQuery('/');
+  useEffect(() => {
+    if (isLoading !== true && data !== null && data !== undefined) {
+      if (data?.data !== null) {
+        const categories: string[] = data?.data.map(
+          (value: categories, index: number) => {
+            return value.category_title;
+          }
+        );
+        setCategories(categories);
+      }
+    }
+  }, [data, isLoading]);
   const [options, setOptions] = React.useState({
     op0: false,
     op1: true,
@@ -68,13 +85,19 @@ const Features = () => {
       };
     });
   }
-  const productItems = products([])
+  const productItems = products(
+    [],
+    { range: { low: 0, high: 1200 } },
+    categories
+  );
   // const filtered = productItems.filter((value, index) => value.id > 2);
   // const slideshow = filtered.map((value, index) => (
   //     value.element
   // ));
   // console.log(slideshow);
-  const myItems = productItems.map((value: any, index: number)=>value.element)
+  const myItems = productItems.map(
+    (value: any, index: number) => value.element
+  );
   console.log(myItems);
   const { mode } = useContext(MyContext);
 
@@ -240,7 +263,7 @@ const Features = () => {
             show900={3}
             show600={2}
             show400={1}
-            components={myItems.length > 1 ? myItems : [<div>Loading</div>] }
+            components={myItems.length > 1 ? myItems : [<div>Loading</div>]}
             width="95vw"
             arrows={false}
           />

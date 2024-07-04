@@ -31,7 +31,7 @@ type props = {
   setName: Dispatch<SetStateAction<string>>;
 };
 
-type categories = {
+export type categories = {
   id: number;
   category_title: string;
 };
@@ -55,7 +55,10 @@ const Products = (props: props) => {
     useState<filteredElements[]>();
   const [categories, setCategories] = useState<string[]>([]);
   const [filteredCategories, setFilteredCategories] = useState<string[]>([]);
-  const [slideValue, setSlideValue] = useState<number[]>([1000, 2000]);
+  const [slideValue, setSlideValue] = useState<number[]>([0, 1200]);
+  const [filteredSlideValue, setFilteredSlideValue] = useState<number[]>([
+    0, 1200,
+  ]);
   const [categoryFilters, setCategoryFilters] = useState<categoryFilterType>(
     {}
   );
@@ -78,7 +81,13 @@ const Products = (props: props) => {
       }
     }
   }, [data, isLoading]);
-  const productElements: filteredElements[] = products(filteredCategories);
+  const productElements: filteredElements[] = products(
+    filteredCategories,
+    {
+      range: { low: filteredSlideValue[0], high: filteredSlideValue[1] },
+    },
+    categories
+  );
 
   // useEffect(()=>{
   //   setProductElements(productElements)
@@ -96,19 +105,24 @@ const Products = (props: props) => {
         });
       }
     }
-    if(check == 0){
-      setFilteredCategories([])
+    if (check == 0) {
+      setFilteredCategories([]);
     }
   };
   useEffect(() => {
     filterProducts();
   }, [categoryFilters]);
-  const {
-    data: filteredData,
-    error: filteredError,
-    isLoading: filteredIsLoading,
-  } = useFetchFilteredProductsQuery(filteredCategories);
-  console.log(filteredData?.data, categoryFilters)
+
+  useEffect(() => {
+    setFilteredSlideValue(slideValue);
+    console.log(slideValue);
+  }, [slideValue]);
+  // const {
+  //   data: filteredData,
+  //   error: filteredError,
+  //   isLoading: filteredIsLoading,
+  // } = useFetchFilteredProductsQuery(filteredCategories);
+  // console.log(filteredData?.data, categoryFilters)
   return (
     <Box
       sx={{

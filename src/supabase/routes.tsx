@@ -60,7 +60,12 @@ export const getCategories = async () => {
   return { data, error };
 };
 
-export const getFilteredProducts = async (myfilters: string[]) => {
+export const getFilteredProducts = async (
+  myfilters: string[],
+  range: { low: number; high: number },
+  categories: string[]
+) => {
+  // console.log(priceRange)
   const { data, error } = await supabase
     .from('product_details')
     .select(
@@ -72,6 +77,11 @@ export const getFilteredProducts = async (myfilters: string[]) => {
       category_title
     )`
     )
-    .in('categories.category_title', myfilters);
+    .in(
+      'categories.category_title',
+      myfilters.length !== 0 ? myfilters : categories
+    )
+    .gte('price', range.low)
+    .lte('price', range.high);
   return { data, error };
 };

@@ -154,9 +154,9 @@ const FilterBox = ({
           getAriaValueText={(value) => `${value}/-`}
           getAriaLabel={() => 'Price Range'}
           step={50}
-          min={50}
-          max={3000}
-          defaultValue={[1000, 2000]}
+          min={0}
+          max={1200}
+          defaultValue={[0, 1200]}
         />
         <Box
           sx={{

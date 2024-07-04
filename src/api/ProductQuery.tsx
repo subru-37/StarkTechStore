@@ -48,11 +48,35 @@ const productDetailsApi = createApi({
       },
     }),
     fetchFilteredProducts: builder.query({
-      queryFn: async (myFilters: string[]) => {
+      queryFn: async ({
+        myFilters,
+        range,
+        categories,
+      }: {
+        myFilters: string[];
+        range: { low: number; high: number };
+        categories: string[];
+      }) => {
         if (myFilters.length !== 0) {
           try {
-            const data = await getFilteredProducts(myFilters);
-            // console.log(data)
+            const data = await getFilteredProducts(
+              myFilters,
+              range,
+              categories
+            );
+            console.log(data);
+            return { data };
+          } catch (error: any) {
+            return { error: { status: 'CUSTOM_ERROR', error: error.message } };
+          }
+        } else if (range.low !== 0 || range.high !== 1200) {
+          try {
+            const data = await getFilteredProducts(
+              myFilters,
+              range,
+              categories
+            );
+            console.log(data);
             return { data };
           } catch (error: any) {
             return { error: { status: 'CUSTOM_ERROR', error: error.message } };

@@ -9,6 +9,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { ProductItemType, setProducts } from '../Redux/features/ProductSlice';
 import { RootState } from '../app/combine';
+import Loader from '../utils/Loader';
 const products = (
   myFilters: string[],
   { range }: { range: { low: number; high: number } },
@@ -29,7 +30,7 @@ const products = (
       dispatch(setProducts(data?.data));
     }
   }, [data, isLoading]);
-  if (isLoading) return [{ element: <div>Loading Data</div>, id: 0 }];
+  if (isLoading) return [{ element: <Loader></Loader>, id: 0 }];
   else if (data === null)
     return [
       {

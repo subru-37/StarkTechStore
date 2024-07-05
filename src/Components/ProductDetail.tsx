@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 import { ProductItemType } from '../Redux/features/ProductSlice';
 import { useFetchProductQuery } from '../api/ProductQuery';
 import SingleCartButton from './SingleCartButton';
+import Loader from '../utils/Loader';
 type props = {
   height: string;
   width: string;
@@ -44,7 +45,7 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
           fontSize: '2rem',
         }}
       >
-        Loading
+        <Loader/>
       </Box>
     );
   } else if (data?.error !== null) {

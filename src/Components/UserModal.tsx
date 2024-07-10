@@ -1,7 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Box, Typography, Button, Drawer } from '@mui/material';
 import { MyContext } from '../contexts/ColorMode';
 import { theme } from '../App';
+import GoogleIcon from '@mui/icons-material/Google';
+import FormSample from './FormSample';
 
 type ModalProps = {
   close: boolean;
@@ -9,98 +11,567 @@ type ModalProps = {
   yesFunction: any;
   noFunction: any;
 };
+export type SignUp = {
+  username: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  password: string;
+};
 const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
   const { mode } = useContext(MyContext);
+  const [signMode, setSignMode] = useState<'Sign Up' | 'Log In'>('Sign Up');
+  const [signUp, setSignUp] = useState<SignUp>({
+    username: '',
+    firstname: '',
+    lastname: '',
+    email: '',
+    password: '',
+  });
   // const []
   return (
     <Drawer open={close} onClose={() => onClose(false)} anchor="left">
       <Box
         sx={{
-          backgroundColor: `${theme['palette'][mode]['background']}`,
+          backgroundColor: `${theme['palette'][mode].background}`,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          minHeight: '300px',
+          height: signMode === "Sign Up" ? '700px' : "500px",
           minWidth: { xs: '90vw', sm: '500px' },
-          padding: '50px',
+          padding: { xs: '10px', sm: '0' },
           boxSizing: 'border-box',
           position: 'fixed',
           left: '50%',
           translate: '-50% -50%',
           top: '50%',
           borderRadius: '10px',
+          flexDirection: 'column',
+          // position
         }}
       >
         <Box
           sx={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'space-between',
-            height: '150px',
-            flexDirection: 'column',
-            minWidth: '300px',
+            justifyContent: 'space-around',
+            width: '100%',
+            minHeight: '75px',
+            borderBottom: `1px solid ${theme.palette[mode].primary}50`,
+            // jus
           }}
         >
-          <Typography
-            component={'h3'}
+          <Box
+            onClick={() => setSignMode('Sign Up')}
             sx={{
-              fontSize: { xs: '1.5rem', md: '2rem' },
-              color: `${mode}.primary`,
+              cursor: 'pointer',
+              width: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '100%',
+              backgroundColor:
+                signMode === 'Sign Up'
+                  ? `${theme.palette[mode].primary}20`
+                  : `${theme.palette[mode].primary}50`,
+              borderTopLeftRadius: '10px',
+              borderTop:
+                signMode === 'Sign Up'
+                  ? `2px solid ${theme.palette[mode].primary}`
+                  : null,
+              // borderTopRightRadius: '10px',
             }}
           >
-            Are you already an user?
-          </Typography>
+            <Typography color={`${mode}.text`} fontSize={'1.3rem'}>
+              Sign Up
+            </Typography>
+          </Box>
           <Box
+            onClick={() => setSignMode('Log In')}
+            sx={{
+              cursor: 'pointer',
+              width: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '100%',
+              backgroundColor:
+                signMode === 'Log In'
+                  ? `${theme.palette[mode].primary}20`
+                  : `${theme.palette[mode].primary}50`,
+              // borderTopLeftRadius: '10px',
+              borderTop:
+                signMode === 'Log In'
+                  ? `2px solid ${theme.palette[mode].primary}`
+                  : null,
+              borderTopRightRadius: '10px',
+            }}
+          >
+            <Typography color={`${mode}.text`} fontSize={'1.3rem'}>
+              Log In
+            </Typography>
+          </Box>
+        </Box>
+        {signMode === 'Sign Up' ? (
+          <Box
+            // component={'form'}
             sx={{
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'space-between',
-              flexDirection: 'row',
+              justifyContent: 'center',
               width: '100%',
+              boxSizing: 'border-box',
+              padding: '15px',
+              minHeight: 'calc(100% - 75px)',
+              backgroundColor: `${theme.palette[mode].primary}20`,
+              borderBottomLeftRadius:'10px',
+              borderBottomRightRadius:'10px'
             }}
           >
-            <Button
+            {/* <Typography color={`${mode}.text`}>Sign Up</Typography> */}
+            <Box
+              component={'form'}
               sx={{
-                backgroundColor: `${theme['palette'][mode]['primary']}F0`,
-                minHeight: '40px',
-                minWidth: '140px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#FEFAE0',
-                '&:hover': {
-                  backgroundColor: `${theme['palette'][mode]['primary']}F0`,
-                },
-              }}
-              onClick={() => {
-                onClose(false);
-                yesFunction('/shipping');
+                width: '100%',
+                boxSizing: 'border-box',
+                flexDirection: 'column',
+                backgroundColor: `${theme.palette[mode].primary}20`,
+                borderRadius: '10px',
+                height: '100%',
               }}
             >
-              Yes
-            </Button>
-            <Button
-              sx={{
-                backgroundColor: `${theme['palette'][mode]['primary']}F0`,
-                minHeight: '40px',
-                minWidth: '140px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#FEFAE0',
-                '&:hover': {
-                  backgroundColor: `${theme['palette'][mode]['primary']}F0`,
-                },
-              }}
-              onClick={() => {
-                onClose(false);
-                noFunction('/checkout');
-              }}
-            >
-              No
-            </Button>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  width: '100%',
+                  boxSizing: 'border-box',
+                  flexDirection: 'column',
+                  height: '70%',
+                }}
+              >
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '100%',
+                    boxSizing: 'border-box',
+                    flexDirection: 'column',
+                  }}
+                >
+                  <FormSample
+                    id="username"
+                    label="Username"
+                    height="55px"
+                    // type="number"
+                    width={{ xs: '100%', sm: '85%' }}
+                    generalbgcolor={`${mode}.primary`}
+                    fieldsetbgcolor={`${mode}.primary`}
+                    fieldsetborder={`1px solid ${theme['palette'][mode].primary}`}
+                    fieldsetborderradius="10px"
+                    InputProps={{
+                      style: {
+                        color: `${theme['palette'][mode]['text']}`,
+                        fontFamily: 'Montserrat',
+                      },
+                    }}
+                    InputLabelProps={{
+                      style: {
+                        color: `${theme['palette'][mode]['text']}`,
+                        fontFamily: 'Montserrat',
+                        fontSize: '12px',
+                      },
+                    }}
+                    value={signUp.username}
+                    onChange={setSignUp}
+                    name={'username'}
+                    generalcolor="#00584A"
+                    margin="5px 0"
+                  />
+                  <FormSample
+                    id="firstname"
+                    label="First Name"
+                    height="55px"
+                    // type="number"
+                    width={{ xs: '100%', sm: '85%' }}
+                    generalbgcolor={`${mode}.primary`}
+                    fieldsetbgcolor={`${mode}.primary`}
+                    fieldsetborder={`1px solid ${theme['palette'][mode].primary}`}
+                    fieldsetborderradius="10px"
+                    InputProps={{
+                      style: {
+                        color: `${theme['palette'][mode]['text']}`,
+                        fontFamily: 'Montserrat',
+                      },
+                    }}
+                    InputLabelProps={{
+                      style: {
+                        color: `${theme['palette'][mode]['text']}`,
+                        fontFamily: 'Montserrat',
+                        fontSize: '12px',
+                      },
+                    }}
+                    value={signUp.firstname}
+                    onChange={setSignUp}
+                    name={'firstname'}
+                    generalcolor="#00584A"
+                    margin="5px 0"
+                  />
+                  <FormSample
+                    id="lastname"
+                    label="Last Name"
+                    height="55px"
+                    // type="number"
+                    width={{ xs: '100%', md: '85%' }}
+                    generalbgcolor={`${mode}.primary`}
+                    fieldsetbgcolor={`${mode}.primary`}
+                    fieldsetborder={`1px solid ${theme['palette'][mode].primary}`}
+                    fieldsetborderradius="10px"
+                    InputProps={{
+                      style: {
+                        color: `${theme['palette'][mode]['text']}`,
+                        fontFamily: 'Montserrat',
+                      },
+                    }}
+                    InputLabelProps={{
+                      style: {
+                        color: `${theme['palette'][mode]['text']}`,
+                        fontFamily: 'Montserrat',
+                        fontSize: '12px',
+                      },
+                    }}
+                    value={signUp.lastname}
+                    onChange={setSignUp}
+                    name={'lastname'}
+                    generalcolor="#00584A"
+                    margin="5px 0"
+                  />
+                  <FormSample
+                    id="email"
+                    label="Email"
+                    height="55px"
+                    type="email"
+                    width={{ xs: '100%', md: '85%' }}
+                    generalbgcolor={`${mode}.primary`}
+                    fieldsetbgcolor={`${mode}.primary`}
+                    fieldsetborder={`1px solid ${theme['palette'][mode].primary}`}
+                    fieldsetborderradius="10px"
+                    InputProps={{
+                      style: {
+                        color: `${theme['palette'][mode]['text']}`,
+                        fontFamily: 'Montserrat',
+                      },
+                    }}
+                    InputLabelProps={{
+                      style: {
+                        color: `${theme['palette'][mode]['text']}`,
+                        fontFamily: 'Montserrat',
+                        fontSize: '12px',
+                      },
+                    }}
+                    value={signUp.email}
+                    onChange={setSignUp}
+                    name={'email'}
+                    generalcolor="#00584A"
+                    margin="5px 0"
+                  />
+                  <FormSample
+                    id="password"
+                    label="Password"
+                    height="55px"
+                    type="password"
+                    width={{ xs: '100%', md: '85%' }}
+                    generalbgcolor={`${mode}.primary`}
+                    fieldsetbgcolor={`${mode}.primary`}
+                    fieldsetborder={`1px solid ${theme['palette'][mode].primary}`}
+                    fieldsetborderradius="10px"
+                    InputProps={{
+                      style: {
+                        color: `${theme['palette'][mode]['text']}`,
+                        fontFamily: 'Montserrat',
+                      },
+                    }}
+                    InputLabelProps={{
+                      style: {
+                        color: `${theme['palette'][mode]['text']}`,
+                        fontFamily: 'Montserrat',
+                        fontSize: '12px',
+                      },
+                    }}
+                    value={signUp.password}
+                    onChange={setSignUp}
+                    name={'password'}
+                    generalcolor="#00584A"
+                    margin="5px 0"
+                  />
+                </Box>
+                <Button
+                  type="submit"
+                  sx={{
+                    backgroundColor: `${theme.palette[mode].primary}`,
+                    '&:hover': {
+                      backgroundColor: `${theme.palette[mode].primary}`,
+                    },
+                    textTransform: 'none',
+                    fontFamily: 'Montserrat',
+                    width: { xs: '50vw', sm: '50%' },
+                    height: '50px',
+                    color: `${mode}.background`,
+                    fontSize: '1.1rem',
+                  }}
+                >
+                  Sign Up
+                </Button>
+              </Box>
+              <Box
+                sx={{
+                  height: '20px',
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-around',
+                  margin: '20px 0',
+                }}
+              >
+                <Box
+                  component={'span'}
+                  sx={{
+                    backgroundColor: `${mode}.primary`,
+                    width: '35%',
+                    height: '1px',
+                  }}
+                ></Box>
+                <Typography
+                  sx={{
+                    color: `${mode}.primary`,
+                    fontSize: '0.8rem',
+                    fontFamily: 'Montserrat',
+                  }}
+                >
+                  Or
+                </Typography>
+                <Box
+                  component={'span'}
+                  sx={{
+                    backgroundColor: `${mode}.primary`,
+                    width: '35%',
+                    height: '1px',
+                  }}
+                ></Box>
+              </Box>
+
+              <Button
+                // type="submit"
+                sx={{
+                  backgroundColor: `${theme.palette[mode].primary}`,
+                  '&:hover': {
+                    backgroundColor: `${theme.palette[mode].primary}`,
+                  },
+                  textTransform: 'none',
+                  fontFamily: 'Montserrat',
+                  width: { xs: '50vw', sm: '75%' },
+                  height: '50px',
+                  color: `${mode}.background`,
+                  fontSize: '1.1rem',
+                }}
+              >
+                Sign In with Google 
+                <GoogleIcon sx={{ color: `${mode}.background`, marginLeft:'5px' }} />
+              </Button>
+            </Box>
           </Box>
-        </Box>
+        ) : (
+          <Box
+            // component={'form'}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '100%',
+              boxSizing: 'border-box',
+              padding: '15px',
+              minHeight: 'calc(100% - 75px)',
+              backgroundColor: `${theme.palette[mode].primary}20`,
+              borderBottomLeftRadius:'10px',
+              borderBottomRightRadius:'10px'
+            }}
+          >
+            {/* <Typography color={`${mode}.text`}>Sign Up</Typography> */}
+            <Box
+              component={'form'}
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '100%',
+                boxSizing: 'border-box',
+                flexDirection: 'column',
+                backgroundColor: `${theme.palette[mode].primary}20`,
+                borderRadius: '10px',
+                height: '100%',
+              }}
+            >
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  width: '100%',
+                  boxSizing: 'border-box',
+                  flexDirection: 'column',
+                  height: '50%',
+                }}
+              >
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '100%',
+                    boxSizing: 'border-box',
+                    flexDirection: 'column',
+                  }}
+                >
+                  <FormSample
+                    id="email"
+                    label="Email"
+                    height="55px"
+                    type="email"
+                    width={{ xs: '100%', md: '85%' }}
+                    generalbgcolor={`${mode}.primary`}
+                    fieldsetbgcolor={`${mode}.primary`}
+                    fieldsetborder={`1px solid ${theme['palette'][mode].primary}`}
+                    fieldsetborderradius="10px"
+                    InputProps={{
+                      style: {
+                        color: `${theme['palette'][mode]['text']}`,
+                        fontFamily: 'Montserrat',
+                      },
+                    }}
+                    InputLabelProps={{
+                      style: {
+                        color: `${theme['palette'][mode]['text']}`,
+                        fontFamily: 'Montserrat',
+                        fontSize: '12px',
+                      },
+                    }}
+                    value={signUp.email}
+                    onChange={setSignUp}
+                    name={'email'}
+                    generalcolor="#00584A"
+                    margin="5px 0"
+                  />
+                  <FormSample
+                    id="password"
+                    label="Password"
+                    height="55px"
+                    type="password"
+                    width={{ xs: '100%', md: '85%' }}
+                    generalbgcolor={`${mode}.primary`}
+                    fieldsetbgcolor={`${mode}.primary`}
+                    fieldsetborder={`1px solid ${theme['palette'][mode].primary}`}
+                    fieldsetborderradius="10px"
+                    InputProps={{
+                      style: {
+                        color: `${theme['palette'][mode]['text']}`,
+                        fontFamily: 'Montserrat',
+                      },
+                    }}
+                    InputLabelProps={{
+                      style: {
+                        color: `${theme['palette'][mode]['text']}`,
+                        fontFamily: 'Montserrat',
+                        fontSize: '12px',
+                      },
+                    }}
+                    value={signUp.password}
+                    onChange={setSignUp}
+                    name={'password'}
+                    generalcolor="#00584A"
+                    margin="5px 0"
+                  />
+                </Box>
+                <Button
+                  type="submit"
+                  sx={{
+                    backgroundColor: `${theme.palette[mode].primary}`,
+                    '&:hover': {
+                      backgroundColor: `${theme.palette[mode].primary}`,
+                    },
+                    textTransform: 'none',
+                    fontFamily: 'Montserrat',
+                    width: { xs: '50vw', sm: '50%' },
+                    height: '50px',
+                    color: `${mode}.background`,
+                    fontSize: '1.1rem',
+                  }}
+                >
+                  Log In
+                </Button>
+              </Box>
+              <Box
+                sx={{
+                  height: '20px',
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-around',
+                  margin: '20px 0',
+                }}
+              >
+                <Box
+                  component={'span'}
+                  sx={{
+                    backgroundColor: `${mode}.primary`,
+                    width: '35%',
+                    height: '1px',
+                  }}
+                ></Box>
+                <Typography
+                  sx={{
+                    color: `${mode}.primary`,
+                    fontSize: '0.8rem',
+                    fontFamily: 'Montserrat',
+                  }}
+                >
+                  Or
+                </Typography>
+                <Box
+                  component={'span'}
+                  sx={{
+                    backgroundColor: `${mode}.primary`,
+                    width: '35%',
+                    height: '1px',
+                  }}
+                ></Box>
+              </Box>
+
+              <Button
+                // type="submit"
+                sx={{
+                  backgroundColor: `${theme.palette[mode].primary}`,
+                  '&:hover': {
+                    backgroundColor: `${theme.palette[mode].primary}`,
+                  },
+                  textTransform: 'none',
+                  fontFamily: 'Montserrat',
+                  width: { xs: '50vw', sm: '75%' },
+                  height: '50px',
+                  color: `${mode}.background`,
+                  fontSize: '1.1rem',
+                }}
+              >
+                Sign In with Google 
+                <GoogleIcon sx={{ color: `${mode}.background`, marginLeft:'5px' }} />
+              </Button>
+            </Box>
+          </Box>
+        )}
       </Box>
     </Drawer>
   );

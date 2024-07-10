@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Box, Typography, Drawer, Button, TextField } from '@mui/material';
 import { FormData } from '../Pages/Checkout';
+import { SignUp } from './UserModal';
 type formProps = {
   id: string;
   label: string;
@@ -13,7 +14,7 @@ type formProps = {
   InputProps: any;
   InputLabelProps: any;
   value: string | number | undefined;
-  onChange: Dispatch<SetStateAction<FormData>>;
+  onChange: Dispatch<SetStateAction<FormData>> | Dispatch<SetStateAction<SignUp>>;
   generalcolor: string;
   name: string;
   type?: string;
@@ -41,7 +42,7 @@ const FormSample = ({
 }: formProps) => {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
-    onChange((preValue) => {
+    onChange((preValue: any) => {
       return {
         ...preValue,
         [name]: value,

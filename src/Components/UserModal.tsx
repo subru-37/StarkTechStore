@@ -1,9 +1,18 @@
 import React, { useContext, useState } from 'react';
-import { Box, Typography, Button, Drawer } from '@mui/material';
+import {
+  Box,
+  Typography,
+  Button,
+  Drawer,
+  InputAdornment,
+  IconButton,
+} from '@mui/material';
 import { MyContext } from '../contexts/ColorMode';
 import { theme } from '../App';
 import GoogleIcon from '@mui/icons-material/Google';
 import FormSample from './FormSample';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 type ModalProps = {
   close: boolean;
@@ -12,19 +21,22 @@ type ModalProps = {
   noFunction: any;
 };
 export type SignUp = {
-  username: string;
-  firstname: string;
-  lastname: string;
+  // username: string;
+  // firstname: string;
+  // lastname: string;
+  name: string;
   email: string;
   password: string;
 };
 const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
   const { mode } = useContext(MyContext);
   const [signMode, setSignMode] = useState<'Sign Up' | 'Log In'>('Sign Up');
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const [signUp, setSignUp] = useState<SignUp>({
-    username: '',
-    firstname: '',
-    lastname: '',
+    // username: '',
+    // firstname: '',
+    // lastname: '',
+    name: '',
     email: '',
     password: '',
   });
@@ -37,7 +49,7 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          height: signMode === "Sign Up" ? '700px' : "500px",
+          height: signMode === 'Sign Up' ? '550px' : '500px',
           minWidth: { xs: '90vw', sm: '500px' },
           padding: { xs: '10px', sm: '0' },
           boxSizing: 'border-box',
@@ -124,8 +136,8 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
               padding: '15px',
               minHeight: 'calc(100% - 75px)',
               backgroundColor: `${theme.palette[mode].primary}20`,
-              borderBottomLeftRadius:'10px',
-              borderBottomRightRadius:'10px'
+              borderBottomLeftRadius: '10px',
+              borderBottomRightRadius: '10px',
             }}
           >
             {/* <Typography color={`${mode}.text`}>Sign Up</Typography> */}
@@ -151,7 +163,7 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
                   width: '100%',
                   boxSizing: 'border-box',
                   flexDirection: 'column',
-                  height: '70%',
+                  height: '60%',
                 }}
               >
                 <Box
@@ -165,8 +177,8 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
                   }}
                 >
                   <FormSample
-                    id="username"
-                    label="Username"
+                    id="name"
+                    label="Full Name"
                     height="55px"
                     // type="number"
                     width={{ xs: '100%', sm: '85%' }}
@@ -187,67 +199,9 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
                         fontSize: '12px',
                       },
                     }}
-                    value={signUp.username}
+                    value={signUp.name}
                     onChange={setSignUp}
-                    name={'username'}
-                    generalcolor="#00584A"
-                    margin="5px 0"
-                  />
-                  <FormSample
-                    id="firstname"
-                    label="First Name"
-                    height="55px"
-                    // type="number"
-                    width={{ xs: '100%', sm: '85%' }}
-                    generalbgcolor={`${mode}.primary`}
-                    fieldsetbgcolor={`${mode}.primary`}
-                    fieldsetborder={`1px solid ${theme['palette'][mode].primary}`}
-                    fieldsetborderradius="10px"
-                    InputProps={{
-                      style: {
-                        color: `${theme['palette'][mode]['text']}`,
-                        fontFamily: 'Montserrat',
-                      },
-                    }}
-                    InputLabelProps={{
-                      style: {
-                        color: `${theme['palette'][mode]['text']}`,
-                        fontFamily: 'Montserrat',
-                        fontSize: '12px',
-                      },
-                    }}
-                    value={signUp.firstname}
-                    onChange={setSignUp}
-                    name={'firstname'}
-                    generalcolor="#00584A"
-                    margin="5px 0"
-                  />
-                  <FormSample
-                    id="lastname"
-                    label="Last Name"
-                    height="55px"
-                    // type="number"
-                    width={{ xs: '100%', md: '85%' }}
-                    generalbgcolor={`${mode}.primary`}
-                    fieldsetbgcolor={`${mode}.primary`}
-                    fieldsetborder={`1px solid ${theme['palette'][mode].primary}`}
-                    fieldsetborderradius="10px"
-                    InputProps={{
-                      style: {
-                        color: `${theme['palette'][mode]['text']}`,
-                        fontFamily: 'Montserrat',
-                      },
-                    }}
-                    InputLabelProps={{
-                      style: {
-                        color: `${theme['palette'][mode]['text']}`,
-                        fontFamily: 'Montserrat',
-                        fontSize: '12px',
-                      },
-                    }}
-                    value={signUp.lastname}
-                    onChange={setSignUp}
-                    name={'lastname'}
+                    name={'name'}
                     generalcolor="#00584A"
                     margin="5px 0"
                   />
@@ -284,7 +238,7 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
                     id="password"
                     label="Password"
                     height="55px"
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     width={{ xs: '100%', md: '85%' }}
                     generalbgcolor={`${mode}.primary`}
                     fieldsetbgcolor={`${mode}.primary`}
@@ -295,6 +249,18 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
                         color: `${theme['palette'][mode]['text']}`,
                         fontFamily: 'Montserrat',
                       },
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={() => setShowPassword(!showPassword)}
+                            // onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                          >
+                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
                     }}
                     InputLabelProps={{
                       style: {
@@ -380,8 +346,10 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
                   fontSize: '1.1rem',
                 }}
               >
-                Sign In with Google 
-                <GoogleIcon sx={{ color: `${mode}.background`, marginLeft:'5px' }} />
+                Sign In with Google
+                <GoogleIcon
+                  sx={{ color: `${mode}.background`, marginLeft: '5px' }}
+                />
               </Button>
             </Box>
           </Box>
@@ -397,8 +365,8 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
               padding: '15px',
               minHeight: 'calc(100% - 75px)',
               backgroundColor: `${theme.palette[mode].primary}20`,
-              borderBottomLeftRadius:'10px',
-              borderBottomRightRadius:'10px'
+              borderBottomLeftRadius: '10px',
+              borderBottomRightRadius: '10px',
             }}
           >
             {/* <Typography color={`${mode}.text`}>Sign Up</Typography> */}
@@ -566,8 +534,10 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
                   fontSize: '1.1rem',
                 }}
               >
-                Sign In with Google 
-                <GoogleIcon sx={{ color: `${mode}.background`, marginLeft:'5px' }} />
+                Sign In with Google
+                <GoogleIcon
+                  sx={{ color: `${mode}.background`, marginLeft: '5px' }}
+                />
               </Button>
             </Box>
           </Box>

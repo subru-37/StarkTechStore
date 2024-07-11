@@ -153,6 +153,7 @@ const Products = (props: props) => {
       >
         <TextField
           id="outlined-controlled"
+          type="search"
           label=""
           placeholder="Search.."
           sx={{

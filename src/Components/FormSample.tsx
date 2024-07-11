@@ -20,6 +20,7 @@ type formProps = {
   type?: string;
   margin: string;
   max?: number;
+  endAdornment?: any;
 };
 const FormSample = ({
   id,
@@ -39,6 +40,7 @@ const FormSample = ({
   onChange,
   name,
   margin,
+  endAdornment
 }: formProps) => {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;

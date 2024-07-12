@@ -335,6 +335,7 @@ export default function Navbar({
             </Typography>
             <Cart color={theme.palette[mode].primary} size="30px" />
           </Box>
+          {!isProfile ? (
           <Button
             sx={{
               color: `${mode}.background`,
@@ -348,6 +349,24 @@ export default function Navbar({
           >
             <Typography>Sign In</Typography>
           </Button>
+            ) : (
+              <Button
+                sx={{
+                  color: `${mode}.primary`,
+                  backgroundColor: `none`,
+                  '&:hover': {
+                    color: `${mode}.primary`,
+                    backgroundColor: `none`,
+                  },
+                  // minWidth: '100px',
+                  textTransform: 'none',
+                  display: { xs: 'none', md: 'flex' },
+                }}
+                // onClick={() => onClose(!close)}
+              >
+                <AccountCircleIcon />
+              </Button>
+            )}
         </Box>
       </Drawer>
     </Box>

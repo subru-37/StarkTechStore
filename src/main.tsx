@@ -20,11 +20,11 @@ import productDetailsApi from './api/ProductQuery';
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ApiProvider api={productDetailsApi}>
+      {/* <ApiProvider api={productDetailsApi}> */}
         <Provider store={store}>
           <App />
         </Provider>
-      </ApiProvider>
+      {/* </ApiProvider> */}
     </BrowserRouter>
   </React.StrictMode>
 );

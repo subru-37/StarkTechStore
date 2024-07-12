@@ -19,6 +19,7 @@ import { setCart } from './Redux/features/CartSlice';
 import { setProduct, setProducts } from './Redux/features/ProductSlice';
 import { useFetchProductDetailsQuery } from './api/ProductQuery';
 import MyAuthContext, { AuthContext } from './contexts/AuthContext';
+import { setProfile } from './Redux/features/AuthSlice';
 AOS.init();
 declare module '@mui/material/styles' {
   interface Palette {
@@ -115,15 +116,8 @@ const App = () => {
     landmark: '',
     phoneNumber: undefined,
   });
-  const dispatch = useDispatch();
   const [cartopen, setCartOpen] = React.useState<boolean>(false);
-  useEffect(() => {
-    const getMyCart = localStorage.getItem('cart');
-    if (getMyCart !== null) {
-      const myCart = JSON.parse(getMyCart);
-      myCart.cart.length !== 0 && dispatch(setCart(myCart.cart));
-    }
-  }, []);
+
 
   // const mydata = useSelector((state: any) => state.productDetails.products);
 

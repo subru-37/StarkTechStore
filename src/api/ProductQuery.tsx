@@ -59,7 +59,7 @@ const productDetailsApi = createApi({
         categories: string[];
         search: string;
       }) => {
-        console.log(search.length);
+        // console.log(search.length);
         try {
           const data = await getFilteredProducts(
             myFilters,
@@ -67,7 +67,7 @@ const productDetailsApi = createApi({
             categories,
             search
           );
-          console.log(data);
+          // console.log(data);
           return { data };
         } catch (error: any) {
           return { error: { status: 'CUSTOM_ERROR', error: error.message } };

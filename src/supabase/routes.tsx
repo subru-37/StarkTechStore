@@ -1,22 +1,9 @@
 import { supabase } from './setup';
+import { v4 as uuidv4, validate as uuidValidate, validate } from 'uuid';
+
 type signinProps = {
   email: string;
   password: string;
-};
-export const SignIn = async ({ email, password }: signinProps) => {
-  let { data, error } = await supabase.auth.signInWithPassword({
-    email: email,
-    password: password,
-  });
-  return { data, error };
-};
-
-export const signUp = async ({ email, password }: signinProps) => {
-  let { data, error } = await supabase.auth.signUp({
-    email: email,
-    password: password,
-  });
-  return { data, error };
 };
 
 export const getProductDetails = async () => {
@@ -107,4 +94,77 @@ export const getFilteredProducts = async (
       .lte('price', range.high);
     return { data, error };
   }
+};
+
+export const SignUp = async (email: string, password: string, name: string) => {
+  let { data, error } = await supabase.auth.signUp({
+    email: email,
+    password: password,
+    // email_confirm: true
+  });
+  return { data, error };
+};
+
+export const LogIn = async (email: string, password: string) => {
+  let { data, error } = await supabase.auth.signInWithPassword({
+    email: email,
+    password: password,
+  });
+  return { data, error };
+};
+
+export const setProfileDetails = async (
+  username: string,
+  email: string,
+  firstName: string,
+  lastName: string,
+  id: string
+) => {
+  // const myid: UUID = id;
+  console.log(
+    {
+      email: email,
+      username: username,
+      first_name: firstName,
+      last_name: lastName,
+      id: id,
+      // contact_id: '',
+      profile_pic: '',
+    }
+  )
+  console.log(uuidv4())
+  let { data, error } = await supabase
+    .from('profiles')
+    .insert([
+      {
+        email: email,
+        username: username,
+        first_name: firstName,
+        last_name: lastName,
+        id: id,
+        // contact_id: '',
+        profile_pic: '',
+      },
+    ])
+    .select();
+    console.log(data, error)
+  return { data, error };
+};
+
+export const getProfileDetails = async (uuid: string) => {
+  let { data, error } = await supabase
+    .from('profiles')
+    .select(
+      `
+    id, 
+    username, 
+    email, 
+    first_name, 
+    last_name, 
+    profile_pic, 
+    contact_id
+    `
+    )
+    .eq('id', uuid);
+  return { data, error };
 };

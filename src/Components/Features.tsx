@@ -99,7 +99,7 @@ const Features = () => {
   const myItems = productItems.map(
     (value: any, index: number) => value.element
   );
-  console.log(myItems);
+  // console.log(myItems);
   const { mode } = useContext(MyContext);
 
   return (

@@ -16,9 +16,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import Close from '../utils/Close';
 import { MyContext } from '../contexts/ColorMode';
 import { WbSunnyRounded, Nightlight } from '@mui/icons-material';
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { theme } from '../App';
 import { RootState } from '../app/combine';
+import { AuthContext } from '../contexts/AuthContext';
 type props = {
   cartopen: boolean;
   setCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -40,6 +41,7 @@ export default function Navbar({
     // { name: 'Contact Us', link: '/' },
   ];
   const [value, open, setValue, width900] = useNavbar();
+  const { isProfile } = React.useContext(AuthContext);
   const products = useSelector((state: RootState) => state.cart);
   const NumberOfItems = products.cart.length;
   const { mode, setMode } = React.useContext(MyContext);
@@ -153,27 +155,46 @@ export default function Navbar({
             sx={{
               display: { xs: 'none', md: 'flex' },
               alignItems: 'center',
-              justifyContent: 'space-between',
+              justifyContent: 'space-around',
               flexDirection: 'row',
               minWidth: '250px',
             }}
           >
-            <Button
-              sx={{
-                color: `${mode}.background`,
-                backgroundColor: `${mode}.primary`,
-                '&:hover': {
+            {!isProfile ? (
+              <Button
+                sx={{
                   color: `${mode}.background`,
                   backgroundColor: `${mode}.primary`,
-                },
-                minWidth: '100px',
-                textTransform: 'none',
-                display: { xs: 'none', md: 'flex' },
-              }}
-              onClick={() => onClose(!close)}
-            >
-              <Typography>Sign In</Typography>
-            </Button>
+                  '&:hover': {
+                    color: `${mode}.background`,
+                    backgroundColor: `${mode}.primary`,
+                  },
+                  minWidth: '100px',
+                  textTransform: 'none',
+                  display: { xs: 'none', md: 'flex' },
+                }}
+                onClick={() => onClose(!close)}
+              >
+                <Typography>Sign In</Typography>
+              </Button>
+            ) : (
+              <Button
+                sx={{
+                  color: `${mode}.primary`,
+                  backgroundColor: `none`,
+                  '&:hover': {
+                    color: `${mode}.primary`,
+                    backgroundColor: `none`,
+                  },
+                  // minWidth: '100px',
+                  textTransform: 'none',
+                  display: { xs: 'none', md: 'flex' },
+                }}
+                // onClick={() => onClose(!close)}
+              >
+                <AccountCircleIcon />
+              </Button>
+            )}
             <Box
               onClick={() => setCartOpen(true)}
               sx={{

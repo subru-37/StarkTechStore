@@ -122,9 +122,9 @@ const Products = (props: props) => {
     // console.log(slideValue);
   }, [slideValue]);
 
-  useEffect(() => {
-    console.log(search);
-  }, [search]);
+  // useEffect(() => {
+  //   console.log(search);
+  // }, [search]);
   // const {
   //   data: filteredData,
   //   error: filteredError,

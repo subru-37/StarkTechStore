@@ -121,18 +121,16 @@ export const setProfileDetails = async (
   id: string
 ) => {
   // const myid: UUID = id;
-  console.log(
-    {
-      email: email,
-      username: username,
-      first_name: firstName,
-      last_name: lastName,
-      id: id,
-      // contact_id: '',
-      profile_pic: '',
-    }
-  )
-  console.log(uuidv4())
+  console.log({
+    email: email,
+    username: username,
+    first_name: firstName,
+    last_name: lastName,
+    id: id,
+    // contact_id: '',
+    profile_pic: '',
+  });
+  console.log(uuidv4());
   let { data, error } = await supabase
     .from('profiles')
     .insert([
@@ -147,7 +145,7 @@ export const setProfileDetails = async (
       },
     ])
     .select();
-    console.log(data, error)
+  console.log(data, error);
   return { data, error };
 };
 
@@ -167,4 +165,9 @@ export const getProfileDetails = async (uuid: string) => {
     )
     .eq('id', uuid);
   return { data, error };
+};
+
+export const LogOut = async () => {
+  let { error } = await supabase.auth.signOut();
+  return { error };
 };

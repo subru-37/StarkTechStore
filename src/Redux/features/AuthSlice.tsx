@@ -3,8 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 export type ProfileType = {
   username: string;
   email: string;
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   profilePic: string;
   id:string;
   contactId: string;
@@ -34,8 +34,8 @@ export const authInitialState: authType = {
   profileDetails: {
     username: '',
     email: '',
-    firstName: '',
-    lastName: '',
+    first_name: '',
+    last_name: '',
     profilePic: '',
     id:'',
     contactId: '',

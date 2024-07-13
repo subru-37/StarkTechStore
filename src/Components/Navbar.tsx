@@ -20,6 +20,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { theme } from '../App';
 import { RootState } from '../app/combine';
 import { AuthContext } from '../contexts/AuthContext';
+import NavbarMenu from './NavbarMenu';
 type props = {
   cartopen: boolean;
   setCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -45,6 +46,12 @@ export default function Navbar({
   const products = useSelector((state: RootState) => state.cart);
   const NumberOfItems = products.cart.length;
   const { mode, setMode } = React.useContext(MyContext);
+
+  //Menu controls
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
 
   return (
     <Box>
@@ -74,28 +81,28 @@ export default function Navbar({
             width: { xs: '95vw', md: '80vw' },
             display: 'flex',
             flexDirection: 'row',
-            justifyContent: { xs: 'center', md: 'space-between' },
+            justifyContent: { xs: 'space-between', md: 'space-between' },
             padding: '0px !important',
             position: 'relative',
           }}
         >
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
+          <Button
+            // size="large"
+            // edge="start"
+            // color="inherit"
             aria-label="menu"
             sx={{
-              mr: 0,
-              p: 0,
+              // mr: 0,
+              // p: 0,
               display: { xs: 'flex', md: 'none' },
-              position: 'absolute',
-              top: '15px',
-              left: '25px',
+              // position: 'absolute',
+              // top: '25px',
+              // left: '35px',
             }}
             onClick={() => setValue(true)}
           >
-            <MenuIcon sx={{ color: `${mode}.text` }} />
-          </IconButton>
+            <MenuIcon sx={{ color: `${mode}.primary` }} />
+          </Button>
           {/* 3263 1102 */}
           {/*      60 */}
           <Typography
@@ -114,6 +121,24 @@ export default function Navbar({
           >
             Stark Tech Store
           </Typography>
+          <Button
+            sx={{
+              height: '50px',
+              width: '50px',
+              display: { xs: 'flex', md: 'none' },
+              margin: '0 0 0 10px',
+              // position: 'absolute',
+              // top: '0px',
+              // right: '10px',
+            }}
+            onClick={() => setMode(mode == 'light' ? 'dark' : 'light')}
+          >
+            {mode == 'dark' ? (
+              <Nightlight sx={{ color: `${mode}.primary` }} />
+            ) : (
+              <WbSunnyRounded sx={{ color: `${mode}.primary` }} />
+            )}
+          </Button>
           <Box
             sx={{
               display: {
@@ -178,22 +203,30 @@ export default function Navbar({
                 <Typography>Sign In</Typography>
               </Button>
             ) : (
-              <Button
-                sx={{
-                  color: `${mode}.primary`,
-                  backgroundColor: `none`,
-                  '&:hover': {
+              <>
+                <Button
+                  sx={{
                     color: `${mode}.primary`,
                     backgroundColor: `none`,
-                  },
-                  // minWidth: '100px',
-                  textTransform: 'none',
-                  display: { xs: 'none', md: 'flex' },
-                }}
-                // onClick={() => onClose(!close)}
-              >
-                <AccountCircleIcon />
-              </Button>
+                    '&:hover': {
+                      color: `${mode}.primary`,
+                      backgroundColor: `none`,
+                    },
+                    // minWidth: '100px',
+                    textTransform: 'none',
+                    display: { xs: 'none', md: 'flex' },
+                  }}
+                  // onClick={() => onClose(!close)}
+                  id="demo-positioned-button"
+                  aria-controls={open ? 'demo-positioned-menu' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? 'true' : undefined}
+                  onClick={handleMenuClick}
+                >
+                  <AccountCircleIcon />
+                </Button>
+                <NavbarMenu anchorEl={anchorEl} setAnchorEl={setAnchorEl} />
+              </>
             )}
             <Box
               onClick={() => setCartOpen(true)}
@@ -262,111 +295,160 @@ export default function Navbar({
             flexDirection: 'column',
           }}
         >
-          {navlinks.map((value, index) => {
-            return (
-              <Link
-                to={value.link}
-                style={{ textDecoration: 'none' }}
-                onClick={() => setValue(false)}
-                key={index}
-              >
-                <Typography
-                  sx={{
-                    color: `${mode}.primary`,
-                    fontfamily: 'Montserrat',
-                    fontSize: '24px',
-                    fontStyle: 'normal',
-                    fontWeight: '500',
-                    lineHeight: 'normal',
-                    margin: '20px 0',
-                  }}
-                >
-                  {value.name}
-                </Typography>
-              </Link>
-            );
-          })}
-          <Button
-            sx={{
-              height: '50px',
-              width: '50px',
-              display: 'flex',
-              margin: '10px 0',
-            }}
-            onClick={() => setMode(mode == 'light' ? 'dark' : 'light')}
-          >
-            {mode == 'dark' ? (
-              <Nightlight sx={{ color: `${mode}.primary` }} />
-            ) : (
-              <WbSunnyRounded sx={{ color: `${mode}.primary` }} />
-            )}
-          </Button>
-          <Box
-            onClick={() => setCartOpen(true)}
-            sx={{
-              position: 'relative',
-              width: '50px',
-              height: '40px',
-              margin: '10px 0',
+          {/* <Box sx={{
+            display:'flex',
+            alignItems:'center',
+            justifyContent:'space-between',
+            flexDirection:'row'
+          }}>
 
+          </Box> */}
+          <Box
+            sx={{
+              display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              cursor: 'pointer',
-              // display: { xs: 'none', md: 'flex' },
-              display: 'flex',
+              flexDirection: 'column',
+              width: '100%',
             }}
           >
-            <Typography
+            {navlinks.map((value, index) => {
+              return (
+                <Link
+                  to={value.link}
+                  style={{ textDecoration: 'none' }}
+                  onClick={() => setValue(false)}
+                  key={index}
+                >
+                  <Typography
+                    sx={{
+                      color: `${mode}.primary`,
+                      fontfamily: 'Montserrat',
+                      fontSize: '24px',
+                      fontStyle: 'normal',
+                      fontWeight: '500',
+                      lineHeight: 'normal',
+                      margin: '20px 0',
+                    }}
+                  >
+                    {value.name}
+                  </Typography>
+                </Link>
+              );
+            })}
+            <Box
+              onClick={() => setCartOpen(true)}
               sx={{
-                position: 'absolute',
-                // backgroundColor: `${mode}.primary`,
-                color: `${mode}.primary`,
-                borderRadius: '100%',
-                width: '22px',
-                height: '22px',
+                width: '150px',
+                height: '40px',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                right: '-10px',
-                top: '-5px',
+                justifyContent: 'space-around',
+                padding: '20px 0',
               }}
             >
-              {NumberOfItems}
-            </Typography>
-            <Cart color={theme.palette[mode].primary} size="30px" />
-          </Box>
-          {!isProfile ? (
-          <Button
-            sx={{
-              color: `${mode}.background`,
-              backgroundColor: `${mode}.primary`,
-              minWidth: '100px',
-              textTransform: 'none',
-              margin: '10px 0',
-              display: 'flex',
-            }}
-            onClick={() => onClose(!close)}
-          >
-            <Typography>Sign In</Typography>
-          </Button>
-            ) : (
+              <Typography
+                sx={{
+                  fontSize: '24px',
+                  fontWeight: '500',
+                  color: `${mode}.primary`,
+                }}
+              >
+                My Cart
+              </Typography>
+              {/* <Box
+              sx={{
+                position: 'relative',
+                width: '50px',
+                height: '40px',
+                margin: '10px 0',
+
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                // display: { xs: 'none', md: 'flex' },
+                display: 'flex',
+              }}
+            >
+              <Typography
+                sx={{
+                  position: 'absolute',
+                  // backgroundColor: `${mode}.primary`,
+                  color: `${mode}.primary`,
+                  borderRadius: '100%',
+                  width: '22px',
+                  height: '22px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  right: '-10px',
+                  top: '-5px',
+                }}
+              >
+                {NumberOfItems}
+              </Typography>
+              <Cart color={theme.palette[mode].primary} size="30px" />
+            </Box> */}
+            </Box>
+            {!isProfile ? (
               <Button
                 sx={{
-                  color: `${mode}.primary`,
-                  backgroundColor: `none`,
+                  color: `${mode}.background`,
+                  backgroundColor: `${mode}.primary`,
                   '&:hover': {
+                    color: `${mode}.background`,
+                    backgroundColor: `${mode}.primary`,
+                  },
+                  minWidth: '100px',
+                  textTransform: 'none',
+                  padding: '20px 0',
+                  display: 'flex',
+                }}
+                onClick={() => onClose(!close)}
+              >
+                <Typography>Sign In</Typography>
+              </Button>
+            ) : (
+              <>
+                <Button
+                  sx={{
                     color: `${mode}.primary`,
                     backgroundColor: `none`,
-                  },
-                  // minWidth: '100px',
-                  textTransform: 'none',
-                  display: { xs: 'none', md: 'flex' },
-                }}
-                // onClick={() => onClose(!close)}
-              >
-                <AccountCircleIcon />
-              </Button>
+                    '&:hover': {
+                      color: `${mode}.primary`,
+                      backgroundColor: `none`,
+                    },
+                    // minWidth: '100px',
+                    textTransform: 'none',
+                    display: 'flex',
+                    padding: '20px 0',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                  // onClick={() => onClose(!close)}
+                  // id="demo-positioned-button"
+                  // aria-controls={open ? 'demo-positioned-menu' : undefined}
+                  // aria-haspopup="true"
+                  // aria-expanded={open ? 'true' : undefined}
+                  // onClick={handleMenuClick}
+                >
+                  <Typography
+                    sx={{
+                      color: `${mode}.primary`,
+                      fontSize: '24px',
+                      // margin: '0px 7px 0px 0px',
+                      fontWeight: '500',
+                      // textAlign:'center'
+                    }}
+                  >
+                    My Profile{' '}
+                  </Typography>
+                  {/* <AccountCircleIcon /> */}
+                </Button>
+                {/* <NavbarMenu anchorEl={anchorEl} setAnchorEl={setAnchorEl} /> */}
+              </>
             )}
+          </Box>
         </Box>
       </Drawer>
     </Box>

@@ -116,6 +116,7 @@ export default function Navbar({
               fontFamily: '"Oswald", sans-serif !important',
               color: `${mode}.primary`,
               fontWeight: '500',
+              cursor:'pointer'
             }}
             onClick={() => navigation('/')}
           >

@@ -28,6 +28,8 @@ const Checkout = ({ formData, setFormData }: checkoutProps) => {
   const { mode } = useContext(MyContext);
   const navigation = useNavigate();
   const products = useSelector((state: RootState) => state.cart);
+  const profileDetails = useSelector((state: RootState)=> state.profile.profileDetails);
+  console.log(formData.firstName)
   useEffect(() => {
     if (products.cart.length === 0) {
       navigation('/products');

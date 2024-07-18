@@ -19,7 +19,8 @@ import { setCart } from './Redux/features/CartSlice';
 import { setProduct, setProducts } from './Redux/features/ProductSlice';
 import { useFetchProductDetailsQuery } from './api/ProductQuery';
 import MyAuthContext, { AuthContext } from './contexts/AuthContext';
-import { setProfile } from './Redux/features/AuthSlice';
+import { ProfileType, setProfile } from './Redux/features/AuthSlice';
+import { RootState } from './app/combine';
 AOS.init();
 declare module '@mui/material/styles' {
   interface Palette {
@@ -107,18 +108,35 @@ const App = () => {
   const [modal, setModal] = React.useState<boolean>(false);
   const navigation = useNavigate();
   const options = ['Cash On Delivery'];
+  const profileDetails = useSelector((state: RootState)=>state.profile.profileDetails);
   const [value, setValue] = React.useState<string | null>(options[0]);
   const [formData, setFormData] = React.useState<FormData>({
-    email: '',
-    firstName: '',
-    lastName: '',
+    email: profileDetails.email,
+    firstName: profileDetails.first_name,
+    lastName: profileDetails.last_name,
     address: '',
     landmark: '',
     phoneNumber: undefined,
   });
   const [cartopen, setCartOpen] = React.useState<boolean>(false);
-
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const getMyProfile = localStorage.getItem('profileDetails');
+    if (getMyProfile !== null) {
+      const myProfile:ProfileType = JSON.parse(getMyProfile);
+      // console.log(myProfile)
+      dispatch(setProfile(myProfile));
+      setFormData((preValue)=>{
+        return{
+          ...preValue, 
+          firstName: myProfile.first_name,
+          lastName: myProfile.last_name,
+          email: myProfile.email
+        }
+      })
+      // setIsProfile(true);
+    }
+  }, []);
   // const mydata = useSelector((state: any) => state.productDetails.products);
 
   // const { data, error, isLoading, isFetching, isUninitialized } = useFetchProductDetailsQuery(mydata.length);

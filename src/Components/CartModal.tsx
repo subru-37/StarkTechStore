@@ -24,7 +24,7 @@ const CartModal = ({ cartopen, setCartOpen, setModal, modal }: props) => {
   const totalPrice =
     products.cart.length > 0 ? TotalPriceMain(products.cart) : 0;
   const { mode } = useContext(MyContext);
-
+  const navigate = useNavigate();
   // if (products.length === 0) {
   //   return <EmptyCart />;
   // }
@@ -136,7 +136,7 @@ const CartModal = ({ cartopen, setCartOpen, setModal, modal }: props) => {
                         )
                       }
                       price={value.price}
-                      name={value.name}
+                      name={value.title}
                       quantity={value.quantity}
                     />
                   ))}
@@ -285,7 +285,8 @@ const CartModal = ({ cartopen, setCartOpen, setModal, modal }: props) => {
                         justifyContent: 'center',
                       }}
                       onClick={() => {
-                        setModal(true);
+                        // setModal(true);
+                        navigate('/checkout')
                         setCartOpen(false);
                       }}
                     >

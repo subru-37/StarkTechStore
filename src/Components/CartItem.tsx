@@ -18,7 +18,7 @@ type props = {
   name: string;
   quantity: number;
   image: string;
-  id: number;
+  id: number | null;
 };
 /*
 
@@ -42,12 +42,13 @@ const CartItem = ({ price, name, quantity, image, id }: props) => {
   };
   // console.log(image);
   const data = {
-    id: id,
+    id: id !== null ? id : 0,
     title: name, 
     quantity: quantity, 
     image: image, 
     price: parseInt(price)
   }
+  console.log(data)
   return (
     <Box
       sx={{
@@ -100,12 +101,12 @@ const CartItem = ({ price, name, quantity, image, id }: props) => {
               //   component={'h6'}
               sx={{
                 color: `${mode}.text`,
-                fontSize: '14px',
+                fontSize: '16px',
                 margin: '7px 0px',
                 fontWeight: '600',
               }}
             >
-              {price}
+              $ {price}
             </Typography>
             {/* <Typography
               //   component={'h6'}

@@ -34,6 +34,7 @@ const MyAuthContext = ({ children }: any) => {
       const myProfile = JSON.parse(getMyProfile);
       // console.log(myProfile)
       dispatch(setProfile(myProfile));
+      
       setIsProfile(true);
     }
   }, []);

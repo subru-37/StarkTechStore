@@ -43,12 +43,14 @@ const Shipping = ({
   options,
 }: ShippingProps) => {
   const dispatch = useDispatch();
+  const profileDetails = useSelector((state: RootState)=>state.profile.profileDetails);
+  console.log(profileDetails)
   const redirect = (event: any) => {
     // navigation(whatsappUrl)
     event.preventDefault();
     dispatch(removeAll(products));
     setFormData({
-      email: '',
+      email: profileDetails.email,
       firstName: '',
       lastName: '',
       address: '',

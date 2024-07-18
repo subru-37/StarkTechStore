@@ -7,12 +7,13 @@ import CartItem from './CartItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { MyContext } from '../contexts/ColorMode';
 import { theme } from '../App';
+import { CartItemType, IniState } from '../Redux/features/CartSlice';
 type CartProps = {
   delivery: number;
   totalPrice: number;
   shipping: number;
   gst: number;
-  products: any;
+  products: IniState;
 };
 const CheckoutCart = ({
   delivery,
@@ -22,7 +23,7 @@ const CheckoutCart = ({
   products,
 }: CartProps) => {
   const { mode } = useContext(MyContext);
-
+  console.log(products)
   return (
     <Box
       sx={{
@@ -91,9 +92,9 @@ const CheckoutCart = ({
             }}
           >
             {products.cart.length > 0 &&
-              products.cart.map((value: any, index: any) => (
+              products.cart.map((value: CartItemType, index: any) => (
                 <CartItem
-                  id={value.id}
+                  id={value?.id}
                   image={
                     'url(), lightgray -32.2px -6px / 112.96% 114.239% no-repeat'.substring(
                       0,
@@ -105,7 +106,7 @@ const CheckoutCart = ({
                     )
                   }
                   price={value.price}
-                  name={value.name}
+                  name={value.title}
                   quantity={value.quantity}
                 />
               ))}

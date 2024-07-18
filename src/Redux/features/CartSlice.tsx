@@ -6,7 +6,7 @@ type CartItemType = {
   image: string;
   price: string;
   // discprice: string;
-  name: string;
+  title: string;
   // summary: string;
   //desc: string;
   quantity: number;

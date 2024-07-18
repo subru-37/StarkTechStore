@@ -28,8 +28,6 @@ const Checkout = ({ formData, setFormData }: checkoutProps) => {
   const { mode } = useContext(MyContext);
   const navigation = useNavigate();
   const products = useSelector((state: RootState) => state.cart);
-  const profileDetails = useSelector((state: RootState)=> state.profile.profileDetails);
-  console.log(formData.firstName)
   useEffect(() => {
     if (products.cart.length === 0) {
       navigation('/products');
@@ -98,7 +96,7 @@ const Checkout = ({ formData, setFormData }: checkoutProps) => {
         minHeight: '100vh',
         minWidth: '100vw',
         paddingBottom: '75px',
-        backgroundColor:`${mode}.background`
+        backgroundColor: `${mode}.background`,
       }}
     >
       <Box
@@ -150,7 +148,11 @@ const Checkout = ({ formData, setFormData }: checkoutProps) => {
             {/* email address box */}
             <Box sx={{ width: { xs: '80%', md: '100%' }, margin: '50px 0' }}>
               <Typography
-                sx={{ width: '80%', color: `${theme['palette'][mode]['text']}`, fontSize: '24px' }}
+                sx={{
+                  width: '80%',
+                  color: `${theme['palette'][mode]['text']}`,
+                  fontSize: '24px',
+                }}
               >
                 Contact
               </Typography>
@@ -177,6 +179,7 @@ const Checkout = ({ formData, setFormData }: checkoutProps) => {
                   style: {
                     color: `${theme['palette'][mode]['text']}`,
                     fontFamily: 'Montserrat',
+                    fontWeight: '500',
                   },
                 }}
                 InputLabelProps={{
@@ -196,7 +199,11 @@ const Checkout = ({ formData, setFormData }: checkoutProps) => {
             {/* shipping details */}
             <Box sx={{ width: '80%' }}>
               <Typography
-                sx={{ width: '80%', color: `${theme['palette'][mode]['text']}`, fontSize: '24px' }}
+                sx={{
+                  width: '80%',
+                  color: `${theme['palette'][mode]['text']}`,
+                  fontSize: '24px',
+                }}
               >
                 Shipping Details
               </Typography>
@@ -235,6 +242,7 @@ const Checkout = ({ formData, setFormData }: checkoutProps) => {
                           style: {
                             color: `${theme['palette'][mode]['text']}`,
                             fontFamily: 'Montserrat',
+                            fontWeight: '500',
                           },
                         }}
                         InputLabelProps={{
@@ -270,6 +278,7 @@ const Checkout = ({ formData, setFormData }: checkoutProps) => {
                         style: {
                           color: `${theme['palette'][mode]['text']}`,
                           fontFamily: 'Montserrat',
+                          fontWeight: '500',
                         },
                       }}
                       InputLabelProps={{

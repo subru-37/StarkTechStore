@@ -165,7 +165,7 @@ const CheckoutCart = ({
                 </Typography>
                 <Typography
                   sx={{
-                    color: `${mode}.primary`,
+                    color: `${mode}.text`,
                     fontSize: '20px',
                     fontWeight: '600',
                   }}
@@ -193,7 +193,7 @@ const CheckoutCart = ({
                 </Typography>
                 <Typography
                   sx={{
-                    color: `${mode}.primary`,
+                    color: `${mode}.text`,
                     fontSize: '20px',
                     fontWeight: '600',
                   }}
@@ -221,7 +221,7 @@ const CheckoutCart = ({
                 </Typography>
                 <Typography
                   sx={{
-                    color: `${mode}.primary`,
+                    color: `${mode}.text`,
                     fontSize: '20px',
                     fontWeight: '600',
                   }}
@@ -249,7 +249,7 @@ const CheckoutCart = ({
                 </Typography>
                 <Typography
                   sx={{
-                    color: `${mode}.primary`,
+                    color: `${mode}.text`,
                     fontSize: '20px',
                     fontWeight: '600',
                   }}
@@ -290,7 +290,7 @@ const CheckoutCart = ({
                   sx={{
                     fontSize: '20px',
                     fontWeight: '600',
-                    color: `${mode}.primary`,
+                    color: `${mode}.text`,
                   }}
                 >
                   $ {totalPrice + delivery + gst + shipping}

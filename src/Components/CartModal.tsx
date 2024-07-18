@@ -11,6 +11,7 @@ import { MyContext } from '../contexts/ColorMode';
 import { theme } from '../App';
 import { CartItemType } from '../Redux/features/CartSlice';
 import { RootState } from '../app/combine';
+import { AuthContext } from '../contexts/AuthContext';
 
 type props = {
   cartopen: boolean;
@@ -21,6 +22,8 @@ type props = {
 const CartModal = ({ cartopen, setCartOpen, setModal, modal }: props) => {
   const delivery = 40;
   const products = useSelector((state: RootState) => state.cart);
+  const { isProfile, setIsProfile } = useContext(AuthContext);
+
   const totalPrice =
     products.cart.length > 0 ? TotalPriceMain(products.cart) : 0;
   const { mode } = useContext(MyContext);
@@ -286,7 +289,12 @@ const CartModal = ({ cartopen, setCartOpen, setModal, modal }: props) => {
                       }}
                       onClick={() => {
                         // setModal(true);
-                        navigate('/checkout')
+                        isProfile
+                          ? navigate('/checkout')
+                          : // () => {
+                            alert('Sign In First!!');
+                        // navigate('/products');
+                        // };
                         setCartOpen(false);
                       }}
                     >

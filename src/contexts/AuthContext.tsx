@@ -1,9 +1,15 @@
 import { ThemeContext } from '@emotion/react';
 import { createContext, useEffect } from 'react';
 import { useState } from 'react';
-import { authInitialState, authType, ProfileType, setProfile } from '../Redux/features/AuthSlice';
+import {
+  authInitialState,
+  authType,
+  ProfileType,
+  setProfile,
+} from '../Redux/features/AuthSlice';
 import { setCart } from '../Redux/features/CartSlice';
 import { useDispatch } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 type contextType = {
   isProfile: boolean;
   setIsProfile: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,10 +20,11 @@ export const AuthContext = createContext<contextType>({
   isProfile: false,
   setIsProfile: () => {},
   myprofile: authInitialState,
-  setMyProfile: ()=>{}
+  setMyProfile: () => {},
 });
 
 const MyAuthContext = ({ children }: any) => {
+  const location = useLocation();
   const [isProfile, setIsProfile] = useState<boolean>(false);
   const [myprofile, setMyProfile] = useState<authType>(authInitialState);
   const dispatch = useDispatch();
@@ -34,13 +41,25 @@ const MyAuthContext = ({ children }: any) => {
       const myProfile = JSON.parse(getMyProfile);
       // console.log(myProfile)
       dispatch(setProfile(myProfile));
-      
+
       setIsProfile(true);
     }
   }, []);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (
+      (location.pathname === '/shipping' ||
+        location.pathname === '/checkout') &&
+      isProfile === false
+    ) {
+      navigate('/');
+    }
+  }, [isProfile]);
 
   return (
-    <AuthContext.Provider value={{isProfile, setIsProfile, myprofile, setMyProfile }}>
+    <AuthContext.Provider
+      value={{ isProfile, setIsProfile, myprofile, setMyProfile }}
+    >
       {children}
     </AuthContext.Provider>
   );

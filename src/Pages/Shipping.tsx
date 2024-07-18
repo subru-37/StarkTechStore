@@ -43,8 +43,10 @@ const Shipping = ({
   options,
 }: ShippingProps) => {
   const dispatch = useDispatch();
-  const profileDetails = useSelector((state: RootState)=>state.profile.profileDetails);
-  console.log(profileDetails)
+  const profileDetails = useSelector(
+    (state: RootState) => state.profile.profileDetails
+  );
+  console.log(profileDetails);
   const redirect = (event: any) => {
     // navigation(whatsappUrl)
     event.preventDefault();
@@ -159,8 +161,9 @@ const Shipping = ({
                 fieldsetborderradius="8px"
                 InputProps={{
                   style: {
-                    color: theme['palette'][mode]['primary'],
+                    color: theme['palette'][mode]['text'],
                     fontFamily: 'Montserrat',
+                    fontWeight: '500',
                   },
                 }}
                 InputLabelProps={{
@@ -187,8 +190,9 @@ const Shipping = ({
                 fieldsetborderradius="8px"
                 InputProps={{
                   style: {
-                    color: theme['palette'][mode]['primary'],
+                    color: theme['palette'][mode]['text'],
                     fontFamily: 'Montserrat',
+                    fontWeight: '500',
                   },
                 }}
                 InputLabelProps={{
@@ -252,10 +256,11 @@ const Shipping = ({
                       '& .MuiOutlinedInput-root': {
                         height: '50px',
                         backgroundColor: `${mode}.background`,
-                        color: theme['palette'][mode]['primary'],
+                        color: theme['palette'][mode]['text'],
                         '& fieldset': {
                           border: `1px solid ${theme['palette'][mode]['primary']}`,
                           borderRadius: '8px',
+                          fontWeight: '500',
                           color: theme['palette'][mode]['primary'],
                         },
                         '&.Mui-focused fieldset': {

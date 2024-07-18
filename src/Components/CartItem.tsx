@@ -13,6 +13,7 @@ import CartButton from './CartButton';
 import { MyContext } from '../contexts/ColorMode';
 import SingleCartButton from './SingleCartButton';
 import { RootState } from '../app/combine';
+import { theme } from '../App';
 type props = {
   price: string;
   name: string;
@@ -84,7 +85,7 @@ const CartItem = ({ price, name, quantity, image, id }: props) => {
       >
         <Box sx={{ marginBottom: '30px' }}>
           <Typography
-            sx={{ color: `${mode}.text`, fontSize: '1rem', fontWeight: '300' }}
+            sx={{ color: `${mode}.text`, fontSize: '1rem', fontWeight: '500' }}
           >
             {name}
           </Typography>
@@ -184,7 +185,7 @@ const CartItem = ({ price, name, quantity, image, id }: props) => {
               onClick={() => removeAllProduct(products.cart[index])}
               sx={{ cursor: 'pointer' }}
             >
-              <WasteCan />
+              <WasteCan color={theme.palette[mode].primary}/>
             </Box>
           </Box>
         </Box>

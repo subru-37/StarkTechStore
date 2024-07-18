@@ -46,7 +46,7 @@ const Shipping = ({
   const profileDetails = useSelector(
     (state: RootState) => state.profile.profileDetails
   );
-  console.log(profileDetails);
+  //console.log(profileDetails);
   const redirect = (event: any) => {
     // navigation(whatsappUrl)
     event.preventDefault();

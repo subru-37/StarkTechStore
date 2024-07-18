@@ -16,9 +16,9 @@ const products = (
   categories: string[],
   search: string
 ) => {
-  // console.log(JSON)
+  // //console.log(JSON)
   const dispatch = useDispatch();
-  // console.log(data, error, isLoading)
+  // //console.log(data, error, isLoading)
   const mydata = useSelector(
     (state: RootState) => state.productDetails.products
   );
@@ -26,7 +26,7 @@ const products = (
     useFetchFilteredProductsQuery({ myFilters, range, categories, search });
   useEffect(() => {
     if (isLoading !== true && data !== null && data !== undefined) {
-      // console.log('check')
+      // //console.log('check')
       dispatch(setProducts(data?.data));
     }
   }, [data, isLoading]);
@@ -45,7 +45,7 @@ const products = (
     ];
   else
     return mydata.map((value: ProductItemType, index: number) => {
-      // console.log(value.price);
+      // //console.log(value.price);
       return {
         element: (
           <FeatureCard

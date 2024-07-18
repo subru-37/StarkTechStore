@@ -16,10 +16,10 @@ const productDetailsApi = createApi({
     fetchProductDetails: builder.query({
       queryFn: async () => {
         const getMyProducts = localStorage.getItem('products');
-        // console.log(getMyProducts)
+        // //console.log(getMyProducts)
         if (getMyProducts !== null) {
           if (getMyProducts !== 'undefined') {
-            // console.log(getMyProducts)
+            // //console.log(getMyProducts)
             const myProducts = JSON.parse(getMyProducts);
             if (myProducts.length !== 0) {
               return { data: { data: myProducts } };
@@ -29,7 +29,7 @@ const productDetailsApi = createApi({
 
         try {
           const data = await getProductDetails();
-          //console.log(data, 'new state')
+          ////console.log(data, 'new state')
           return { data };
         } catch (error: any) {
           return { error: { status: 'CUSTOM_ERROR', error: error.message } };
@@ -39,7 +39,7 @@ const productDetailsApi = createApi({
     fetchProduct: builder.query({
       queryFn: async (id: number) => {
         try {
-          //console.log(id)
+          ////console.log(id)
           const data = await getProductDeet(id);
           return { data };
         } catch (error: any) {
@@ -59,7 +59,7 @@ const productDetailsApi = createApi({
         categories: string[];
         search: string;
       }) => {
-        // console.log(search.length);
+        // //console.log(search.length);
         try {
           const data = await getFilteredProducts(
             myFilters,
@@ -67,7 +67,7 @@ const productDetailsApi = createApi({
             categories,
             search
           );
-          // console.log(data);
+          // //console.log(data);
           return { data };
         } catch (error: any) {
           return { error: { status: 'CUSTOM_ERROR', error: error.message } };

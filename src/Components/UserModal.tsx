@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Box,
   Typography,
@@ -16,9 +16,11 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 // import { useLogInQuery, useSignUpQuery } from '../api/AuthQuery';
 import {
   getProfileDetails,
+  getUserData,
   LogIn,
   setProfileDetails,
   SignUp,
+  SignUpWithGoogle,
 } from '../supabase/routes';
 import { AuthContext } from '../contexts/AuthContext';
 import { useDispatch } from 'react-redux';
@@ -59,7 +61,7 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     const index = signUp.name.indexOf(' ');
-    console.log(error);
+    //console.log(error);
     if (signMode === 'Sign Up') {
       if (signUp.password !== signUp.cpassword) {
         setError('Enter similar password while confirming');
@@ -73,7 +75,7 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
         const name = signUp.name;
         try {
           const data = await SignUp(email, password, name);
-          console.log(data);
+          //console.log(data);
           if (data.error?.message) {
             setError(data.error.message);
           } else if (data.data.user !== null) {
@@ -89,7 +91,7 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
               lastName,
               data?.data?.user.id
             );
-            console.log(response);
+            //console.log(response);
             // dispatch(
             //   setProfile({
             //     username: username,
@@ -108,7 +110,7 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
           }
         } catch (e: any) {
           // setError(e)
-          console.log(e);
+          //console.log(e);
         }
       }
     } else {
@@ -116,13 +118,13 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
       const password = signUp.password;
       try {
         const data = await LogIn(email, password);
-        console.log(data);
+        //console.log(data);
         if (data.error?.message) {
           setError(data.error.message);
         } else if (data.data.user !== null) {
-          console.log(data?.data?.user.id);
+          //console.log(data?.data?.user.id);
           const response = await getProfileDetails(data.data.user.id);
-          console.log(response.data);
+          //console.log(response.data);
           if (response.error !== null) {
             setError(response.error.message);
           } else if (response.data !== null) {
@@ -134,10 +136,20 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
         }
       } catch (e: any) {
         // setError(e)
-        console.log(e);
+        //console.log(e);
       }
     }
   };
+
+  const handleGoogleClick = async ()=> {
+    const {data, error} = await SignUpWithGoogle();
+    // //console.log('hi')
+    // const {data: mydata, error: myError} = await getUserData();
+    // //console.log(mydata, myError);
+    // //console.log(data, error);
+    // // if(da)
+  }
+  
   return (
     <Drawer open={close} onClose={() => onClose(false)} anchor="left">
       <Box
@@ -507,6 +519,7 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
                   color: `${mode}.background`,
                   fontSize: '1.1rem',
                 }}
+                onClick={handleGoogleClick}
               >
                 Sign In with Google
                 <GoogleIcon
@@ -727,6 +740,7 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
                   color: `${mode}.background`,
                   fontSize: '1.1rem',
                 }}
+                onClick={handleGoogleClick}
               >
                 Sign In with Google
                 <GoogleIcon

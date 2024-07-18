@@ -10,7 +10,7 @@ const Hero = () => {
   const navigation = useNavigate();
   const { mode } = useContext(MyContext);
   const myMode: string = mode;
-  //console.log(theme['palette'][mode]['primary'] + '40');
+  ////console.log(theme['palette'][mode]['primary'] + '40');
   return (
     <Box
       sx={{

@@ -10,7 +10,7 @@ const ProfileQuery = createApi({
       queryFn: async ({uuid}: {uuid: string}) => {
         try {
           const data = await getProfileDetails(uuid);
-          //console.log(data, 'new state')
+          ////console.log(data, 'new state')
           return { data };
         } catch (error: any) {
           return { error: { status: 'CUSTOM_ERROR', error: error.message } };

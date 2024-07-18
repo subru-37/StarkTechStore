@@ -43,7 +43,7 @@ export const getCategories = async () => {
   const { data, error } = await supabase
     .from('categories')
     .select('id, category_title');
-  // console.log(data)
+  // //console.log(data)
   return { data, error };
 };
 
@@ -53,7 +53,7 @@ export const getFilteredProducts = async (
   categories: string[],
   search: string
 ) => {
-  // console.log(priceRange)
+  // //console.log(priceRange)
   if (search.length !== 0) {
     const { data, error } = await supabase
       .from('product_details')
@@ -130,7 +130,7 @@ export const setProfileDetails = async (
     // contact_id: '',
     profile_pic: '',
   });
-  console.log(uuidv4());
+  //console.log(uuidv4());
   let { data, error } = await supabase
     .from('profiles')
     .insert([
@@ -145,7 +145,7 @@ export const setProfileDetails = async (
       },
     ])
     .select();
-  console.log(data, error);
+  //console.log(data, error);
   return { data, error };
 };
 
@@ -170,4 +170,18 @@ export const getProfileDetails = async (uuid: string) => {
 export const LogOut = async () => {
   let { error } = await supabase.auth.signOut();
   return { error };
+};
+
+export const SignUpWithGoogle = async () => {
+  let { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+  });
+  //console.log('google signin completed');
+  return { data, error };
+};
+
+export const getUserData = async () => {
+  //console.log('hi')
+  const { data, error } = await supabase.auth.getUser();
+  return { data, error };
 };

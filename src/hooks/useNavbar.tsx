@@ -8,7 +8,7 @@ export default function useNavbar() {
   const [scroll, setScroll] = useState<boolean>(false);
   function toggleDrawer(open: boolean) {
     setOpen(open);
-    // console.log(open);
+    // //console.log(open);
   }
   useEffect(() => {
     window.addEventListener('scroll', navScrolled);
@@ -16,11 +16,11 @@ export default function useNavbar() {
       setScrollP(window.scrollY);
       if (window.scrollY > scrollp) {
         setScroll(true);
-        // console.log(scrollp,scroll)
+        // //console.log(scrollp,scroll)
       } else if (window.scrollY <= scrollp) {
         setScroll(false);
       }
-      // console.log(scrollp, scroll)
+      // //console.log(scrollp, scroll)
     }
     return () => {
       window.removeEventListener('scroll', navScrolled);

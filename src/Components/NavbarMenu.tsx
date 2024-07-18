@@ -57,7 +57,8 @@ export default function NavbarMenu({ anchorEl, setAnchorEl }: navbarMenuType) {
           padding: '8px 0',
         }}
       >
-        <MenuItem>
+        {/*
+                  <MenuItem>
           <Box
             sx={{
               display: 'flex',
@@ -65,13 +66,14 @@ export default function NavbarMenu({ anchorEl, setAnchorEl }: navbarMenuType) {
               flexDirection: 'column',
             }}
           >
-            {/* <AccountCircle /> */}
+            <AccountCircle /> 
             <Typography sx={{textAlign:'center', margin:'8px 0'}}>
                 Welcome <br/>
               {profileDetails.first_name} {profileDetails.last_name}
             </Typography>
           </Box>
         </MenuItem>
+          */}
         <MenuItem onClick={handleClose}>
           <Typography fontFamily={'Montserrat'}>Profile</Typography>
         </MenuItem>

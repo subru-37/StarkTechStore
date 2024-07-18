@@ -25,11 +25,11 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
   const index = id ? parseInt(id) : 0;
   // const details = useSelector((state: any) => state.productDetails.myProduct);
   const { data, error, isLoading } = useFetchProductQuery(index);
-  //console.log(data, error, isLoading);
+  ////console.log(data, error, isLoading);
   const { mode } = useContext(MyContext);
   const details = data?.data && data?.data[0];
   const image = String(details?.image);
-  //console.log(image);
+  ////console.log(image);
   const [dimensions, { loading, error: error2 }] = useImageSize(image);
   if (isLoading) {
     return (
@@ -68,7 +68,7 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
     );
   } else {
     if (data?.data !== null) {
-      // console.log(data?.data[0])
+      // //console.log(data?.data[0])
       const aspectratio =
         dimensions !== null
           ? Number(dimensions.width) / Number(dimensions.height)
@@ -101,7 +101,7 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
           }}
         ></Box>,
       ];
-      // //console.log(aspectratio, error2, dimensions, data.data);
+      // ////console.log(aspectratio, error2, dimensions, data.data);
 
       return (
         <Box

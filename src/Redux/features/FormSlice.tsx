@@ -16,7 +16,7 @@ export const FormSlice = createSlice({
   initialState,
   reducers: {
     setUserData(state, action) {
-      //console.log(action.payload);
+      ////console.log(action.payload);
       state.user_details = action.payload;
     },
   },

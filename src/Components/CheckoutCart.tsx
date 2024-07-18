@@ -23,7 +23,7 @@ const CheckoutCart = ({
   products,
 }: CartProps) => {
   const { mode } = useContext(MyContext);
-  console.log(products)
+  //console.log(products)
   return (
     <Box
       sx={{
@@ -92,9 +92,10 @@ const CheckoutCart = ({
             }}
           >
             {products.cart.length > 0 &&
-              products.cart.map((value: CartItemType, index: any) => (
+              products.cart.map((value: CartItemType, index: number) => (
                 <CartItem
                   id={value?.id}
+                  key={index}
                   image={
                     'url(), lightgray -32.2px -6px / 112.96% 114.239% no-repeat'.substring(
                       0,

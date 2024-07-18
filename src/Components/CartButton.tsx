@@ -21,17 +21,17 @@ type BoxProps = {
 const CartButton = ({ id }: BoxProps) => {
   const dispatch = useDispatch();
   const { mode } = useContext(MyContext);
-  // console.log(mode);
+  // //console.log(mode);
   const sampleData = useSelector((state: RootState) => state.productDetails.products);
   const products = useSelector((state: RootState) => state.cart);
   const index = sampleData.findIndex((item: any) => Number(id) === item.id);
-  // console.log(sampleData, products, index, id)
+  // //console.log(sampleData, products, index, id)
   const cartindex = products.cart.findIndex(
     (item: any) => item.id === sampleData[index].id
   );
-  // console.log(products)
+  // //console.log(products)
   // const index = Number(id);
-  // console.log(index);
+  // //console.log(index);
   const removeProductHandler = (product: any) => {
     dispatch(reduceProduct(product));
   };

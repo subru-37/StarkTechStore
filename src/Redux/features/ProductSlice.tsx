@@ -35,13 +35,13 @@ export const ProductSlice = createSlice({
   reducers: {
     setProducts(state, action) {
       const data = action.payload;
-      //console.log(data);
+      ////console.log(data);
       state.products = data;
       localStorage.setItem('products', JSON.stringify(data));
     },
     setProduct(state, action) {
       const data = action.payload;
-      //console.log(data)
+      ////console.log(data)
       state.myProduct = data;
       localStorage.setItem('product', JSON.stringify(data));
     },

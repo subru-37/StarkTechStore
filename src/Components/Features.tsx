@@ -67,12 +67,12 @@ const Features = () => {
         [value]: true,
       };
     });
-    // console.log(options);
+    // //console.log(options);
   }
   function handleChange(event: any) {
     const value = 'op' + event.target.id.charAt(12);
     setValue(menuItems[event.target.id.charAt(12)].name);
-    // console.log(value);
+    // //console.log(value);
     setOptions({
       op0: false,
       op1: false,
@@ -95,11 +95,11 @@ const Features = () => {
   // const slideshow = filtered.map((value, index) => (
   //     value.element
   // ));
-  // console.log(slideshow);
+  // //console.log(slideshow);
   const myItems = productItems.map(
     (value: any, index: number) => value.element
   );
-  // console.log(myItems);
+  // //console.log(myItems);
   const { mode } = useContext(MyContext);
 
   return (

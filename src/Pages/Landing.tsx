@@ -15,9 +15,9 @@ type props = {
 };
 const Landing = (props: props) => {
   // const onscreen = useOnScreen(ref1);
-  // console.log(onscreen)
+  // //console.log(onscreen)
   const { mode } = useContext(MyContext);
-  console.log(mode);
+  //console.log(mode);
   return (
     <Box
       sx={{

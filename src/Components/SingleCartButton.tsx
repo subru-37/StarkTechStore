@@ -29,27 +29,27 @@ type BoxProps = {
 const SingleCartButton = ({ id, data }: BoxProps) => {
   const dispatch = useDispatch();
   const { mode } = useContext(MyContext);
-  // console.log(mode);
+  // //console.log(mode);
   //   const sampleData = useSelector((state: any) => state.productDetails.mycart);
   const mycart = useSelector((state: RootState) => state.cart);
   const myid = id !== undefined ? parseInt(id) : 0;
   //   const index = sampleData.findIndex((item: any) => Number(id) === item.id);
-  // console.log(sampleData, mycart, index, id)
+  // //console.log(sampleData, mycart, index, id)
     const cartindex = mycart.cart.findIndex(
       (item: any) => item.id === data.id
     );
-  // console.log(mycart)
+  // //console.log(mycart)
   // const index = Number(id);
-  // console.log(index);
+  // //console.log(index);
   //   const {data, error, isLoading} = useFetchProductQuery()
-//   console.log(data);
+//   //console.log(data);
   const removeProductHandler = (product: any) => {
     dispatch(reduceProduct(product));
   };
   const addProductHandler = (product: any) => {
     dispatch(addToCart(product));
   };
-//   console.log(mycart.cart)
+//   //console.log(mycart.cart)
   const Notdefined = mycart.cart[cartindex] === undefined;
   if (Notdefined) {
     return (

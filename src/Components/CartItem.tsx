@@ -41,7 +41,7 @@ const CartItem = ({ price, name, quantity, image, id }: props) => {
   const removeAllProduct = (product: any) => {
     dispatch(removeFromCart(product));
   };
-  // console.log(image);
+  // //console.log(image);
   const data = {
     id: id !== null ? id : 0,
     title: name, 
@@ -49,7 +49,7 @@ const CartItem = ({ price, name, quantity, image, id }: props) => {
     image: image, 
     price: parseInt(price)
   }
-  console.log(data)
+  //console.log(data)
   return (
     <Box
       sx={{

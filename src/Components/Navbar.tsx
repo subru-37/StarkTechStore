@@ -21,6 +21,7 @@ import { theme } from '../App';
 import { RootState } from '../app/combine';
 import { AuthContext } from '../contexts/AuthContext';
 import NavbarMenu from './NavbarMenu';
+import { LogOut } from '../supabase/routes';
 type props = {
   cartopen: boolean;
   setCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -46,7 +47,9 @@ export default function Navbar({
   const products = useSelector((state: RootState) => state.cart);
   const NumberOfItems = products.cart.length;
   const { mode, setMode } = React.useContext(MyContext);
-
+  const profileDetails = useSelector(
+    (state: RootState) => state.profile.profileDetails
+  );
   //Menu controls
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -116,7 +119,7 @@ export default function Navbar({
               fontFamily: '"Oswald", sans-serif !important',
               color: `${mode}.primary`,
               fontWeight: '500',
-              cursor:'pointer'
+              cursor: 'pointer',
             }}
             onClick={() => navigation('/')}
           >
@@ -224,7 +227,20 @@ export default function Navbar({
                   aria-expanded={open ? 'true' : undefined}
                   onClick={handleMenuClick}
                 >
-                  <AccountCircleIcon />
+                  {profileDetails.profilePic.length === 0 ? (
+                    <AccountCircleIcon />
+                  ) : (
+                    <Box
+                      component={'img'}
+                      src={profileDetails.profilePic}
+                      // alt={<AccountCircleIcon/>}
+                      sx={{
+                        height: '40px',
+                        width: '40px',
+                        borderRadius: '100%',
+                      }}
+                    />
+                  )}
                 </Button>
                 <NavbarMenu anchorEl={anchorEl} setAnchorEl={setAnchorEl} />
               </>
@@ -263,8 +279,9 @@ export default function Navbar({
             </Box>
             <Button
               sx={{
-                height: '100%',
-                width: '50px',
+                // height: '100%',
+                width: '40px',
+                height:'40px',
                 display: { xs: 'none', md: 'flex' },
               }}
               onClick={() => setMode(mode == 'light' ? 'dark' : 'light')}
@@ -426,7 +443,7 @@ export default function Navbar({
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}
-                  // onClick={() => onClose(!close)}
+                  onClick={() => LogOut()}
                   // id="demo-positioned-button"
                   // aria-controls={open ? 'demo-positioned-menu' : undefined}
                   // aria-haspopup="true"

@@ -101,7 +101,7 @@ const Products = (props: props) => {
     let check = 0;
     // const ogKeys = Object.keys(categor)
     for (let i in categories) {
-      // console.log(categoryFilters[categories[i]]);
+      // //console.log(categoryFilters[categories[i]]);
       if (categoryFilters[categories[i]] === true) {
         check = 1;
         setFilteredCategories((preValue) => {
@@ -119,18 +119,18 @@ const Products = (props: props) => {
 
   useEffect(() => {
     setFilteredSlideValue(slideValue);
-    // console.log(slideValue);
+    // //console.log(slideValue);
   }, [slideValue]);
 
   // useEffect(() => {
-  //   console.log(search);
+  //   //console.log(search);
   // }, [search]);
   // const {
   //   data: filteredData,
   //   error: filteredError,
   //   isLoading: filteredIsLoading,
   // } = useFetchFilteredProductsQuery(filteredCategories);
-  // console.log(filteredData?.data, categoryFilters)
+  // //console.log(filteredData?.data, categoryFilters)
   return (
     <Box
       sx={{

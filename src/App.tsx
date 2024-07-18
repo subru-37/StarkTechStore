@@ -71,7 +71,7 @@ declare module '@mui/material/styles' {
     };
   }
 }
-type FormData = {
+export type MyFormData = {
   email: string;
   firstName: string;
   lastName: string;
@@ -108,9 +108,11 @@ const App = () => {
   const [modal, setModal] = React.useState<boolean>(false);
   const navigation = useNavigate();
   const options = ['Cash On Delivery'];
-  const profileDetails = useSelector((state: RootState)=>state.profile.profileDetails);
+  const profileDetails = useSelector(
+    (state: RootState) => state.profile.profileDetails
+  );
   const [value, setValue] = React.useState<string | null>(options[0]);
-  const [formData, setFormData] = React.useState<FormData>({
+  const [formData, setFormData] = React.useState<MyFormData>({
     email: profileDetails.email,
     firstName: profileDetails.first_name,
     lastName: profileDetails.last_name,
@@ -120,23 +122,7 @@ const App = () => {
   });
   const [cartopen, setCartOpen] = React.useState<boolean>(false);
   const dispatch = useDispatch();
-  useEffect(() => {
-    const getMyProfile = localStorage.getItem('profileDetails');
-    if (getMyProfile !== null) {
-      const myProfile:ProfileType = JSON.parse(getMyProfile);
-      // console.log(myProfile)
-      dispatch(setProfile(myProfile));
-      setFormData((preValue)=>{
-        return{
-          ...preValue, 
-          firstName: myProfile.first_name,
-          lastName: myProfile.last_name,
-          email: myProfile.email
-        }
-      })
-      // setIsProfile(true);
-    }
-  }, []);
+  
   // const mydata = useSelector((state: any) => state.productDetails.products);
 
   // const { data, error, isLoading, isFetching, isUninitialized } = useFetchProductDetailsQuery(mydata.length);
@@ -146,11 +132,11 @@ const App = () => {
   //   }
   // }, [data, isLoading]);
   const [name, setName] = React.useState('');
-  // console.log(modal);
+  // //console.log(modal);
   return (
     <Box sx={{ position: 'relative' }}>
       <ColorMode>
-        <MyAuthContext>
+        <MyAuthContext setFormData={setFormData}>
           <ThemeProvider theme={theme}>
             <Navbar
               cartopen={cartopen}

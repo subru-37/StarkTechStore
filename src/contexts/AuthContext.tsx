@@ -10,6 +10,8 @@ import {
 import { setCart } from '../Redux/features/CartSlice';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { getUserData } from '../supabase/routes';
+import { MyFormData } from '../App';
 type contextType = {
   isProfile: boolean;
   setIsProfile: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,12 +24,17 @@ export const AuthContext = createContext<contextType>({
   myprofile: authInitialState,
   setMyProfile: () => {},
 });
-
-const MyAuthContext = ({ children }: any) => {
+type myAuthProps = {
+  children: JSX.Element;
+  setFormData: React.Dispatch<React.SetStateAction<MyFormData>>;
+};
+const MyAuthContext = ({ children, setFormData }: any) => {
   const location = useLocation();
   const [isProfile, setIsProfile] = useState<boolean>(false);
   const [myprofile, setMyProfile] = useState<authType>(authInitialState);
   const dispatch = useDispatch();
+
+  //checks localstorage for cart details
   useEffect(() => {
     const getMyCart = localStorage.getItem('cart');
     if (getMyCart !== null) {
@@ -35,16 +42,25 @@ const MyAuthContext = ({ children }: any) => {
       myCart.cart.length !== 0 && dispatch(setCart(myCart.cart));
     }
   }, []);
+
+  //checks localstorage for profile details
   useEffect(() => {
     const getMyProfile = localStorage.getItem('profileDetails');
     if (getMyProfile !== null) {
       const myProfile = JSON.parse(getMyProfile);
-      // console.log(myProfile)
+      // //console.log(myProfile)
       dispatch(setProfile(myProfile));
-
       setIsProfile(true);
+      setFormData((preValue: ProfileType) => {
+        return {
+          ...preValue,
+          firstName: myProfile.first_name,
+          lastName: myProfile.last_name,
+          email: myProfile.email,
+        };
+      });
     }
-  }, []);
+  }, [isProfile]);
   const navigate = useNavigate();
   useEffect(() => {
     if (
@@ -55,6 +71,38 @@ const MyAuthContext = ({ children }: any) => {
       navigate('/');
     }
   }, [isProfile]);
+  async function getProfileDetails() {
+    const { data, error } = await getUserData();
+    //console.log(data.user);
+    if (data.user !== null) {
+      const myUser = data.user;
+      if (myUser.email !== undefined) {
+        const email = myUser.email;
+        const myUsername = myUser.email.substring(0, myUser.email.indexOf('@'));
+        const id = myUser.id;
+        const index = myUser.user_metadata.name.indexOf(' ');
+        const firstName = myUser.user_metadata.name.substring(0, index);
+        const lastName = myUser.user_metadata.name.substring(index + 1);
+        const pic = myUser.user_metadata.picture;
+        dispatch(
+          setProfile({
+            username: myUsername,
+            email: email,
+            first_name: firstName,
+            last_name: lastName,
+            profilePic: pic,
+            id: id,
+            contactId: '',
+          })
+        );
+        setIsProfile(true);
+      }
+    }
+  }
+  useEffect(() => {
+    getProfileDetails();
+    // return getProfileDetails
+  }, []);
 
   return (
     <AuthContext.Provider

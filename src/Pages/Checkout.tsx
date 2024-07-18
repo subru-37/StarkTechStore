@@ -268,6 +268,7 @@ const Checkout = ({ formData, setFormData }: checkoutProps) => {
                     <FormSample
                       id={value.id}
                       label={value.label}
+                      key={index}
                       height="50px"
                       width={value.width}
                       generalbgcolor="#F5FCE7"

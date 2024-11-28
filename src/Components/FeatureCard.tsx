@@ -1,17 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import CartButton from './CartButton';
 import { useNavigate } from 'react-router-dom';
 import { MyContext } from '../contexts/ColorMode';
 import { useDispatch } from 'react-redux';
 import { setProduct } from '../Redux/features/ProductSlice';
+import useImageDimensions from '../hooks/useImageDimensions';
 interface props {
   background: string;
   cardname: string;
   price: number;
   id: number;
   category: string;
-  image:string;
+  image: string;
   index: number;
 }
 const FeatureCard = (props: props) => {
@@ -19,7 +20,31 @@ const FeatureCard = (props: props) => {
   const navigation = useNavigate();
   const dispatch = useDispatch();
   const index: string | undefined = String(props.index);
-
+  const { getImageDimensions } = useImageDimensions();
+  const [dim, setDim] = useState({
+    height: 0,
+    width: 0,
+  });
+  // setDim(mydata);
+  useEffect(() => {
+    if (props.image) {
+      const myImage = new Image();
+      myImage.src = props.image;
+      let height = 0;
+      let width = 0;
+      myImage.onload = () => {
+        if (myImage.height && myImage.width) {
+          height = myImage.height;
+          width = myImage.width;
+          console.log(height, width);
+          setDim({
+            height: height,
+            width: width,
+          });
+        }
+      };
+    }
+  }, []);
   return (
     <Box
       sx={{
@@ -39,10 +64,16 @@ const FeatureCard = (props: props) => {
       <Box
         sx={{
           width: { xs: '145px', sm: '290px' },
-          height: { xs: '179px', sm: '358px' },
+          height: {
+            xs: `calc(${dim.height / dim.width} * 145px)`,
+            sm: `calc(${dim.height / dim.width} * 290px)`,
+          },
           flexShrink: '0',
           background: props.background,
-          backgroundSize: { xs: '100% 179px', sm: '100% 358px' },
+          backgroundSize: {
+            xs: `100% calc(${dim.height / dim.width} * 145px)`,
+            sm: `100% calc(${dim.height / dim.width} * 290px)`,
+          },
         }}
         onClick={() => {
           dispatch(

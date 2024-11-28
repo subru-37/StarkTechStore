@@ -120,7 +120,7 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
           <Box
             sx={{
               display: 'flex',
-              alignItems: 'flex-end',
+              alignItems: 'center',
               justifyContent: 'center',
               width: !width600 ? '50%' : '100vw',
               height: '85%',

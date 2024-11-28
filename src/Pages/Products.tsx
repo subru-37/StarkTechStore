@@ -67,7 +67,6 @@ const Products = (props: props) => {
   const [search, setSearch] = useState<string>('');
 
   const payments = ['Loreum Ipsum 1', 'Loreum Ipsum 2', 'Loreum Ipsum 3'];
-
   useEffect(() => {
     if (isLoading !== true && data !== null && data !== undefined) {
       if (data?.data !== null) {

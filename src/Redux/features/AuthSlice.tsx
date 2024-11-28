@@ -6,7 +6,7 @@ export type ProfileType = {
   first_name: string;
   last_name: string;
   profilePic: string;
-  id:string;
+  id: string;
   contactId: string;
 };
 export type contactType = {
@@ -29,7 +29,7 @@ export type authType = {
   profileDetails: ProfileType;
   contactDetails: contactType;
   addressDetails: addressType;
-} 
+};
 export const authInitialState: authType = {
   profileDetails: {
     username: '',
@@ -37,7 +37,7 @@ export const authInitialState: authType = {
     first_name: '',
     last_name: '',
     profilePic: '',
-    id:'',
+    id: '',
     contactId: '',
   },
   contactDetails: {

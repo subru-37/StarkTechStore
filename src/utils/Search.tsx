@@ -1,8 +1,8 @@
 import React from 'react';
 type props = {
   color: string;
-}
-const Search = ({color}: props) => {
+};
+const Search = ({ color }: props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

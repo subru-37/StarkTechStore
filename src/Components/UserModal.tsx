@@ -141,15 +141,15 @@ const UserModal = ({ close, onClose, yesFunction, noFunction }: ModalProps) => {
     }
   };
 
-  const handleGoogleClick = async ()=> {
-    const {data, error} = await SignUpWithGoogle();
+  const handleGoogleClick = async () => {
+    const { data, error } = await SignUpWithGoogle();
     // //console.log('hi')
     // const {data: mydata, error: myError} = await getUserData();
     // //console.log(mydata, myError);
     // //console.log(data, error);
     // // if(da)
-  }
-  
+  };
+
   return (
     <Drawer open={close} onClose={() => onClose(false)} anchor="left">
       <Box

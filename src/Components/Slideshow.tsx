@@ -98,7 +98,7 @@ export default function SlideShow(props: props) {
               alignItems: 'center',
               justifyContent: 'center',
               height: props.height,
-              flexDirection:'row'
+              flexDirection: 'row',
             }}
           >
             {value}

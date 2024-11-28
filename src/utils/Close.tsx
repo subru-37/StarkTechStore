@@ -1,8 +1,8 @@
 import React from 'react';
 type Close = {
   color: string;
-}
-const Close = ({color}: Close) => {
+};
+const Close = ({ color }: Close) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

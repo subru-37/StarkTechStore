@@ -14,7 +14,9 @@ type formProps = {
   InputProps: any;
   InputLabelProps: any;
   value: string | number | undefined;
-  onChange: Dispatch<SetStateAction<FormData>> | Dispatch<SetStateAction<SignUp>>;
+  onChange:
+    | Dispatch<SetStateAction<FormData>>
+    | Dispatch<SetStateAction<SignUp>>;
   generalcolor: string;
   name: string;
   type?: string;
@@ -40,7 +42,7 @@ const FormSample = ({
   onChange,
   name,
   margin,
-  endAdornment
+  endAdornment,
 }: formProps) => {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;

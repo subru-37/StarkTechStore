@@ -7,7 +7,7 @@ const ProfileQuery = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: '/' }),
   endpoints: (builder) => ({
     fetchProfileDetails: builder.query({
-      queryFn: async ({uuid}: {uuid: string}) => {
+      queryFn: async ({ uuid }: { uuid: string }) => {
         try {
           const data = await getProfileDetails(uuid);
           ////console.log(data, 'new state')

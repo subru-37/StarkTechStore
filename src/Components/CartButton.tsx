@@ -22,7 +22,9 @@ const CartButton = ({ id }: BoxProps) => {
   const dispatch = useDispatch();
   const { mode } = useContext(MyContext);
   // //console.log(mode);
-  const sampleData = useSelector((state: RootState) => state.productDetails.products);
+  const sampleData = useSelector(
+    (state: RootState) => state.productDetails.products
+  );
   const products = useSelector((state: RootState) => state.cart);
   const index = sampleData.findIndex((item: any) => Number(id) === item.id);
   // //console.log(sampleData, products, index, id)

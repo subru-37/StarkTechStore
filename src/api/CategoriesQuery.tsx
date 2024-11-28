@@ -15,10 +15,9 @@ const CategoryDetailsApi = createApi({
           return { error: { status: 'CUSTOM_ERROR', error: error.message } };
         }
       },
-    })
+    }),
   }),
 });
 
-export const { useFetchCategoriesQuery } =
-  CategoryDetailsApi;
+export const { useFetchCategoriesQuery } = CategoryDetailsApi;
 export default CategoryDetailsApi;

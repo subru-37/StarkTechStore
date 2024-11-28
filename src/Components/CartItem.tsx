@@ -44,11 +44,11 @@ const CartItem = ({ price, name, quantity, image, id }: props) => {
   // //console.log(image);
   const data = {
     id: id !== null ? id : 0,
-    title: name, 
-    quantity: quantity, 
-    image: image, 
-    price: parseInt(price)
-  }
+    title: name,
+    quantity: quantity,
+    image: image,
+    price: parseInt(price),
+  };
   //console.log(data)
   return (
     <Box
@@ -180,12 +180,12 @@ const CartItem = ({ price, name, quantity, image, id }: props) => {
                 onClick={() => addProductHandler(products.cart[index])}
               />
             </Box> */}
-            <SingleCartButton id={cartindex} data={data}/>
+            <SingleCartButton id={cartindex} data={data} />
             <Box
               onClick={() => removeAllProduct(products.cart[index])}
               sx={{ cursor: 'pointer' }}
             >
-              <WasteCan color={theme.palette[mode].primary}/>
+              <WasteCan color={theme.palette[mode].primary} />
             </Box>
           </Box>
         </Box>

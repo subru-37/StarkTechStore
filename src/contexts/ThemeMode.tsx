@@ -75,7 +75,7 @@ export const theme: Theme = createTheme({
     },
   },
 });
-const ThemeMode = ({children}: any) => {
+const ThemeMode = ({ children }: any) => {
   //console.log(typeof(theme))
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };

@@ -2,8 +2,8 @@ import React from 'react';
 
 type props = {
   color: string;
-}
-const DownArrow = ({color}: props) => {
+};
+const DownArrow = ({ color }: props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

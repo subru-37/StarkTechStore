@@ -21,9 +21,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
       {/* <ApiProvider api={productDetailsApi}> */}
-        <Provider store={store}>
-          <App />
-        </Provider>
+      <Provider store={store}>
+        <App />
+      </Provider>
       {/* </ApiProvider> */}
     </BrowserRouter>
   </React.StrictMode>

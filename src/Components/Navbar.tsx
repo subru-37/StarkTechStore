@@ -281,7 +281,7 @@ export default function Navbar({
               sx={{
                 // height: '100%',
                 width: '40px',
-                height:'40px',
+                height: '40px',
                 display: { xs: 'none', md: 'flex' },
               }}
               onClick={() => setMode(mode == 'light' ? 'dark' : 'light')}

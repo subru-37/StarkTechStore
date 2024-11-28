@@ -122,7 +122,7 @@ const App = () => {
   });
   const [cartopen, setCartOpen] = React.useState<boolean>(false);
   const dispatch = useDispatch();
-  
+
   // const mydata = useSelector((state: any) => state.productDetails.products);
 
   // const { data, error, isLoading, isFetching, isUninitialized } = useFetchProductDetailsQuery(mydata.length);

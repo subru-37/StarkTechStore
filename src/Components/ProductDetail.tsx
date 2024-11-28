@@ -45,7 +45,7 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
           fontSize: '2rem',
         }}
       >
-        <Loader/>
+        <Loader />
       </Box>
     );
   } else if (data?.error !== null) {
@@ -283,7 +283,7 @@ const ProductDetail = ({ height, width, bgsize }: props) => {
                 </Typography>
                 <Plus />
               </Button> */}
-                <SingleCartButton id={id} data={data?.data[0]}/>
+                <SingleCartButton id={id} data={data?.data[0]} />
               </Box>
             </Box>
           </Box>

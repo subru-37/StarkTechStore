@@ -1,4 +1,5 @@
 # Stark Tech Store
+
 An E-Bay like E-Commerce application for the sale and purchase of electronic goods.
 
 ## Table of Contents
@@ -19,17 +20,19 @@ An E-Bay like E-Commerce application for the sale and purchase of electronic goo
    ```bash
    git clone https://github.com/subru-37/StarkTechStore.git
    ```
+
 2. Install dependencies
 
-    ```bash
-    cd StarkTechStore
-    npm install
-    ```
-5. Running the Application
+   ```bash
+   cd StarkTechStore
+   npm install
+   ```
 
-    ```
-    npm run dev -- --host
-    ```
+3. Running the Application
+
+   ```
+   npm run dev -- --host
+   ```
 
 ## API Documentation
 
